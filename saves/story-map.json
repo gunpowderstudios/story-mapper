@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T13:13:53.611Z",
+  "savedAt": "2026-09-03T13:16:02.096Z",
   "state": {
     "nextId": 14,
     "nodes": [
@@ -8,9 +8,9 @@
         "id": 1,
         "number": 2,
         "title": "ENTER - Corridor",
-        "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired; the air is becoming shallow and hard to breath, suddley the corridr open into a junction; some cooler air blows over you like a breath, as though the dungeon itself is breathing! You stop and try not to worry.",
-        "x": 600.03515625,
-        "y": 144.0078125,
+        "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired; the air is becoming shallow and hard to breath, suddley the corridr open into a junction; some cooler air blows over you like a breath, as though the dungeon itself is breathing! You stop and try not to worry.\n\nYou finally reach a junction after the long corridore entrance which twisted and turned for what seemed a long walk? To you left is a short tunnel with a lit torch and a door. You may inspect the door if you have intelligence above 4.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
+        "x": 600.15625,
+        "y": 144.12890625,
         "map": true
       },
       {
@@ -18,8 +18,8 @@
         "number": 13,
         "title": "Goblin - Kitchen - Listen first",
         "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to #\nOr burst in? Go to 13\nOr return to the Junction? Go to 17",
-        "x": 403.859375,
-        "y": 422.82421875,
+        "x": 495.37890625,
+        "y": 347.85546875,
         "map": true
       },
       {
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "Cold air rises from the darkness below.",
-        "x": 788.45703125,
-        "y": 284.69921875,
+        "x": 746.73828125,
+        "y": 251.9375,
         "map": true
       },
       {
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 513.47265625,
-        "y": 609.67578125,
+        "x": 374.3046875,
+        "y": 545.94140625,
         "map": true
       },
       {
@@ -56,15 +56,6 @@
         "text": "You peer into the dark cave, which slowley becomes wide and forks off into 2 forections. Bones littler the floors and there is the smell of something boiling down the right tunnel.",
         "x": 1000.89453125,
         "y": 268.43359375,
-        "map": true
-      },
-      {
-        "id": 8,
-        "number": 17,
-        "title": "Junction",
-        "text": "You finally reach a junction after the long corridore entrance which twisted and turned for what seemed a long walk? To you left is a short tunnel with a lit torch and a door. You may inspect the door if you have intelligence above 4.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nYou may...\nListen at the door #\nOpen the door, turn to 13\nHead up the stairs; turn to 27",
-        "x": 572.75390625,
-        "y": 239.48046875,
         "map": true
       },
       {
@@ -90,8 +81,8 @@
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
         "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.",
-        "x": 662.7265625,
-        "y": 407.23828125,
+        "x": 266.28125,
+        "y": 326.41796875,
         "map": false
       },
       {
@@ -99,8 +90,8 @@
         "number": 338,
         "title": "Door",
         "text": "You see a large arched door set back insode a small tunnel entrance.\n\nDo you...\nListen at the door? Turn to 13\nOpen the door? Turn to 374\nHead up the stairs 27",
-        "x": 483.81640625,
-        "y": 324.8359375,
+        "x": 477.45703125,
+        "y": 253.53515625,
         "map": false
       },
       {
@@ -108,8 +99,8 @@
         "number": 262,
         "title": "Goblin - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 510.83984375,
-        "y": 510.1171875,
+        "x": 392.84765625,
+        "y": 455.453125,
         "map": false
       }
     ],
@@ -118,18 +109,6 @@
         "id": "l17883361417600.2676145086113947",
         "from": 5,
         "to": 3,
-        "type": "choice"
-      },
-      {
-        "id": "l17883672380460.2576312460476856",
-        "from": 8,
-        "to": 1,
-        "type": "choice"
-      },
-      {
-        "id": "l17883672490790.5655815051608248",
-        "from": 3,
-        "to": 8,
         "type": "choice"
       },
       {
@@ -148,12 +127,6 @@
         "id": "l17884260851720.7322416289585936",
         "from": 7,
         "to": 10,
-        "type": "read"
-      },
-      {
-        "id": "l17884260926710.18104030315190722",
-        "from": 10,
-        "to": 8,
         "type": "read"
       },
       {
@@ -187,9 +160,15 @@
         "type": "read"
       },
       {
-        "id": "l17884406997600.12534946943631586",
-        "from": 8,
-        "to": 12,
+        "id": "l17884412554060.9902491275254696",
+        "from": 3,
+        "to": 1,
+        "type": "choice"
+      },
+      {
+        "id": "l17884412588590.4278090285307614",
+        "from": 12,
+        "to": 1,
         "type": "choice"
       }
     ]
