@@ -1,8 +1,8 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T12:36:22.218Z",
+  "savedAt": "2026-09-03T12:46:22.915Z",
   "state": {
-    "nextId": 12,
+    "nextId": 13,
     "nodes": [
       {
         "id": 1,
@@ -16,10 +16,10 @@
       {
         "id": 2,
         "number": 13,
-        "title": "Goblin - Kitchen",
-        "text": "Three goblins sit around a cooking pot.",
-        "x": 388.82421875,
-        "y": 337.265625,
+        "title": "Goblin - Kitchen - Listen first",
+        "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to #\nOr burst in? Go to 13\nOr return to the Junction? Go to 17",
+        "x": 451.71484375,
+        "y": 331.8046875,
         "map": true
       },
       {
@@ -34,10 +34,10 @@
       {
         "id": 4,
         "number": 61,
-        "title": "Secret Room",
+        "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
         "x": 292.6875,
-        "y": 265.5703125,
+        "y": 257.0546875,
         "map": true
       },
       {
@@ -88,20 +88,23 @@
       {
         "id": 11,
         "number": 374,
+        "title": "Goblin - Kitchen Open without checking",
+        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.",
+        "x": 390.75,
+        "y": 439.3984375,
+        "map": false
+      },
+      {
+        "id": 12,
+        "number": 338,
         "title": "New story node",
         "text": "",
-        "x": 220,
-        "y": 180,
+        "x": 220.83984375,
+        "y": 334.3359375,
         "map": false
       }
     ],
     "links": [
-      {
-        "id": "l3",
-        "from": 2,
-        "to": 4,
-        "type": "read"
-      },
       {
         "id": "l17883361417600.2676145086113947",
         "from": 5,
@@ -118,12 +121,6 @@
         "id": "l17883672490790.5655815051608248",
         "from": 3,
         "to": 8,
-        "type": "choice"
-      },
-      {
-        "id": "l17883672892450.750684318115403",
-        "from": 8,
-        "to": 2,
         "type": "choice"
       },
       {
@@ -149,6 +146,18 @@
         "from": 10,
         "to": 8,
         "type": "read"
+      },
+      {
+        "id": "l17884393649860.42572648956314385",
+        "from": 8,
+        "to": 11,
+        "type": "choice"
+      },
+      {
+        "id": "l17884394108350.5942340272953762",
+        "from": 12,
+        "to": 8,
+        "type": "choice"
       }
     ]
   }
