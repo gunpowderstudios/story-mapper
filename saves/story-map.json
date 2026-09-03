@@ -1,15 +1,15 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T12:09:02.229Z",
+  "savedAt": "2026-09-03T12:12:27.439Z",
   "state": {
     "nextId": 11,
     "nodes": [
       {
         "id": 1,
         "number": 12,
-        "title": "You enter the dungeon...",
+        "title": "ENTER - Corridor",
         "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nEventually you reach a junction; ahead are some stairs going up, to the right is a door...\n\nWill you A. Listen at the door? B. Open the door? or C. head up the stairs?",
-        "x": 599.921875,
+        "x": 600.03515625,
         "y": 144.0078125,
         "map": true
       },
