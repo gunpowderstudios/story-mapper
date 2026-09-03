@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T13:04:49.193Z",
+  "savedAt": "2026-09-03T13:05:34.371Z",
   "state": {
     "nextId": 14,
     "nodes": [
@@ -90,8 +90,8 @@
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
         "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.",
-        "x": 635.49609375,
-        "y": 413.01171875,
+        "x": 650.125,
+        "y": 407.0859375,
         "map": false
       },
       {
@@ -185,6 +185,12 @@
         "from": 13,
         "to": 4,
         "type": "read"
+      },
+      {
+        "id": "l17884406997600.12534946943631586",
+        "from": 8,
+        "to": 12,
+        "type": "choice"
       }
     ]
   }
