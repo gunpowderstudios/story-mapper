@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T13:06:01.879Z",
+  "savedAt": "2026-09-03T13:12:27.111Z",
   "state": {
     "nextId": 14,
     "nodes": [
@@ -8,7 +8,7 @@
         "id": 1,
         "number": 2,
         "title": "ENTER - Corridor",
-        "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nEventually you reach a junction; ahead are some stairs going up, to the right is a door...\n\nWill you A. Listen at the door? B. Open the door? or C. head up the stairs?",
+        "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired, the air is becomeing shallow and hard to breath, suddley the corridr open into a junction, some cooler air blows over you like a breat as though the dungeon it's self is breathing! You stop and try not worry.",
         "x": 600.03515625,
         "y": 144.0078125,
         "map": true
@@ -90,8 +90,8 @@
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
         "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.",
-        "x": 650.125,
-        "y": 407.0859375,
+        "x": 662.7265625,
+        "y": 407.23828125,
         "map": false
       },
       {
