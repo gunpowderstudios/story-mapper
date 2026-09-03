@@ -111,7 +111,7 @@
     const ps = paragraphs(section.text);
     let page = makePage(section, pageCounter.value++, false);
     pagesEl.appendChild(page);
-    const story = page.querySelector('.storyText');
+    let story = page.querySelector('.storyText');
 
     if (image) {
       const img = document.createElement('img');
@@ -150,10 +150,11 @@
           }
           page = makePage(section, pageCounter.value++, true);
           pagesEl.appendChild(page);
+          story = page.querySelector('.storyText');
           chunk = last ? [last] : [];
           p = document.createElement('p');
           p.textContent = chunk.join(' ');
-          page.querySelector('.storyText').appendChild(p);
+          story.appendChild(p);
         }
       }
     }
