@@ -1,6 +1,6 @@
 (() => {
   const DIVERGE = 64;
-  const SPACING = 18;
+  const SPACING = 35;
   const EDGE_MARGIN = 20;
   let timer = null;
   let busy = false;
