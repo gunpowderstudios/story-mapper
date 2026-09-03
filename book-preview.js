@@ -39,16 +39,6 @@
     });
   }
 
-  async function deleteLocalImage(number) {
-    const db = await openDb();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(DB_STORE, 'readwrite');
-      tx.objectStore(DB_STORE).delete(String(number));
-      tx.oncomplete = resolve;
-      tx.onerror = () => reject(tx.error);
-    });
-  }
-
   function syncMapToLocalStorage() {
     const save = document.getElementById('saveBtn');
     const panel = document.getElementById('githubPanel');
@@ -74,7 +64,7 @@
   }
 
   function escapeHtml(s) {
-    return String(s == null ? '' : s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+    return String(s == null ? '' : s).replace(/[&<>'\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','\"':'&quot;'}[c]));
   }
 
   function paragraphs(text) {
@@ -171,16 +161,11 @@
     const tools = document.createElement('div');
     tools.className = 'bookSectionTools';
     tools.innerHTML = `<span class="filename">${image ? escapeHtml(image.name) : `No ${escapeHtml(section.number)}.png yet`}</span>
-      <label>Upload illustration<input type="file" accept="image/png,image/jpeg,image/webp"></label>
-      <button type="button" class="removeImage">Remove local</button>`;
+      <label>Upload illustration<input type="file" accept="image/png,image/jpeg,image/webp"></label>`;
     const input = tools.querySelector('input');
     input.addEventListener('change', async () => {
       if (!input.files[0]) return;
       await putLocalImage(section.number, input.files[0]);
-      await renderBook();
-    });
-    tools.querySelector('.removeImage').addEventListener('click', async () => {
-      await deleteLocalImage(section.number);
       await renderBook();
     });
     pagesEl.appendChild(tools);
