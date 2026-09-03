@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T15:19:53.239Z",
+  "savedAt": "2026-09-03T15:23:37.164Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -81,8 +81,8 @@
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
         "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf not go to #\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
-        "x": 324.9453125,
-        "y": 185.09765625,
+        "x": 212.7578125,
+        "y": 125.85546875,
         "map": false
       },
       {
