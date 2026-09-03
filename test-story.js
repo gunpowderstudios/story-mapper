@@ -13,13 +13,20 @@
     return {nodes:[], links:[]};
   }
 
-  function getOneWayIds() {
+  function getSet(key) {
     try {
-      const value = JSON.parse(localStorage.getItem('bodOneWayLinks') || '[]');
+      const value = JSON.parse(localStorage.getItem(key) || '[]');
       return new Set(Array.isArray(value) ? value.map(String) : []);
     } catch (_) {
       return new Set();
     }
+  }
+
+  function getDirection(linkId) {
+    const id = String(linkId);
+    const oneWay = getSet('bodOneWayLinks');
+    if (!oneWay.has(id)) return 'two-way';
+    return getSet('bodReverseOneWayLinks').has(id) ? 'reverse' : 'forward';
   }
 
   function syncMap() {
@@ -42,14 +49,15 @@
   }
 
   function outgoing(state, id) {
-    const oneWay = getOneWayIds();
     const result = [];
     const seen = new Set();
     (state.links || []).forEach(link => {
+      const direction = getDirection(link.id);
       let target = null;
       let reverse = false;
-      if (Number(link.from) === Number(id)) target = Number(link.to);
-      else if (Number(link.to) === Number(id) && !oneWay.has(String(link.id))) {
+      if (Number(link.from) === Number(id) && direction !== 'reverse') {
+        target = Number(link.to);
+      } else if (Number(link.to) === Number(id) && direction !== 'forward') {
         target = Number(link.from);
         reverse = true;
       }
@@ -57,7 +65,7 @@
       const key = `${target}|${link.type}`;
       if (seen.has(key)) return;
       seen.add(key);
-      result.push({...link, to:target, reverse});
+      result.push({...link, to:target, reverse, direction});
     });
     return result;
   }
@@ -104,9 +112,9 @@
       if (!target) {
         return `<button class="testBroken" disabled>${dotted ? 'Dotted' : 'Solid'} → missing node ${esc(l.to)}</button>`;
       }
-      const direction = l.reverse ? 'Return route' : (getOneWayIds().has(String(l.id)) ? 'One-way' : 'Two-way');
+      const directionLabel = l.direction === 'two-way' ? 'Two-way' : 'One-way';
       return `<button class="testLink ${dotted ? 'testDotted' : 'testSolid'}" data-target="${target.id}" data-type="${esc(l.type)}">
-        <span>${dotted ? 'Dotted / automatic' : 'Solid / choice'} • ${direction}</span>
+        <span>${dotted ? 'Dotted / automatic' : 'Solid / choice'} • ${directionLabel}</span>
         <strong>Go to ${esc(target.number)}</strong>
         <small>${esc(target.title || 'Untitled')}</small>
       </button>`;
