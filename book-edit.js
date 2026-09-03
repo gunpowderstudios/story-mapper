@@ -1,6 +1,7 @@
 (() => {
   let modal = null;
   let editingNumber = null;
+  let copyIssues = [];
 
   function getState() {
     try {
@@ -28,6 +29,124 @@
     textarea.dispatchEvent(new Event('input', {bubbles:true}));
   }
 
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  }
+
+  function addIssue(list, issue) {
+    if (!list.some(x => x.start === issue.start && x.end === issue.end && x.type === issue.type)) list.push(issue);
+  }
+
+  function findCopyIssues(text) {
+    const issues = [];
+    let m;
+
+    const checks = [
+      {
+        re:/ {2,}/g,
+        make:m => ({type:'Spacing', message:'More than one space.', replacement:' ', start:m.index, end:m.index + m[0].length})
+      },
+      {
+        re:/\s+([,.;:!?])/g,
+        make:m => ({type:'Punctuation', message:`Remove the space before “${m[1]}”.`, replacement:m[1], start:m.index, end:m.index + m[0].length})
+      },
+      {
+        re:/([,.;:!?])([A-Za-z])/g,
+        make:m => ({type:'Punctuation', message:`Add a space after “${m[1]}”.`, replacement:`${m[1]} ${m[2]}`, start:m.index, end:m.index + m[0].length})
+      },
+      {
+        re:/\b([A-Za-z][A-Za-z’'-]*)\s+\1\b/gi,
+        make:m => ({type:'Repeated word', message:`“${m[1]}” appears twice.`, replacement:m[1], start:m.index, end:m.index + m[0].length})
+      },
+      {
+        re:/\bi\b/g,
+        make:m => ({type:'Capitalisation', message:'The pronoun “I” should be capitalised.', replacement:'I', start:m.index, end:m.index + 1})
+      },
+      {
+        re:/([.!?])\1{2,}/g,
+        make:m => ({type:'Punctuation', message:'Repeated punctuation — check whether this is intentional.', replacement:m[1], start:m.index, end:m.index + m[0].length})
+      }
+    ];
+
+    checks.forEach(check => {
+      check.re.lastIndex = 0;
+      while ((m = check.re.exec(text))) addIssue(issues, check.make(m));
+    });
+
+    const paraRe = /(^|\n\n)([^\n\s])/g;
+    while ((m = paraRe.exec(text))) {
+      const ch = m[2];
+      if (/[a-z]/.test(ch)) {
+        const start = m.index + m[1].length;
+        addIssue(issues, {type:'Capitalisation', message:'This paragraph starts with a lower-case letter.', replacement:ch.toUpperCase(), start, end:start + 1});
+      }
+    }
+
+    const sentenceRe = /[^.!?\n]+[.!?]+/g;
+    while ((m = sentenceRe.exec(text))) {
+      const words = m[0].trim().split(/\s+/).filter(Boolean);
+      if (words.length > 45) {
+        addIssue(issues, {
+          type:'Readability',
+          message:`Long sentence (${words.length} words). Worth checking for clarity.`,
+          replacement:null,
+          start:m.index,
+          end:m.index + m[0].length
+        });
+      }
+    }
+
+    return issues.sort((a,b) => a.start - b.start || a.end - b.end);
+  }
+
+  function showIssue(issue) {
+    const ta = modal && modal.querySelector('#bookEditTextarea');
+    if (!ta) return;
+    ta.focus();
+    ta.setSelectionRange(issue.start, issue.end);
+    const lineHeight = parseFloat(getComputedStyle(ta).lineHeight) || 23;
+    const before = ta.value.slice(0, issue.start);
+    const line = before.split('\n').length - 1;
+    ta.scrollTop = Math.max(0, line * lineHeight - ta.clientHeight * .35);
+  }
+
+  function applyIssue(index) {
+    const issue = copyIssues[index];
+    const ta = modal && modal.querySelector('#bookEditTextarea');
+    if (!issue || !ta || issue.replacement == null) return;
+    ta.value = ta.value.slice(0, issue.start) + issue.replacement + ta.value.slice(issue.end);
+    ta.dispatchEvent(new Event('input', {bubbles:true}));
+    runCopyCheck();
+  }
+
+  function renderCopyResults() {
+    const panel = modal && modal.querySelector('#bookCopyResults');
+    if (!panel) return;
+    if (!copyIssues.length) {
+      panel.innerHTML = '<div class="bookCopyClean"><strong>No obvious copy problems found.</strong><span>Browser spellcheck is still active for spelling. Read the prose through once for style and story logic.</span></div>';
+      panel.classList.remove('hidden');
+      return;
+    }
+    panel.innerHTML = `<div class="bookCopySummary"><strong>${copyIssues.length} item${copyIssues.length === 1 ? '' : 's'} to check</strong><span>Nothing is changed unless you press Fix.</span></div>` + copyIssues.map((issue, i) => `
+      <div class="bookCopyIssue">
+        <div class="bookCopyIssueText"><span class="bookCopyType">${esc(issue.type)}</span><span>${esc(issue.message)}</span></div>
+        <div class="bookCopyButtons">
+          <button type="button" data-show-issue="${i}">Show</button>
+          ${issue.replacement == null ? '' : `<button type="button" class="bookCopyFix" data-fix-issue="${i}">Fix</button>`}
+        </div>
+      </div>`).join('');
+    panel.classList.remove('hidden');
+    panel.querySelectorAll('[data-show-issue]').forEach(btn => btn.addEventListener('click', () => showIssue(copyIssues[Number(btn.dataset.showIssue)])));
+    panel.querySelectorAll('[data-fix-issue]').forEach(btn => btn.addEventListener('click', () => applyIssue(Number(btn.dataset.fixIssue))));
+  }
+
+  function runCopyCheck() {
+    if (!modal) return;
+    const ta = modal.querySelector('#bookEditTextarea');
+    copyIssues = findCopyIssues(ta ? ta.value : '');
+    renderCopyResults();
+  }
+
   function ensureModal() {
     if (modal) return modal;
     modal = document.createElement('section');
@@ -44,6 +163,11 @@
           <label>Story text</label>
           <div class="bookEditBreakHint">Return = new paragraph &nbsp;•&nbsp; Shift + Return = new line</div>
           <textarea id="bookEditTextarea" spellcheck="true"></textarea>
+          <div class="bookCopyToolbar">
+            <button id="bookCopyCheck" type="button">Check copy</button>
+            <span>Checks punctuation, spacing, repeated words, capitalisation and very long sentences.</span>
+          </div>
+          <div id="bookCopyResults" class="bookCopyResults hidden"></div>
         </div>
         <div class="bookEditActions">
           <button id="bookEditCancel" type="button">Cancel</button>
@@ -54,6 +178,7 @@
     modal.querySelector('#bookEditClose').addEventListener('click', closeEditor);
     modal.querySelector('#bookEditCancel').addEventListener('click', closeEditor);
     modal.querySelector('#bookEditSave').addEventListener('click', saveChanges);
+    modal.querySelector('#bookCopyCheck').addEventListener('click', runCopyCheck);
     modal.addEventListener('pointerdown', e => { if (e.target === modal) closeEditor(); });
 
     const textarea = modal.querySelector('#bookEditTextarea');
@@ -61,6 +186,10 @@
       if (e.key !== 'Enter' || e.ctrlKey || e.metaKey || e.altKey) return;
       e.preventDefault();
       insertBreak(textarea, e.shiftKey ? '\n' : '\n\n');
+    });
+    textarea.addEventListener('input', () => {
+      const results = modal.querySelector('#bookCopyResults');
+      if (results && !results.classList.contains('hidden')) results.classList.add('hidden');
     });
 
     document.addEventListener('keydown', e => {
@@ -82,6 +211,8 @@
     m.querySelector('#bookEditTitle').textContent = `Edit section ${number}`;
     const ta = m.querySelector('#bookEditTextarea');
     ta.value = node.text || '';
+    copyIssues = [];
+    m.querySelector('#bookCopyResults').classList.add('hidden');
     m.classList.remove('bookEditHidden');
     setTimeout(() => ta.focus(), 20);
   }
@@ -89,6 +220,7 @@
   function closeEditor() {
     if (modal) modal.classList.add('bookEditHidden');
     editingNumber = null;
+    copyIssues = [];
   }
 
   function applyThroughMapper(number, text) {
