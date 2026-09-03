@@ -8,12 +8,12 @@
   }
 
   function clearNodeSelection() {
-    if (selectedNode) selectedNode.classList.remove('desktopKeyboardSelected');
+    if (selectedNode && document.body.contains(selectedNode)) selectedNode.classList.remove('desktopKeyboardSelected');
     selectedNode = null;
   }
 
   function selectNode(node) {
-    if (selectedNode && selectedNode !== node) selectedNode.classList.remove('desktopKeyboardSelected');
+    if (selectedNode && selectedNode !== node && document.body.contains(selectedNode)) selectedNode.classList.remove('desktopKeyboardSelected');
     selectedNode = node;
     if (selectedNode) selectedNode.classList.add('desktopKeyboardSelected');
   }
@@ -33,12 +33,19 @@
     const editor = document.getElementById('editor');
     const deleteLineBtn = document.getElementById('deleteLineBtn');
     const deleteModeBtn = document.getElementById('deleteModeBtn');
+    const moveModeBtn = document.getElementById('resetModeBtn');
+    const undoBtn = document.getElementById('undoBtn');
 
     if (applyBtn && editor && !applyBtn.dataset.autoCloseInstalled) {
       applyBtn.dataset.autoCloseInstalled = '1';
       applyBtn.addEventListener('click', () => {
         setTimeout(() => editor.classList.add('hidden'), 0);
       });
+    }
+
+    if (undoBtn && !undoBtn.dataset.desktopShortcutUndoInstalled) {
+      undoBtn.dataset.desktopShortcutUndoInstalled = '1';
+      undoBtn.addEventListener('click', clearNodeSelection);
     }
 
     if (!document.documentElement.dataset.desktopSelectionInstalled) {
@@ -76,8 +83,21 @@
           e.preventDefault();
           const node = selectedNode;
           clearNodeSelection();
+
+          // Temporarily use the mapper's normal delete mode so its existing
+          // undo/history and connected-line cleanup stay intact.
           deleteModeBtn.click();
-          node.dispatchEvent(new PointerEvent('pointerdown', {bubbles:true, cancelable:true, button:0, pointerId:1, pointerType:'mouse'}));
+          node.dispatchEvent(new PointerEvent('pointerdown', {
+            bubbles:true,
+            cancelable:true,
+            button:0,
+            pointerId:1,
+            pointerType:'mouse'
+          }));
+
+          // Keyboard deletion is a one-shot action. Return immediately to
+          // Move mode so an Undo followed by a click cannot delete the node again.
+          if (moveModeBtn) setTimeout(() => moveModeBtn.click(), 0);
         }
       });
     }
