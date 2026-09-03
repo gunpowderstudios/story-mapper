@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T07:49:23.601Z",
+  "savedAt": "2026-09-03T07:53:16.776Z",
   "state": {
     "nextId": 10,
     "nodes": [
@@ -20,7 +20,7 @@
         "text": "Three goblins sit around a cooking pot.",
         "x": 413.96484375,
         "y": 269.05859375,
-        "map": false
+        "map": true
       },
       {
         "id": 3,
@@ -38,7 +38,7 @@
         "text": "Only accessible if you have the Iron Key.",
         "x": 381.6484375,
         "y": 164.10546875,
-        "map": false
+        "map": true
       },
       {
         "id": 5,
