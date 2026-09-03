@@ -6,6 +6,7 @@
   <title>Book of Dungeon Story Mapper</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="history.css" />
+  <link rel="stylesheet" href="book-preview.css" />
 </head>
 <body>
   <header class="toolbar">
@@ -65,10 +66,10 @@
       <button id="closeGithubBtn" aria-label="Close GitHub setup">×</button>
     </div>
     <p id="githubPanelStatus" class="panelStatus">Not connected.</p>
-    <p class="smallCopy">The mapper saves to <strong>gunpowderstudios/BOD3D-TEST</strong> as <code>story-mapper/story-map.json</code>.</p>
+    <p class="smallCopy">The mapper uses <strong>gunpowderstudios/story-mapper</strong>. Story saves belong in <code>saves/story-map.json</code>.</p>
     <ol class="setupSteps">
       <li>Create a <strong>fine-grained personal access token</strong> on GitHub.</li>
-      <li>Give it access to <strong>BOD3D-TEST only</strong>.</li>
+      <li>Give it access to <strong>story-mapper only</strong>.</li>
       <li>Repository permission: <strong>Contents → Read and write</strong>. No other permission is needed.</li>
     </ol>
     <a class="githubLink" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Create fine-grained token on GitHub ↗</a>
@@ -79,7 +80,7 @@
       <button id="connectGithubBtn">Connect GitHub</button>
       <button id="disconnectGithubBtn" class="secondary danger">Disconnect</button>
     </div>
-    <p class="securityNote">The token is never written into the public mapper files or browser storage. It stays only in memory while this page is open, so after a full refresh you will need to paste it again.</p>
+    <p class="securityNote">The token is never written into the mapper files or browser storage. It stays only in memory while this page is open, so after a full refresh you will need to paste it again.</p>
   </aside>
 
   <div id="mobileQuick" class="mobileQuick hidden" aria-live="polite">
@@ -114,5 +115,6 @@
   <script src="zoom.js"></script>
   <script src="history.js"></script>
   <script src="random-number.js"></script>
+  <script src="book-preview.js"></script>
 </body>
 </html>
