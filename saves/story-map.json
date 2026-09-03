@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T13:23:57.973Z",
+  "savedAt": "2026-09-03T13:25:06.890Z",
   "state": {
     "nextId": 15,
     "nodes": [
@@ -18,8 +18,8 @@
         "number": 13,
         "title": "Goblin - Kitchen - Listen first",
         "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to #\nOr burst in? Go to 13\nOr return to the Junction? Go to 17",
-        "x": 484.01953125,
-        "y": 383.91015625,
+        "x": 486.5234375,
+        "y": 388.859375,
         "map": true
       },
       {
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 364.19921875,
-        "y": 608.00390625,
+        "x": 373.08984375,
+        "y": 598.40234375,
         "map": true
       },
       {
@@ -81,17 +81,8 @@
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
         "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.",
-        "x": 256.6953125,
-        "y": 388.28125,
-        "map": false
-      },
-      {
-        "id": 12,
-        "number": 338,
-        "title": "Door",
-        "text": "You see a large arched door set back insode a small tunnel entrance.\n\nDo you...\nListen at the door? Turn to 13\nOpen the door? Turn to 374\nHead up the stairs 27",
-        "x": 410.3828125,
-        "y": 290.4921875,
+        "x": 253.3203125,
+        "y": 380.625,
         "map": false
       },
       {
@@ -99,8 +90,8 @@
         "number": 262,
         "title": "Goblin - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 373.984375,
-        "y": 513.03515625,
+        "x": 374.19921875,
+        "y": 503.99609375,
         "map": false
       },
       {
@@ -139,18 +130,6 @@
         "type": "read"
       },
       {
-        "id": "l17884404270460.8798466400681763",
-        "from": 2,
-        "to": 12,
-        "type": "choice"
-      },
-      {
-        "id": "l17884404323450.9639389145956522",
-        "from": 12,
-        "to": 11,
-        "type": "choice"
-      },
-      {
         "id": "l17884406124600.7486914071564655",
         "from": 2,
         "to": 13,
@@ -175,15 +154,21 @@
         "type": "choice"
       },
       {
-        "id": "l17884417528990.7042083356304969",
-        "from": 14,
-        "to": 12,
-        "type": "choice"
-      },
-      {
         "id": "l17884417574970.43561696623655555",
         "from": 14,
         "to": 3,
+        "type": "choice"
+      },
+      {
+        "id": "l17884418844800.42493973618726355",
+        "from": 2,
+        "to": 14,
+        "type": "choice"
+      },
+      {
+        "id": "l17884418878330.023630905746980346",
+        "from": 11,
+        "to": 14,
         "type": "choice"
       }
     ]
