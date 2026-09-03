@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T14:04:22.216Z",
+  "savedAt": "2026-09-03T14:07:10.398Z",
   "state": {
     "nextId": 15,
     "nodes": [
@@ -8,7 +8,7 @@
         "id": 1,
         "number": 2,
         "title": "ENTER - Corridor",
-        "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired; the air is becoming shallow and hard to breath, suddley the corridr open into a junction; some cooler air blows over you like a breath, as though the dungeon itself is breathing! You stop and try not to worry.\n\nAs you take you next step you hear a runmble, out of instinct you throw yourself on the ground just in time to feel the ground shake and pieces of rock cover you from behind... lights out!\n\nTurn to 100",
+        "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired; the air is becoming shallow and hard to breath, suddley the corridr open into a junction; some cooler air blows over you like a breath, as though the dungeon itself is breathing! You stop and try not to worry.\n\nAs you take you next step you hear a runmble, out of instinct you throw yourself on the ground just in time to feel the ground shake and pieces of rock cover you from behind... \n\nLights out!\n\nTurn to 100",
         "x": 599.625,
         "y": 147.09765625,
         "map": true
@@ -99,8 +99,8 @@
         "number": 100,
         "title": "Junction",
         "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
-        "x": 607.5234375,
-        "y": 294.96875,
+        "x": 601.71875,
+        "y": 309.6875,
         "map": false
       }
     ],
