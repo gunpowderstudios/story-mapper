@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T07:39:18.845Z",
+  "savedAt": "2026-09-03T07:40:13.685Z",
   "state": {
     "nextId": 10,
     "nodes": [
@@ -74,7 +74,7 @@
         "text": "",
         "x": 352.04296875,
         "y": 48.15234375,
-        "map": false
+        "map": true
       }
     ],
     "links": [
