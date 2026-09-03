@@ -96,6 +96,7 @@
     page.dataset.section = section.number;
     page.innerHTML = `
       <div class="sectionNumber">${continuation ? '' : escapeHtml(section.number)}</div>
+      <div class="sectionTitle">${continuation ? '' : escapeHtml(section.title || '')}</div>
       <div class="storyText"></div>
       <div class="pageNumber">${pageNo}</div>`;
     return page;
