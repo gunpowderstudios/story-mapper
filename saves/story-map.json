@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T07:38:27.843Z",
+  "savedAt": "2026-09-03T07:39:18.845Z",
   "state": {
     "nextId": 10,
     "nodes": [
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Secret Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 338.97265625,
-        "y": 205.23046875,
+        "x": 381.6484375,
+        "y": 164.10546875,
         "map": false
       },
       {
