@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T07:54:14.065Z",
+  "savedAt": "2026-09-03T07:59:47.948Z",
   "state": {
     "nextId": 10,
     "nodes": [
@@ -16,7 +16,7 @@
       {
         "id": 2,
         "number": 13,
-        "title": "Door - Kitchen",
+        "title": "Goblin - Kitchen",
         "text": "Three goblins sit around a cooking pot.",
         "x": 413.96484375,
         "y": 269.05859375,
