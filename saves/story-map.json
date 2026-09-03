@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T15:42:09.792Z",
+  "savedAt": "2026-09-03T15:47:05.331Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -16,7 +16,7 @@
       {
         "id": 2,
         "number": 13,
-        "title": "Goblin - Kitchen - Listen first",
+        "title": "Door - Listen first",
         "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
         "x": 359.203125,
         "y": 315.546875,
@@ -79,7 +79,7 @@
       {
         "id": 11,
         "number": 374,
-        "title": "Goblin - Kitchen Open without checking",
+        "title": "Door - Open without listening",
         "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf not go to #\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
         "x": 212.7578125,
         "y": 125.85546875,
