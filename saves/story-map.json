@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T15:47:05.331Z",
+  "savedAt": "2026-09-03T15:47:55.367Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -28,7 +28,7 @@
         "title": "Stairs",
         "text": "Cold air rises from the darkness below.",
         "x": 859.296875,
-        "y": 242.62109375,
+        "y": 223.34765625,
         "map": true
       },
       {
@@ -45,8 +45,8 @@
         "number": 62,
         "title": "Troll Bridge",
         "text": "Before you spans an ancient and very unsafe-looking bridge; you cannot really see what is on the other side, but you think you can see a slight glow, maybe a torch? Halfway across the bridge is a lever.",
-        "x": 962.3671875,
-        "y": 429.375,
+        "x": 969.7578125,
+        "y": 374.55859375,
         "map": true
       },
       {
@@ -115,7 +115,7 @@
       {
         "id": 16,
         "number": 88,
-        "title": "Bent Lock - Clses kitchen",
+        "title": "Bent Lock - Closes kitchen",
         "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
         "x": 126.6953125,
         "y": 278.9453125,
