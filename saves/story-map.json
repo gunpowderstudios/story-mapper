@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T14:14:23.380Z",
+  "savedAt": "2026-09-03T14:28:42.498Z",
   "state": {
     "nextId": 15,
     "nodes": [
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "Cold air rises from the darkness below.",
-        "x": 815.4140625,
-        "y": 259.47265625,
+        "x": 834.48828125,
+        "y": 225.53515625,
         "map": true
       },
       {
@@ -62,7 +62,7 @@
         "id": 9,
         "number": 1,
         "title": "Introduction",
-        "text": "The Ghost Bell by Tim Sharville\n\nThroughout time, or as long as most can remember, the bells of Dragonreach have always been a guiding light to the people of this land, not just to meet on religious days and holidays but also as an early warning of invasion and danger. Some 300 bells are situated in Dragonreach, and the people value them all. A selection of carefully chosen bell wardens would monitor these powerful and ancient bells. Tarak the healer is one of the chosen wardens; he is proud and honoured to have been chosen.\n\nHe would go about his usual duties as a respected medical and spiritual guide to look after not just the people in is ward but in his spare time he would keep and take great care in the bell duties, restoring, repairing and keeping the bells mechanically sound.\n\nOne spring morning Tarak is preparing his bags and sachels with herbs and potions to make his visits, he cares a great deal about his local people and they rely on him for health and spiritual guidance. He always takes stock, sometimes very early in the morning, scanning the heavily laden shelves he has built up over the years and is proud of his collection. Some items in Tarak's collection may seem useless to the untrained eye and there's a a reson for that, a healer would never make up a potion, label it and put it on the shelf for later use. With all the talk and gossip around the Dargonmarch taverns, what if the Shadow Army did invade and they got their hands on his potions? That could be catastrophic. No, an experienced healer would make up the potions as they need them, and his recipes would- well, they would die with him. \n\nTarak has, this morning, run our of one vital herb, the herb Travelling Star, a herb needed to cure pioson, that and a few other elements but he needs some and urgently. There is talk of some locals becomeing very ill recently due to unsavort charatcers piosening the well. He fears these may be spies for the oncoming attack.\n\n...",
+        "text": "The Ghost Bell\n\nThroughout time, or as long as most can remember, the bells of Dragonreach have always been a guiding light to the people of this land, not just to meet on religious days and holidays but also as an early warning of invasion and danger. Some 300 bells are situated in Dragonreach, and the people value them all. A selection of carefully chosen bell wardens would monitor these powerful and ancient bells. Tarak the healer is one of the chosen wardens; he is proud and honoured to have been chosen.\n\nHe would go about his usual duties as a respected medical and spiritual guide to look after not just the people in is ward but in his spare time he would keep and take great care in the bell duties, restoring, repairing and keeping the bells mechanically sound.\n\nOne spring morning Tarak is preparing his bags and sachels with herbs and potions to make his visits, he cares a great deal about his local people and they rely on him for health and spiritual guidance. He always takes stock, sometimes very early in the morning, scanning the heavily laden shelves he has built up over the years and is proud of his collection. Some items in Tarak's collection may seem useless to the untrained eye and there's a a reson for that, a healer would never make up a potion, label it and put it on the shelf for later use. With all the talk and gossip around the Dargonmarch taverns, what if the Shadow Army did invade and they got their hands on his potions? That could be catastrophic. No, an experienced healer would make up the potions as they need them, and his recipes would- well, they would die with him. \n\nTarak has, this morning, run our of one vital herb, the herb Travelling Star, a herb needed to cure pioson, that and a few other elements but he needs some and urgently. There is talk of some locals becomeing very ill recently due to unsavort charatcers piosening the well. He fears these may be spies for the oncoming attack.\n\n...",
         "x": 599.78515625,
         "y": 42.87109375,
         "map": true
@@ -72,8 +72,8 @@
         "number": 131,
         "title": "Troll rubbish shoot",
         "text": "You rummage through the piles of stinking bones and discarded previous adventures, only to find a chain mechanism. Will you pull the chain or back away?",
-        "x": 948.7265625,
-        "y": 89.87890625,
+        "x": 838.078125,
+        "y": 95.7265625,
         "map": false
       },
       {
@@ -90,8 +90,8 @@
         "number": 262,
         "title": "Goblin - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 246.1953125,
-        "y": 429.6484375,
+        "x": 232.03125,
+        "y": 423.15234375,
         "map": false
       },
       {
@@ -99,8 +99,8 @@
         "number": 100,
         "title": "Junction",
         "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
-        "x": 601.71875,
-        "y": 309.6875,
+        "x": 598.94140625,
+        "y": 262.16796875,
         "map": false
       }
     ],
