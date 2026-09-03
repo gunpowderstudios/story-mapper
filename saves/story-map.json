@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T07:40:15.361Z",
+  "savedAt": "2026-09-03T07:41:33.050Z",
   "state": {
     "nextId": 10,
     "nodes": [
@@ -51,12 +51,12 @@
       },
       {
         "id": 7,
-        "number": 1,
+        "number": 41,
         "title": "Troll Den",
         "text": "You peer into the dark cave, which slowley becomes wide and forks off into 2 forections. Bones littler the floors and there is the smell of something boiling down the right tunnel.",
         "x": 1045.84375,
         "y": 62.546875,
-        "map": false
+        "map": true
       },
       {
         "id": 8,
@@ -69,7 +69,7 @@
       },
       {
         "id": 9,
-        "number": 8,
+        "number": 1,
         "title": "Introduction",
         "text": "",
         "x": 352.04296875,
