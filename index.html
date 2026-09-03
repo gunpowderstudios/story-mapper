@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Book of Dungeon Story Mapper</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="history.css" />
+</head>
+<body>
+  <header class="toolbar">
+    <div class="brand">
+      <strong>Book of Dungeon Story Mapper</strong>
+      <span id="saveStatus">Local save ready</span>
+    </div>
+    <div class="tools">
+      <button id="addNodeBtn">+ Story Node</button>
+      <button id="undoBtn" class="secondary" disabled title="Ctrl/Cmd + Z">Undo</button>
+      <button id="resetModeBtn" class="mode active">Move</button>
+      <button id="choiceModeBtn" class="mode">+ Solid Line</button>
+      <button id="readModeBtn" class="mode">+ Dotted Line</button>
+      <button id="toggleLineBtn" class="secondary" disabled>Change Line</button>
+      <button id="deleteLineBtn" class="secondary danger" disabled>Delete Line</button>
+      <button id="deleteModeBtn" class="mode danger">Delete Box</button>
+      <span class="divider"></span>
+      <button id="saveBtn" class="savePrimary">Save</button>
+      <button id="loadGithubBtn" class="secondary">Load GitHub</button>
+      <button id="githubBtn" class="secondary">GitHub Setup</button>
+      <button id="exportBtn" class="secondary">Download Backup</button>
+      <label class="fileBtn secondary">Import Backup<input id="importInput" type="file" accept="application/json,.json"></label>
+      <button id="clearBtn" class="secondary danger">Clear</button>
+    </div>
+  </header>
+
+  <div class="hint" id="hint">Move mode: drag boxes freely. Double-click a title box to edit its full story.</div>
+
+  <main id="workspace" aria-label="Scrollable story map workspace">
+    <div id="canvas">
+      <svg id="links" aria-label="Story connections"></svg>
+      <div id="nodes"></div>
+    </div>
+  </main>
+
+  <aside id="editor" class="editor hidden" aria-live="polite">
+    <div class="editorTop">
+      <strong id="editorHeading">Edit story node</strong>
+      <button id="closeEditorBtn" aria-label="Close editor">×</button>
+    </div>
+    <label>Number
+      <input id="nodeNumber" type="number" min="1" step="1" />
+    </label>
+    <label>Title
+      <input id="nodeTitle" type="text" placeholder="Troll Bridge" />
+    </label>
+    <label>Story text / note
+      <textarea id="nodeText" rows="12" placeholder="A large bridge stands before you..."></textarea>
+    </label>
+    <label class="check"><input id="mapNode" type="checkbox" /> Printed on dungeon map</label>
+    <button id="applyNodeBtn">Apply</button>
+  </aside>
+
+  <aside id="githubPanel" class="githubPanel hidden" aria-live="polite">
+    <div class="editorTop">
+      <strong>GitHub cloud save</strong>
+      <button id="closeGithubBtn" aria-label="Close GitHub setup">×</button>
+    </div>
+    <p id="githubPanelStatus" class="panelStatus">Not connected.</p>
+    <p class="smallCopy">The mapper saves to <strong>gunpowderstudios/BOD3D-TEST</strong> as <code>story-mapper/story-map.json</code>.</p>
+    <ol class="setupSteps">
+      <li>Create a <strong>fine-grained personal access token</strong> on GitHub.</li>
+      <li>Give it access to <strong>BOD3D-TEST only</strong>.</li>
+      <li>Repository permission: <strong>Contents → Read and write</strong>. No other permission is needed.</li>
+    </ol>
+    <a class="githubLink" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Create fine-grained token on GitHub ↗</a>
+    <label>Fine-grained token
+      <input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_…" />
+    </label>
+    <div class="githubActions">
+      <button id="connectGithubBtn">Connect GitHub</button>
+      <button id="disconnectGithubBtn" class="secondary danger">Disconnect</button>
+    </div>
+    <p class="securityNote">The token is never written into the public mapper files or browser storage. It stays only in memory while this page is open, so after a full refresh you will need to paste it again.</p>
+  </aside>
+
+  <div id="mobileQuick" class="mobileQuick hidden" aria-live="polite">
+    <div class="mobileQuickHead"><strong id="mobileQuickTitle">Story</strong><button id="mobileCloseQuick" aria-label="Close">×</button></div>
+    <div class="mobileQuickActions">
+      <button id="mobileEditBtn">Edit</button>
+      <button id="mobileMoveNodeBtn">Move</button>
+      <button id="mobileSolidBtn">Solid</button>
+      <button id="mobileDottedBtn">Dotted</button>
+      <button id="mobileDeleteBtn" class="danger">Delete</button>
+    </div>
+  </div>
+
+  <div id="mobileLineMenu" class="mobileLineMenu hidden">
+    <button id="mobileSolidNew">Solid line</button>
+    <button id="mobileDottedNew">Dotted line</button>
+  </div>
+
+  <nav class="mobileBar" aria-label="Mobile mapper controls">
+    <button id="mobileAddBtn"><span>＋</span><small>Box</small></button>
+    <button id="mobileUndoBtn"><span>↶</span><small>Undo</small></button>
+    <button id="mobileLineBtn"><span>⌁</span><small>Line</small></button>
+    <button id="mobileSaveBtn"><span>✓</span><small>Save</small></button>
+    <button id="mobileMoreBtn"><span>•••</span><small>More</small></button>
+  </nav>
+
+  <button id="mobileMoveBtn" type="button" hidden aria-hidden="true"></button>
+
+  <script src="app.js"></script>
+  <script src="mobile.js"></script>
+  <script src="mobile-undo.js"></script>
+  <script src="zoom.js"></script>
+  <script src="history.js"></script>
+  <script src="random-number.js"></script>
+</body>
+</html>
