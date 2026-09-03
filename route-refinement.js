@@ -1,7 +1,9 @@
 (() => {
   const CLEARANCE = 14;
-  const STUB = 22;
+  const STUB = 28;
   const CORNER = 10;
+  const PORT_SPACING = 35;
+  const EDGE_MARGIN = 22;
   let busy = false;
   let timer = null;
 
@@ -26,15 +28,27 @@
       bottom:r.bottom-canvasRect.top+inflate,
       cx:r.left-canvasRect.left+r.width/2,
       cy:r.top-canvasRect.top+r.height/2,
+      width:r.width+inflate*2,
+      height:r.height+inflate*2,
       nodeId:Number(id)
     };
   }
 
-  function edgePoint(r, side) {
-    if (side === 'top') return {x:r.cx,y:r.top};
-    if (side === 'bottom') return {x:r.cx,y:r.bottom};
-    if (side === 'left') return {x:r.left,y:r.cy};
-    return {x:r.right,y:r.cy};
+  function edgePoint(r, side, offset = 0) {
+    if (side === 'top' || side === 'bottom') {
+      const min = r.left + EDGE_MARGIN;
+      const max = r.right - EDGE_MARGIN;
+      return {
+        x:Math.max(min, Math.min(max, r.cx + offset)),
+        y:side === 'top' ? r.top : r.bottom
+      };
+    }
+    const min = r.top + EDGE_MARGIN;
+    const max = r.bottom - EDGE_MARGIN;
+    return {
+      x:side === 'left' ? r.left : r.right,
+      y:Math.max(min, Math.min(max, r.cy + offset))
+    };
   }
 
   function stubPoint(p, side) {
@@ -136,6 +150,29 @@
     return d+` L ${last.x} ${last.y}`;
   }
 
+  function pathEndpoint(path, atEnd) {
+    const len=path.getTotalLength();
+    const p=path.getPointAtLength(atEnd ? len : 0);
+    return {x:p.x,y:p.y};
+  }
+
+  function nearestSide(p,r) {
+    const distances={
+      left:Math.abs(p.x-r.left),
+      right:Math.abs(p.x-r.right),
+      top:Math.abs(p.y-r.top),
+      bottom:Math.abs(p.y-r.bottom)
+    };
+    return Object.keys(distances).sort((a,b)=>distances[a]-distances[b])[0];
+  }
+
+  function applyPath(svg, linkId, d) {
+    const path=svg.querySelector(`.link[data-link-id="${CSS.escape(String(linkId))}"]`);
+    const hit=svg.querySelector(`.linkHit[data-link-id="${CSS.escape(String(linkId))}"]`);
+    if(path) path.setAttribute('d',d);
+    if(hit) hit.setAttribute('d',d);
+  }
+
   function refine() {
     if(busy) return;
     const svg=document.getElementById('links');
@@ -146,15 +183,16 @@
       const state=getState();
       const canvasRect=canvas.getBoundingClientRect();
       const allRects=(state.nodes||[]).map(n=>rectForNode(n.id,canvasRect,CLEARANCE)).filter(Boolean);
+      const baseRects=new Map((state.nodes||[]).map(n=>[Number(n.id),rectForNode(n.id,canvasRect,0)]));
 
+      // First keep the v3.4 refinement: diagonal dotted links prefer a clean
+      // top/bottom approach rather than looking as though they join another route.
       (state.links||[]).forEach(link=>{
         if(link.type!=='read') return;
-        const a=rectForNode(link.from,canvasRect,0), b=rectForNode(link.to,canvasRect,0);
+        const a=baseRects.get(Number(link.from)), b=baseRects.get(Number(link.to));
         if(!a||!b) return;
         const dx=b.cx-a.cx,dy=b.cy-a.cy;
         const ax=Math.abs(dx),ay=Math.abs(dy);
-
-        // Only touch diagonal dotted links where a top/bottom approach is visually cleaner.
         if(ay < ax*0.55) return;
 
         const fromSide=dy>=0?'bottom':'top';
@@ -165,11 +203,62 @@
         const middle=routeMiddle(startStub,endStub,obstacles,canvas);
         if(!middle) return;
         const points=simplify([start,startStub,...middle.slice(1,-1),endStub,end]);
-        const d=roundedPath(points);
+        applyPath(svg,link.id,roundedPath(points));
+      });
+
+      // New v3.5 rule: if several routes attach to the same side of a node,
+      // they must use separate ports. Keep at least ~35px between attachment
+      // points and hold that separation for a 28px straight lead-in/out.
+      const records=[];
+      const groups=new Map();
+
+      (state.links||[]).forEach(link=>{
         const path=svg.querySelector(`.link[data-link-id="${CSS.escape(String(link.id))}"]`);
-        const hit=svg.querySelector(`.linkHit[data-link-id="${CSS.escape(String(link.id))}"]`);
-        if(path) path.setAttribute('d',d);
-        if(hit) hit.setAttribute('d',d);
+        const fromRect=baseRects.get(Number(link.from));
+        const toRect=baseRects.get(Number(link.to));
+        if(!path||!fromRect||!toRect) return;
+        let start,end;
+        try {
+          start=pathEndpoint(path,false);
+          end=pathEndpoint(path,true);
+        } catch(_) { return; }
+        const fromSide=nearestSide(start,fromRect);
+        const toSide=nearestSide(end,toRect);
+        const rec={link,path,fromRect,toRect,fromSide,toSide};
+        records.push(rec);
+        [[link.from,fromSide,'from'],[link.to,toSide,'to']].forEach(([nodeId,side,which])=>{
+          const key=`${nodeId}|${side}`;
+          if(!groups.has(key)) groups.set(key,[]);
+          groups.get(key).push({rec,which});
+        });
+      });
+
+      const offsets=new Map();
+      groups.forEach(items=>{
+        if(items.length<2) return;
+        const side=items[0].which==='from' ? items[0].rec.fromSide : items[0].rec.toSide;
+        items.sort((a,b)=>{
+          const otherA=a.which==='from' ? a.rec.toRect : a.rec.fromRect;
+          const otherB=b.which==='from' ? b.rec.toRect : b.rec.fromRect;
+          return (side==='left'||side==='right') ? otherA.cy-otherB.cy : otherA.cx-otherB.cx;
+        });
+        const mid=(items.length-1)/2;
+        items.forEach((item,i)=>offsets.set(`${item.rec.link.id}|${item.which}`,(i-mid)*PORT_SPACING));
+      });
+
+      records.forEach(rec=>{
+        const fromKey=`${rec.link.id}|from`,toKey=`${rec.link.id}|to`;
+        if(!offsets.has(fromKey) && !offsets.has(toKey)) return;
+
+        const start=edgePoint(rec.fromRect,rec.fromSide,offsets.get(fromKey)||0);
+        const end=edgePoint(rec.toRect,rec.toSide,offsets.get(toKey)||0);
+        const startStub=stubPoint(start,rec.fromSide);
+        const endStub=stubPoint(end,rec.toSide);
+        const obstacles=allRects.filter(r=>r.nodeId!==Number(rec.link.from)&&r.nodeId!==Number(rec.link.to));
+        const middle=routeMiddle(startStub,endStub,obstacles,canvas);
+        if(!middle) return;
+        const points=simplify([start,startStub,...middle.slice(1,-1),endStub,end]);
+        applyPath(svg,rec.link.id,roundedPath(points));
       });
     } finally {
       busy=false;
