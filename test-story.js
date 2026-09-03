@@ -13,6 +13,15 @@
     return {nodes:[], links:[]};
   }
 
+  function getOneWayIds() {
+    try {
+      const value = JSON.parse(localStorage.getItem('bodOneWayLinks') || '[]');
+      return new Set(Array.isArray(value) ? value.map(String) : []);
+    } catch (_) {
+      return new Set();
+    }
+  }
+
   function syncMap() {
     const save = document.getElementById('saveBtn');
     if (save) save.click();
@@ -33,7 +42,24 @@
   }
 
   function outgoing(state, id) {
-    return (state.links || []).filter(l => Number(l.from) === Number(id));
+    const oneWay = getOneWayIds();
+    const result = [];
+    const seen = new Set();
+    (state.links || []).forEach(link => {
+      let target = null;
+      let reverse = false;
+      if (Number(link.from) === Number(id)) target = Number(link.to);
+      else if (Number(link.to) === Number(id) && !oneWay.has(String(link.id))) {
+        target = Number(link.from);
+        reverse = true;
+      }
+      if (target == null) return;
+      const key = `${target}|${link.type}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      result.push({...link, to:target, reverse});
+    });
+    return result;
   }
 
   function chainNumbers(state) {
@@ -60,7 +86,7 @@
 
     if (currentId == null) {
       body.innerHTML = '<div class="testEmpty">Choose a starting section above, then press Start.</div>';
-      status.textContent = `${state.nodes.length} sections • ${(state.links || []).length} links`;
+      status.textContent = `${state.nodes.length} sections • ${(state.links || []).length} drawn links`;
       return;
     }
 
@@ -78,8 +104,9 @@
       if (!target) {
         return `<button class="testBroken" disabled>${dotted ? 'Dotted' : 'Solid'} → missing node ${esc(l.to)}</button>`;
       }
+      const direction = l.reverse ? 'Return route' : (getOneWayIds().has(String(l.id)) ? 'One-way' : 'Two-way');
       return `<button class="testLink ${dotted ? 'testDotted' : 'testSolid'}" data-target="${target.id}" data-type="${esc(l.type)}">
-        <span>${dotted ? 'Dotted / automatic' : 'Solid / choice'}</span>
+        <span>${dotted ? 'Dotted / automatic' : 'Solid / choice'} • ${direction}</span>
         <strong>Go to ${esc(target.number)}</strong>
         <small>${esc(target.title || 'Untitled')}</small>
       </button>`;
@@ -92,8 +119,8 @@
         <div class="testStoryText">${esc(node.text || '').replace(/\n/g,'<br>')}</div>
       </article>
       <div class="testDestinations">
-        <h3>${links.length ? 'Linked sections' : 'No outgoing links'}</h3>
-        ${buttons || '<div class="testDeadEnd">Dead end — this section has no solid or dotted link leading onwards.</div>'}
+        <h3>${links.length ? 'Linked sections' : 'No available links'}</h3>
+        ${buttons || '<div class="testDeadEnd">Dead end — this section has no link leading onwards or back.</div>'}
       </div>`;
 
     body.querySelectorAll('.testLink').forEach(btn => {
@@ -106,7 +133,7 @@
     });
 
     const broken = links.filter(l => !nodeById(state, l.to)).length;
-    status.textContent = `${links.length} outgoing link${links.length === 1 ? '' : 's'}${broken ? ` • ${broken} broken` : ''}`;
+    status.textContent = `${links.length} available route${links.length === 1 ? '' : 's'}${broken ? ` • ${broken} broken` : ''}`;
   }
 
   function startTest() {
@@ -150,7 +177,7 @@
       return `<article class="testBookPage">
         <div class="testBookSection">${esc(n.number)}</div>
         <div class="testBookText">${esc(n.text || '').replace(/\n/g,'<br>')}</div>
-        <div class="testBookLinks">${esc(outs || 'No outgoing links')}</div>
+        <div class="testBookLinks">${esc(outs || 'No available links')}</div>
         <div class="testBookPageNo">${i + 1}</div>
       </article>`;
     }).join('');
@@ -166,7 +193,7 @@
     overlay.innerHTML = `
       <div class="testStoryTop">
         <strong>Test Story</strong>
-        <span id="testStatus">Follow your solid and dotted links as a reader would.</span>
+        <span id="testStatus">Links are two-way unless marked One-way in the mapper.</span>
         <span class="testSpacer"></span>
         <select id="testStartSelect" aria-label="Starting section"></select>
         <button id="testStartBtn">Start</button>
@@ -209,6 +236,10 @@
     }
     btn.addEventListener('click', openTest);
   }
+
+  window.addEventListener('bod-link-direction-change', () => {
+    if (overlay && !overlay.classList.contains('testStoryHidden')) renderCurrent();
+  });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
