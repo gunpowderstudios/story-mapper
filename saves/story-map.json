@@ -1,8 +1,8 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T14:58:19.752Z",
+  "savedAt": "2026-09-03T15:08:27.295Z",
   "state": {
-    "nextId": 16,
+    "nextId": 17,
     "nodes": [
       {
         "id": 1,
@@ -80,7 +80,7 @@
         "id": 11,
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
-        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf not go to #\n\nIf so, you hold the latch down for dear life! and have some time to think! the goblins smash themselves at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"",
+        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf not go to #\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
         "x": 324.9453125,
         "y": 185.09765625,
         "map": false
@@ -110,6 +110,15 @@
         "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInsdie is a 2 gobins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nThe other you approch and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do you also cut the throat of this vile creature before it can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nSee combat",
         "x": 491.16015625,
         "y": 403.5390625,
+        "map": false
+      },
+      {
+        "id": 16,
+        "number": 88,
+        "title": "Bent Lock",
+        "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
+        "x": 126.6953125,
+        "y": 278.9453125,
         "map": false
       }
     ],
@@ -178,6 +187,12 @@
         "id": "l17884474505590.6890488240572801",
         "from": 15,
         "to": 2,
+        "type": "choice"
+      },
+      {
+        "id": "l17884480545970.06922215441018309",
+        "from": 16,
+        "to": 3,
         "type": "choice"
       }
     ]
