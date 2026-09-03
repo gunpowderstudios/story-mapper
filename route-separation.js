@@ -1,11 +1,10 @@
 (() => {
-  const GRID = 24;
   const SPACING = 35;
   const EDGE_MARGIN = 20;
   const STUB = 22;
-  const NODE_CLEARANCE = 10;
-  const OVERLAP_PENALTY = 2500;
-  const BEND_PENALTY = 16;
+  const SAMPLE_COUNT = 7;
+  const CURVE_TENSION = 0.72;
+  const MID_BIAS = 12;
   let timer = null;
   let busy = false;
 
@@ -19,28 +18,34 @@
     return {nodes:[],links:[]};
   }
 
-  function snap(v) { return Math.round(v / GRID) * GRID; }
-  function dist(a,b) { return Math.hypot(b.x-a.x,b.y-a.y); }
-
-  function nodeRect(id, canvasRect, inflate = 0) {
+  function nodeRect(id, canvasRect) {
     const el = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(id))}"]`);
     if (!el) return null;
     const r = el.getBoundingClientRect();
     return {
-      left:r.left-canvasRect.left-inflate,
-      right:r.right-canvasRect.left+inflate,
-      top:r.top-canvasRect.top-inflate,
-      bottom:r.bottom-canvasRect.top+inflate,
+      left:r.left-canvasRect.left,
+      right:r.right-canvasRect.left,
+      top:r.top-canvasRect.top,
+      bottom:r.bottom-canvasRect.top,
       cx:r.left-canvasRect.left+r.width/2,
       cy:r.top-canvasRect.top+r.height/2,
-      width:r.width+inflate*2,
-      height:r.height+inflate*2,
-      nodeId:Number(id)
+      width:r.width,
+      height:r.height
     };
   }
 
+  function pointAt(path, len) {
+    const p = path.getPointAtLength(Math.max(0, Math.min(path.getTotalLength(), len)));
+    return {x:p.x,y:p.y};
+  }
+
   function nearestSide(p,r) {
-    const d={left:Math.abs(p.x-r.left),right:Math.abs(p.x-r.right),top:Math.abs(p.y-r.top),bottom:Math.abs(p.y-r.bottom)};
+    const d = {
+      left:Math.abs(p.x-r.left),
+      right:Math.abs(p.x-r.right),
+      top:Math.abs(p.y-r.top),
+      bottom:Math.abs(p.y-r.bottom)
+    };
     return Object.keys(d).sort((a,b)=>d[a]-d[b])[0];
   }
 
@@ -60,123 +65,58 @@
     return {x:p.x,y:p.y+STUB};
   }
 
-  function pointAt(path,len) {
-    const p=path.getPointAtLength(Math.max(0,Math.min(path.getTotalLength(),len)));
-    return {x:p.x,y:p.y};
+  function samePoint(a,b) {
+    return Math.abs(a.x-b.x)<0.5 && Math.abs(a.y-b.y)<0.5;
   }
 
   function simplify(points) {
     const out=[];
     points.forEach(p=>{
       const q={x:Number(p.x),y:Number(p.y)};
-      const last=out[out.length-1];
-      if (!last||Math.abs(last.x-q.x)>.2||Math.abs(last.y-q.y)>.2) out.push(q);
+      if (!out.length || !samePoint(out[out.length-1],q)) out.push(q);
     });
-    let changed=true;
-    while(changed&&out.length>2) {
-      changed=false;
-      for(let i=1;i<out.length-1;i++) {
-        const a=out[i-1],b=out[i],c=out[i+1];
-        const cross=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);
-        if(Math.abs(cross)<.5) { out.splice(i,1); changed=true; break; }
-      }
-    }
     return out;
   }
 
-  function lineD(points) {
+  // Catmull-Rom style smoothing converted to cubic Beziers.
+  // The short straight node stubs remain literal line segments, then the route
+  // behaves like a loose cable/string between those stubs.
+  function smoothD(points) {
     const p=simplify(points);
-    if(!p.length) return '';
-    return `M ${p[0].x.toFixed(2)} ${p[0].y.toFixed(2)}`+p.slice(1).map(q=>` L ${q.x.toFixed(2)} ${q.y.toFixed(2)}`).join('');
-  }
+    if (p.length<2) return '';
+    if (p.length===2) return `M ${p[0].x} ${p[0].y} L ${p[1].x} ${p[1].y}`;
 
-  function segHitsRect(a,b,r) {
-    const steps=Math.max(2,Math.ceil(dist(a,b)/8));
-    for(let i=1;i<steps;i++) {
-      const t=i/steps;
-      const x=a.x+(b.x-a.x)*t,y=a.y+(b.y-a.y)*t;
-      if(x>r.left&&x<r.right&&y>r.top&&y<r.bottom) return true;
-    }
-    return false;
-  }
+    let d=`M ${p[0].x.toFixed(2)} ${p[0].y.toFixed(2)}`;
+    d+=` L ${p[1].x.toFixed(2)} ${p[1].y.toFixed(2)}`;
 
-  function segmentKey(a,b) {
-    const ax=Math.round(a.x/4)*4, ay=Math.round(a.y/4)*4;
-    const bx=Math.round(b.x/4)*4, by=Math.round(b.y/4)*4;
-    const first=(ax<bx||(ax===bx&&ay<=by));
-    return first?`${ax},${ay}|${bx},${by}`:`${bx},${by}|${ax},${ay}`;
-  }
-
-  function sampleKeys(a,b) {
-    const keys=[];
-    const length=dist(a,b);
-    const steps=Math.max(1,Math.ceil(length/GRID));
-    for(let i=0;i<steps;i++) {
-      const t1=i/steps,t2=(i+1)/steps;
-      keys.push(segmentKey(
-        {x:a.x+(b.x-a.x)*t1,y:a.y+(b.y-a.y)*t1},
-        {x:a.x+(b.x-a.x)*t2,y:a.y+(b.y-a.y)*t2}
-      ));
-    }
-    return keys;
-  }
-
-  function candidateCost(points, obstacles, used) {
-    const p=simplify(points);
-    let cost=0;
-    for(let i=0;i<p.length-1;i++) {
-      const a=p[i],b=p[i+1];
-      cost+=dist(a,b);
-      if(obstacles.some(r=>segHitsRect(a,b,r))) cost+=100000;
-      sampleKeys(a,b).forEach(k=>{ if(used.has(k)) cost+=OVERLAP_PENALTY; });
-    }
-    cost+=Math.max(0,p.length-2)*BEND_PENALTY;
-    return cost;
-  }
-
-  function gridRoute(start,end,obstacles,used,seed) {
-    const sx=snap(start.x), sy=snap(start.y), ex=snap(end.x), ey=snap(end.y);
-    const s={x:sx,y:sy}, e={x:ex,y:ey};
-    const candidates=[];
-    const add=pts=>candidates.push(simplify([start,s,...pts,e,end]));
-
-    // Clean underground-map style orthogonal routes.
-    add([{x:s.x,y:e.y}]);
-    add([{x:e.x,y:s.y}]);
-
-    // Try several parallel grid lanes so routes do not share the same run.
-    const midX=snap((s.x+e.x)/2), midY=snap((s.y+e.y)/2);
-    const laneOrder=[0,1,-1,2,-2,3,-3];
-    laneOrder.forEach(n=>{
-      const x=midX+n*GRID;
-      const y=midY+n*GRID;
-      add([{x,y:s.y},{x,y:e.y}]);
-      add([{x:s.x,y},{x:e.x,y}]);
-    });
-
-    // 45-degree schematic options where useful.
-    const dx=e.x-s.x, dy=e.y-s.y;
-    const diag=Math.min(Math.abs(dx),Math.abs(dy));
-    if(diag>=GRID) {
-      const px=s.x+Math.sign(dx)*diag, py=s.y+Math.sign(dy)*diag;
-      add([{x:px,y:py},{x:e.x,y:py}]);
-      add([{x:px,y:py},{x:px,y:e.y}]);
-      const qx=e.x-Math.sign(dx)*diag, qy=e.y-Math.sign(dy)*diag;
-      add([{x:qx,y:s.y},{x:e.x,y:e.y}]);
-      add([{x:s.x,y:qy},{x:e.x,y:e.y}]);
+    const body=p.slice(1,-1);
+    const final=p[p.length-1];
+    if (body.length===1) {
+      d+=` L ${final.x.toFixed(2)} ${final.y.toFixed(2)}`;
+      return d;
     }
 
-    candidates.sort((a,b)=>candidateCost(a,obstacles,used)-candidateCost(b,obstacles,used));
-    return candidates[0]||[start,end];
+    for (let i=0;i<body.length-1;i++) {
+      const p0=body[Math.max(0,i-1)];
+      const p1=body[i];
+      const p2=body[i+1];
+      const p3=body[Math.min(body.length-1,i+2)];
+      const t=CURVE_TENSION/6;
+      const c1={x:p1.x+(p2.x-p0.x)*t,y:p1.y+(p2.y-p0.y)*t};
+      const c2={x:p2.x-(p3.x-p1.x)*t,y:p2.y-(p3.y-p1.y)*t};
+      d+=` C ${c1.x.toFixed(2)} ${c1.y.toFixed(2)}, ${c2.x.toFixed(2)} ${c2.y.toFixed(2)}, ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
+    }
+    d+=` L ${final.x.toFixed(2)} ${final.y.toFixed(2)}`;
+    return d;
   }
 
   function process() {
-    if(busy) return;
+    if (busy) return;
     const svg=document.getElementById('links');
     const canvas=document.getElementById('canvas');
-    if(!svg||!canvas) return;
+    if (!svg||!canvas) return;
     const visible=[...svg.querySelectorAll('.link[data-link-id]')];
-    if(!visible.length) return;
+    if (!visible.length) return;
 
     busy=true;
     try {
@@ -185,23 +125,23 @@
       const canvasRect=canvas.getBoundingClientRect();
       const records=[];
       const groups=new Map();
-      const allObstacles=(state.nodes||[]).map(n=>nodeRect(n.id,canvasRect,NODE_CLEARANCE)).filter(Boolean);
 
       visible.forEach(path=>{
         const id=String(path.dataset.linkId||'');
         const link=linkById.get(id);
-        if(!link) return;
-        let total=0; try{total=path.getTotalLength();}catch(_){return;}
-        if(!total) return;
+        if (!link) return;
+        let total=0;
+        try { total=path.getTotalLength(); } catch (_) { return; }
+        if (!total) return;
         const fromRect=nodeRect(link.from,canvasRect),toRect=nodeRect(link.to,canvasRect);
-        if(!fromRect||!toRect) return;
+        if (!fromRect||!toRect) return;
         const fromSide=nearestSide(pointAt(path,0),fromRect);
         const toSide=nearestSide(pointAt(path,total),toRect);
-        const rec={id,path,link,fromRect,toRect,fromSide,toSide};
+        const rec={id,path,link,total,fromRect,toRect,fromSide,toSide};
         records.push(rec);
         [[link.from,fromSide,'from'],[link.to,toSide,'to']].forEach(([nodeId,side,endName])=>{
           const key=`${nodeId}|${side}`;
-          if(!groups.has(key)) groups.set(key,[]);
+          if (!groups.has(key)) groups.set(key,[]);
           groups.get(key).push({rec,endName});
         });
       });
@@ -213,21 +153,38 @@
         items.forEach((item,i)=>offsets.set(`${item.rec.id}|${item.endName}`,(i-mid)*SPACING));
       });
 
-      const used=new Set();
       records.sort((a,b)=>String(a.id).localeCompare(String(b.id),undefined,{numeric:true}));
       records.forEach((rec,index)=>{
         const start=spreadPoint(rec.fromRect,rec.fromSide,offsets.get(`${rec.id}|from`)||0);
         const end=spreadPoint(rec.toRect,rec.toSide,offsets.get(`${rec.id}|to`)||0);
         const startStub=stubPoint(start,rec.fromSide);
         const endStub=stubPoint(end,rec.toSide);
-        const obstacles=allObstacles.filter(r=>r.nodeId!==Number(rec.link.from)&&r.nodeId!==Number(rec.link.to));
-        const middle=gridRoute(startStub,endStub,obstacles,used,index);
-        const points=simplify([start,startStub,...middle.slice(1,-1),endStub,end]);
-        const d=lineD(points);
+
+        const body=[];
+        for (let i=1;i<SAMPLE_COUNT;i++) {
+          const q=pointAt(rec.path,rec.total*(i/SAMPLE_COUNT));
+          body.push(q);
+        }
+
+        // Give neighbouring routes a tiny alternating bow so two links that
+        // happen to follow the same core corridor separate instead of looking joined.
+        if (body.length) {
+          const a=startStub,b=endStub;
+          const dx=b.x-a.x,dy=b.y-a.y,mag=Math.hypot(dx,dy)||1;
+          const nx=-dy/mag,ny=dx/mag;
+          const sign=index%2===0?1:-1;
+          body.forEach((q,i)=>{
+            const centre=1-Math.abs((i/(Math.max(1,body.length-1)))*2-1);
+            q.x+=nx*MID_BIAS*centre*sign;
+            q.y+=ny*MID_BIAS*centre*sign;
+          });
+        }
+
+        const points=[start,startStub,...body,endStub,end];
+        const d=smoothD(points);
         rec.path.setAttribute('d',d);
         const hit=svg.querySelector(`.linkHit[data-link-id="${CSS.escape(rec.id)}"]`);
-        if(hit) hit.setAttribute('d',d);
-        for(let i=1;i<points.length-2;i++) sampleKeys(points[i],points[i+1]).forEach(k=>used.add(k));
+        if (hit) hit.setAttribute('d',d);
       });
     } finally { busy=false; }
   }
@@ -235,12 +192,13 @@
   function schedule(){clearTimeout(timer);timer=setTimeout(process,20);}
   function install(){
     const svg=document.getElementById('links');
-    if(!svg) return;
+    if (!svg) return;
     const observer=new MutationObserver(m=>{if(!busy&&m.some(x=>x.type==='childList')) schedule();});
     observer.observe(svg,{childList:true,subtree:true});
     window.addEventListener('resize',schedule);
     document.addEventListener('pointerup',schedule);
     schedule();
   }
+
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install); else install();
 })();
