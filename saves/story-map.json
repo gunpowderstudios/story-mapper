@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T13:32:00.447Z",
+  "savedAt": "2026-09-03T13:51:00.967Z",
   "state": {
     "nextId": 15,
     "nodes": [
@@ -72,8 +72,8 @@
         "number": 131,
         "title": "Troll rubbish shoot",
         "text": "You rummage through the piles of stinking bones and discarded previous adventures, only to find a chain mechanism. Will you pull the chain or back away?",
-        "x": 1064.64453125,
-        "y": 152.2734375,
+        "x": 1021.5703125,
+        "y": 127.66015625,
         "map": false
       },
       {
