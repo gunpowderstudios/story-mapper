@@ -13,8 +13,17 @@
     return {nodes:[], links:[]};
   }
 
+  function getOneWayIds() {
+    try {
+      const value = JSON.parse(localStorage.getItem('bodOneWayLinks') || '[]');
+      return new Set(Array.isArray(value) ? value.map(String) : []);
+    } catch (_) {
+      return new Set();
+    }
+  }
+
   function esc(value) {
-    return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+    return String(value == null ? '' : value).replace(/[<>"'&]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
   }
 
   function jumpTo(number) {
@@ -25,13 +34,32 @@
     setTimeout(() => target.classList.remove('bookJumpHighlight'), 1400);
   }
 
+  function navigableLinks(state, nodeId) {
+    const oneWay = getOneWayIds();
+    const out = [];
+    const seen = new Set();
+    (state.links || []).forEach(link => {
+      let target = null;
+      let reverse = false;
+      if (Number(link.from) === Number(nodeId)) target = Number(link.to);
+      else if (Number(link.to) === Number(nodeId) && !oneWay.has(String(link.id))) {
+        target = Number(link.from);
+        reverse = true;
+      }
+      if (target == null) return;
+      const key = `${target}|${link.type}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push({...link, to:target, reverse});
+    });
+    return out;
+  }
+
   function makeGroup(title, links, nodeById, kind) {
     if (!links.length) return '';
     const buttons = links.map(link => {
       const dest = nodeById.get(Number(link.to));
-      if (!dest) {
-        return `<span class="bookLiveBroken">Missing node (ID ${esc(link.to)})</span>`;
-      }
+      if (!dest) return `<span class="bookLiveBroken">Missing node (ID ${esc(link.to)})</span>`;
       const label = `${esc(dest.number)}${dest.title ? ` — ${esc(dest.title)}` : ''}`;
       return `<button type="button" class="bookLiveJump ${kind}" data-jump-section="${esc(dest.number)}">${label}</button>`;
     }).join('');
@@ -47,14 +75,13 @@
 
     const state = getState();
     const nodes = Array.isArray(state.nodes) ? state.nodes : [];
-    const links = Array.isArray(state.links) ? state.links : [];
     const nodeById = new Map(nodes.map(n => [Number(n.id), n]));
 
     nodes.forEach(node => {
       const sectionPages = [...pages.querySelectorAll(`.bookPage[data-section="${CSS.escape(String(node.number))}"]`)];
       if (!sectionPages.length) return;
       const lastPage = sectionPages[sectionPages.length - 1];
-      const outgoing = links.filter(l => Number(l.from) === Number(node.id));
+      const outgoing = navigableLinks(state, node.id);
       if (!outgoing.length) return;
 
       const solid = outgoing.filter(l => l.type === 'choice');
@@ -110,15 +137,17 @@
     return true;
   }
 
+  window.addEventListener('bod-link-direction-change', scheduleInject);
+
   const bodyObserver = new MutationObserver(() => {
     if (installToggle()) bodyObserver.disconnect();
   });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      if (!installToggle()) bodyObserver.observe(document.body, {childList:true, subtree:true});
+      if (!installToggle()) bodyObserver.observe(document.body, {childList:true,subtree:true});
     });
   } else if (!installToggle()) {
-    bodyObserver.observe(document.body, {childList:true, subtree:true});
+    bodyObserver.observe(document.body, {childList:true,subtree:true});
   }
 })();
