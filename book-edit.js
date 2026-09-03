@@ -17,6 +17,17 @@
     return state && state.nodes ? state.nodes.find(n => Number(n.number) === Number(number)) : null;
   }
 
+  function insertBreak(textarea, value) {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const before = textarea.value.slice(0, start);
+    const after = textarea.value.slice(end);
+    textarea.value = before + value + after;
+    const next = start + value.length;
+    textarea.selectionStart = textarea.selectionEnd = next;
+    textarea.dispatchEvent(new Event('input', {bubbles:true}));
+  }
+
   function ensureModal() {
     if (modal) return modal;
     modal = document.createElement('section');
@@ -31,6 +42,7 @@
         </div>
         <div class="bookEditBody">
           <label>Story text</label>
+          <div class="bookEditBreakHint">Return = new paragraph &nbsp;•&nbsp; Shift + Return = new line</div>
           <textarea id="bookEditTextarea" spellcheck="true"></textarea>
         </div>
         <div class="bookEditActions">
@@ -43,6 +55,14 @@
     modal.querySelector('#bookEditCancel').addEventListener('click', closeEditor);
     modal.querySelector('#bookEditSave').addEventListener('click', saveChanges);
     modal.addEventListener('pointerdown', e => { if (e.target === modal) closeEditor(); });
+
+    const textarea = modal.querySelector('#bookEditTextarea');
+    textarea.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' || e.ctrlKey || e.metaKey || e.altKey) return;
+      e.preventDefault();
+      insertBreak(textarea, e.shiftKey ? '\n' : '\n\n');
+    });
+
     document.addEventListener('keydown', e => {
       if (!modal || modal.classList.contains('bookEditHidden')) return;
       if (e.key === 'Escape') closeEditor();
