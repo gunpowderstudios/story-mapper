@@ -13,13 +13,21 @@
     return {nodes:[], links:[]};
   }
 
-  function getOneWayIds() {
+  function getSet(key) {
     try {
-      const value = JSON.parse(localStorage.getItem('bodOneWayLinks') || '[]');
+      const value = JSON.parse(localStorage.getItem(key) || '[]');
       return new Set(Array.isArray(value) ? value.map(String) : []);
     } catch (_) {
       return new Set();
     }
+  }
+
+  function getDirection(linkId) {
+    const id = String(linkId);
+    const oneWay = getSet('bodOneWayLinks');
+    if (!oneWay.has(id)) return 'two-way';
+    const reverse = getSet('bodReverseOneWayLinks');
+    return reverse.has(id) ? 'reverse' : 'forward';
   }
 
   function esc(value) {
@@ -35,17 +43,20 @@
   }
 
   function navigableLinks(state, nodeId) {
-    const oneWay = getOneWayIds();
     const out = [];
     const seen = new Set();
     (state.links || []).forEach(link => {
+      const direction = getDirection(link.id);
       let target = null;
       let reverse = false;
-      if (Number(link.from) === Number(nodeId)) target = Number(link.to);
-      else if (Number(link.to) === Number(nodeId) && !oneWay.has(String(link.id))) {
+
+      if (Number(link.from) === Number(nodeId) && direction !== 'reverse') {
+        target = Number(link.to);
+      } else if (Number(link.to) === Number(nodeId) && direction !== 'forward') {
         target = Number(link.from);
         reverse = true;
       }
+
       if (target == null) return;
       const key = `${target}|${link.type}`;
       if (seen.has(key)) return;
@@ -110,7 +121,7 @@
     const pages = document.getElementById('bookPages');
     if (!pages) return;
     if (!observer) observer = new MutationObserver(scheduleInject);
-    observer.observe(pages, {childList:true, subtree:true});
+    observer.observe(pages, {childList:true,subtree:true});
   }
 
   function installToggle() {
