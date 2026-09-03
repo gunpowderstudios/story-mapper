@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T12:27:14.736Z",
+  "savedAt": "2026-09-03T12:30:57.678Z",
   "state": {
     "nextId": 11,
     "nodes": [
@@ -80,7 +80,7 @@
         "id": 10,
         "number": 131,
         "title": "Troll rubbish shoot",
-        "text": "Slide down this to get back to Junction 2",
+        "text": "You rummage through the piles of stinking bones and discarded previous adventures, only to find a chain mechanism. Will you pull the chain or back away?",
         "x": 1085.83984375,
         "y": 144.91015625,
         "map": false
