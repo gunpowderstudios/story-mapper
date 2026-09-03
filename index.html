@@ -15,7 +15,7 @@
 <body>
   <header class="toolbar">
     <div class="brand">
-      <strong>Book of Dungeon Story Mapper <span style="font-size:inherit;font-weight:inherit;color:#ffd54a;">v2.0</span></strong>
+      <strong>Book of Dungeon Story Mapper <span style="font-size:inherit;font-weight:inherit;color:#ffd54a;">v2.1</span></strong>
       <span id="saveStatus">Local save ready</span>
     </div>
     <div class="tools">
@@ -70,7 +70,7 @@
       <button id="closeGithubBtn" aria-label="Close GitHub setup">×</button>
     </div>
     <p id="githubPanelStatus" class="panelStatus">Not connected.</p>
-    <p class="smallCopy">The mapper uses <strong>gunpowderstudios/story-mapper</strong>. Story saves belong in <code>saves/story-map.json</code>.</p>
+    <p class="smallCopy">The mapper uses <strong>gunpowderstudios/story-mapper</strong>. Story saves belong in <code>saves/story-map.json</code>. When connected, changed maps auto-save to GitHub every 10 minutes.</p>
     <ol class="setupSteps">
       <li>Create a <strong>fine-grained personal access token</strong> on GitHub.</li>
       <li>Give it access to <strong>story-mapper only</strong>.</li>
@@ -84,7 +84,7 @@
       <button id="connectGithubBtn">Connect GitHub</button>
       <button id="disconnectGithubBtn" class="secondary danger">Disconnect</button>
     </div>
-    <p class="securityNote">The token is never written into the mapper files or browser storage. It stays only in memory while this page is open, so after a full refresh you will need to paste it again.</p>
+    <p class="securityNote">If “Remember GitHub token on this device” is enabled, the token is stored in this browser only so the mapper can reconnect after a refresh. It is never written into the mapper files or GitHub repository. Use “Forget token” to remove the browser copy.</p>
   </aside>
 
   <div id="mobileQuick" class="mobileQuick hidden" aria-live="polite">
@@ -115,6 +115,7 @@
 
   <script src="repo-target.js"></script>
   <script src="app.js"></script>
+  <script src="github-autosave.js"></script>
   <script src="link-direction.js"></script>
   <script src="mobile.js"></script>
   <script src="mobile-undo.js"></script>
