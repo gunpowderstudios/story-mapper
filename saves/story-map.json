@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T15:09:35.700Z",
+  "savedAt": "2026-09-03T15:19:07.258Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -17,8 +17,8 @@
         "id": 2,
         "number": 13,
         "title": "Goblin - Kitchen - Listen first",
-        "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to #\nOr burst in? Go to 13\nOr return to the Junction? Go to 17",
-        "x": 359.32421875,
+        "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
+        "x": 359.203125,
         "y": 315.546875,
         "map": true
       },
@@ -193,6 +193,12 @@
         "id": "l17884480545970.06922215441018309",
         "from": 16,
         "to": 3,
+        "type": "choice"
+      },
+      {
+        "id": "l17884483284980.21309191035470187",
+        "from": 2,
+        "to": 11,
         "type": "choice"
       }
     ]
