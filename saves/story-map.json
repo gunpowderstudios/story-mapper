@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T15:23:44.471Z",
+  "savedAt": "2026-09-03T15:29:12.904Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "Cold air rises from the darkness below.",
-        "x": 845.1328125,
-        "y": 238.68359375,
+        "x": 859.296875,
+        "y": 242.62109375,
         "map": true
       },
       {
@@ -45,8 +45,8 @@
         "number": 62,
         "title": "Troll Bridge",
         "text": "Before you spans an ancient and very unsafe-looking bridge; you cannot really see what is on the other side, but you think you can see a slight glow, maybe a torch? Halfway across the bridge is a lever.",
-        "x": 950.84375,
-        "y": 342.09765625,
+        "x": 962.3671875,
+        "y": 429.375,
         "map": true
       },
       {
