@@ -1,20 +1,31 @@
 (() => {
   const STORAGE_KEY = 'bodOneWayLinks';
+  const REVERSE_KEY = 'bodReverseOneWayLinks';
   let oneWay = new Set();
+  let reverseOneWay = new Set();
   let observer = null;
   let timer = null;
 
-  function load() {
+  function loadSet(key) {
     try {
-      const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      oneWay = new Set(Array.isArray(value) ? value.map(String) : []);
+      const value = JSON.parse(localStorage.getItem(key) || '[]');
+      return new Set(Array.isArray(value) ? value.map(String) : []);
     } catch (_) {
-      oneWay = new Set();
+      return new Set();
     }
+  }
+
+  function load() {
+    oneWay = loadSet(STORAGE_KEY);
+    reverseOneWay = loadSet(REVERSE_KEY);
+    [...reverseOneWay].forEach(id => {
+      if (!oneWay.has(id)) reverseOneWay.delete(id);
+    });
   }
 
   function save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify([...oneWay]));
+    localStorage.setItem(REVERSE_KEY, JSON.stringify([...reverseOneWay]));
     window.dispatchEvent(new CustomEvent('bod-link-direction-change'));
   }
 
@@ -24,23 +35,35 @@
   }
 
   function ensureMarker(svg) {
-    if (!svg || svg.querySelector('#bodOneWayArrow')) return;
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-    marker.setAttribute('id', 'bodOneWayArrow');
+    if (!svg) return;
+    let marker = svg.querySelector('#bodOneWayArrow');
+    if (!marker) {
+      let defs = svg.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        svg.insertBefore(defs, svg.firstChild);
+      }
+      marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+      marker.setAttribute('id', 'bodOneWayArrow');
+      const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      arrow.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z');
+      arrow.setAttribute('fill', '#ffd54a');
+      marker.appendChild(arrow);
+      defs.appendChild(marker);
+    }
     marker.setAttribute('viewBox', '0 0 10 10');
     marker.setAttribute('refX', '8');
     marker.setAttribute('refY', '5');
-    marker.setAttribute('markerWidth', '7');
-    marker.setAttribute('markerHeight', '7');
+    marker.setAttribute('markerWidth', '4.5');
+    marker.setAttribute('markerHeight', '4.5');
     marker.setAttribute('orient', 'auto-start-reverse');
     marker.setAttribute('markerUnits', 'strokeWidth');
-    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    arrow.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z');
-    arrow.setAttribute('fill', '#ffd54a');
-    marker.appendChild(arrow);
-    defs.appendChild(marker);
-    svg.insertBefore(defs, svg.firstChild);
+  }
+
+  function getDirection(id) {
+    id = String(id || '');
+    if (!oneWay.has(id)) return 'two-way';
+    return reverseOneWay.has(id) ? 'reverse' : 'forward';
   }
 
   function updateVisuals() {
@@ -49,11 +72,16 @@
     ensureMarker(svg);
     svg.querySelectorAll('.link[data-link-id]').forEach(path => {
       const id = String(path.dataset.linkId || '');
-      if (oneWay.has(id)) {
+      const direction = getDirection(id);
+      path.removeAttribute('marker-start');
+      path.removeAttribute('marker-end');
+      if (direction === 'forward') {
         path.setAttribute('marker-end', 'url(#bodOneWayArrow)');
         path.classList.add('oneWayLink');
+      } else if (direction === 'reverse') {
+        path.setAttribute('marker-start', 'url(#bodOneWayArrow)');
+        path.classList.add('oneWayLink');
       } else {
-        path.removeAttribute('marker-end');
         path.classList.remove('oneWayLink');
       }
     });
@@ -64,20 +92,37 @@
     const btn = document.getElementById('directionLineBtn');
     if (!btn) return;
     const id = selectedLinkId();
+    const direction = getDirection(id);
     btn.disabled = !id;
-    btn.textContent = id && oneWay.has(id) ? 'Make Two-way' : 'Make One-way';
-    btn.title = id && oneWay.has(id)
-      ? 'Allow travel in both directions on this link'
-      : 'Prevent returning along this link';
-    btn.style.borderColor = id && oneWay.has(id) ? '#ffd54a' : '';
-    btn.style.color = id && oneWay.has(id) ? '#ffd54a' : '';
+    if (!id || direction === 'two-way') {
+      btn.textContent = 'Make One-way';
+      btn.title = 'Make this link one-way in the drawn direction';
+    } else if (direction === 'forward') {
+      btn.textContent = 'Reverse One-way';
+      btn.title = 'Reverse the permitted direction on this link';
+    } else {
+      btn.textContent = 'Make Two-way';
+      btn.title = 'Allow travel in both directions on this link';
+    }
+    const active = id && direction !== 'two-way';
+    btn.style.borderColor = active ? '#ffd54a' : '';
+    btn.style.color = active ? '#ffd54a' : '';
   }
 
-  function toggleSelected() {
+  function cycleSelected() {
     const id = selectedLinkId();
     if (!id) return;
-    if (oneWay.has(id)) oneWay.delete(id);
-    else oneWay.add(id);
+    const direction = getDirection(id);
+    if (direction === 'two-way') {
+      oneWay.add(id);
+      reverseOneWay.delete(id);
+    } else if (direction === 'forward') {
+      oneWay.add(id);
+      reverseOneWay.add(id);
+    } else {
+      oneWay.delete(id);
+      reverseOneWay.delete(id);
+    }
     save();
     updateVisuals();
   }
@@ -91,7 +136,7 @@
     btn.className = 'secondary';
     btn.disabled = true;
     btn.textContent = 'Make One-way';
-    btn.addEventListener('click', toggleSelected);
+    btn.addEventListener('click', cycleSelected);
     toggle.parentNode.insertBefore(btn, toggle.nextSibling);
   }
 
@@ -116,7 +161,10 @@
     updateVisuals();
     window.BODLinkDirections = {
       isOneWay(id) { return oneWay.has(String(id)); },
-      getOneWayIds() { return [...oneWay]; }
+      isReverse(id) { return reverseOneWay.has(String(id)); },
+      getDirection(id) { return getDirection(id); },
+      getOneWayIds() { return [...oneWay]; },
+      getReverseIds() { return [...reverseOneWay]; }
     };
   }
 
