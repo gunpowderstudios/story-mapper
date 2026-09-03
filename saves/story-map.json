@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T14:53:36.677Z",
+  "savedAt": "2026-09-03T14:58:19.752Z",
   "state": {
     "nextId": 16,
     "nodes": [
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 373.08984375,
-        "y": 598.40234375,
+        "x": 248.578125,
+        "y": 554.234375,
         "map": true
       },
       {
@@ -90,8 +90,8 @@
         "number": 262,
         "title": "Goblin - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 232.03125,
-        "y": 423.15234375,
+        "x": 493.83203125,
+        "y": 499.203125,
         "map": false
       },
       {
@@ -106,8 +106,8 @@
       {
         "id": 15,
         "number": 25,
-        "title": "New story node",
-        "text": "",
+        "title": "Goblin Kitchen - Wait",
+        "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInsdie is a 2 gobins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nThe other you approch and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do you also cut the throat of this vile creature before it can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nSee combat",
         "x": 491.16015625,
         "y": 403.5390625,
         "map": false
@@ -137,18 +137,6 @@
         "from": 7,
         "to": 10,
         "type": "read"
-      },
-      {
-        "id": "l17884406124600.7486914071564655",
-        "from": 2,
-        "to": 13,
-        "type": "choice"
-      },
-      {
-        "id": "l17884406184110.42624576018050353",
-        "from": 11,
-        "to": 13,
-        "type": "choice"
       },
       {
         "id": "l17884406302430.08289564279112893",
@@ -185,6 +173,12 @@
         "from": 10,
         "to": 14,
         "type": "read"
+      },
+      {
+        "id": "l17884474505590.6890488240572801",
+        "from": 15,
+        "to": 2,
+        "type": "choice"
       }
     ]
   }
