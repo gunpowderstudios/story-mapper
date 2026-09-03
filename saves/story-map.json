@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T13:25:19.870Z",
+  "savedAt": "2026-09-03T13:30:12.022Z",
   "state": {
     "nextId": 15,
     "nodes": [
@@ -170,6 +170,12 @@
         "from": 11,
         "to": 14,
         "type": "choice"
+      },
+      {
+        "id": "l17884420970480.712447507355495",
+        "from": 10,
+        "to": 14,
+        "type": "read"
       }
     ]
   }
