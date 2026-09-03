@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-03T14:35:48.155Z",
+  "savedAt": "2026-09-03T14:43:27.044Z",
   "state": {
     "nextId": 15,
     "nodes": [
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "Cold air rises from the darkness below.",
-        "x": 834.48828125,
-        "y": 225.53515625,
+        "x": 845.1328125,
+        "y": 238.68359375,
         "map": true
       },
       {
@@ -54,8 +54,8 @@
         "number": 41,
         "title": "Troll Den",
         "text": "You peer into the dark cave, which slowley becomes wide and forks off into 2 forections. Bones littler the floors and there is the smell of something boiling down the right tunnel.",
-        "x": 1049.79296875,
-        "y": 234.34375,
+        "x": 1086.79296875,
+        "y": 213.6875,
         "map": true
       },
       {
@@ -72,15 +72,15 @@
         "number": 131,
         "title": "Troll rubbish shoot",
         "text": "You rummage through the piles of stinking bones and discarded previous adventures, only to find a chain mechanism. Will you pull the chain or back away?",
-        "x": 838.078125,
-        "y": 95.7265625,
+        "x": 837.27734375,
+        "y": 98.40625,
         "map": false
       },
       {
         "id": 11,
         "number": 374,
         "title": "Goblin - Kitchen Open without checking",
-        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.",
+        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf not go to #\n\nIf so, you hold the latch down for dear life! and have some time to think! the goblins smash themselves at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"",
         "x": 324.9453125,
         "y": 185.09765625,
         "map": false
