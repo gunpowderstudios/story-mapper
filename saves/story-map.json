@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T07:17:19.344Z",
+  "savedAt": "2026-09-04T07:21:40.561Z",
   "state": {
     "nextId": 20,
     "nodes": [
@@ -53,7 +53,7 @@
         "id": 7,
         "number": 41,
         "title": "Troll Den",
-        "text": "You peer into the dark cave, which slowley becomes wide and forks off into 2 forections. Bones littler the floors and there is the smell of something boiling down the right tunnel.",
+        "text": "You hop, skip and jump across the bridge trap and make it safely to the other side.\nBefore you is an entrance to a cave.\n\nYou peer into the dark cave and walk slowly in (something smells foul for sure); the cave slowly becomes wide and forks off into 2 directions. Bones litter the floor, and there is the smell of something boiling down the right tunnel.",
         "x": 1133.8515625,
         "y": 240.58203125,
         "map": true
@@ -143,9 +143,9 @@
         "id": 19,
         "number": 180,
         "title": "Troll bridge just cross",
-        "text": "You tread carfully along the bridge and two banks swing down, it's a trap. make a dexterity roll\n\nIf you make it go to 41\nif not go to DEAD",
-        "x": 1233.1953125,
-        "y": 420.47265625,
+        "text": "You tread carfully along the bridge and two banks swing down, it's a trap! make a dexterity roll\n\nIf you make it go to 41\nif not go to DEAD",
+        "x": 1228.515625,
+        "y": 460.3515625,
         "map": false
       }
     ],
@@ -232,7 +232,8 @@
         "id": "l17884997264790.0716586904252996",
         "from": 5,
         "to": 17,
-        "type": "read"
+        "type": "read",
+        "requirement": "INT"
       },
       {
         "id": "l17885033398640.3903493320637491",
@@ -244,7 +245,8 @@
         "id": "l17885035581970.6370104813684754",
         "from": 5,
         "to": 19,
-        "type": "choice"
+        "type": "choice",
+        "requirement": "DEX"
       },
       {
         "id": "l17885035784640.34145870559002534",
@@ -262,7 +264,9 @@
         "id": "l17885036249620.315873490304435",
         "from": 17,
         "to": 18,
-        "type": "choice"
+        "type": "choice",
+        "requirement": "ITEM",
+        "requiredObject": "Rope"
       }
     ]
   }
