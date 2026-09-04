@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T05:17:29.985Z",
+  "savedAt": "2026-09-04T05:24:32.783Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -26,8 +26,8 @@
         "id": 3,
         "number": 27,
         "title": "Stairs",
-        "text": "Cold air rises from the darkness below.",
-        "x": 859.296875,
+        "text": "You climb for a long time up stone carved steps, maybe this was a real structure back in the dar as the steps are solid and well made, cold air rises from the darkness below.\n\nYou reach the top \n\ngo to 62",
+        "x": 859.171875,
         "y": 223.34765625,
         "map": true
       },
