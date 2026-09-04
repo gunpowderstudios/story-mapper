@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T06:00:35.273Z",
+  "savedAt": "2026-09-04T06:05:30.578Z",
   "state": {
     "nextId": 18,
     "nodes": [
@@ -126,8 +126,8 @@
         "number": 261,
         "title": "Troll bridge int roll made",
         "text": "You can clearly see this is a trap, the planks near the lever have hinges and are a slightly different wood to the rest.\n\nYou will need a way to pull that lever without stepping on thos planks.\n\nYou may cross the bridge anyway go #\nHead back down to the junction 100",
-        "x": 981.59375,
-        "y": 452.95703125,
+        "x": 973.06640625,
+        "y": 498.45703125,
         "map": false
       }
     ],
