@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T07:21:40.561Z",
+  "savedAt": "2026-09-04T15:18:45.293Z",
   "state": {
     "nextId": 20,
     "nodes": [
@@ -9,8 +9,8 @@
         "number": 2,
         "title": "ENTER - Corridor",
         "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired; the air is becoming shallow and hard to breath, suddley the corridr open into a junction; some cooler air blows over you like a breath, as though the dungeon itself is breathing! You stop and try not to worry.\n\nAs you take you next step you hear a runmble, out of instinct you throw yourself on the ground just in time to feel the ground shake and pieces of rock cover you from behind... \n\nLights out!\n\nTurn to 100",
-        "x": 599.625,
-        "y": 147.09765625,
+        "x": 586.36328125,
+        "y": 147.70703125,
         "map": true
       },
       {
@@ -44,7 +44,7 @@
         "id": 5,
         "number": 62,
         "title": "Troll Bridge",
-        "text": "It's hard to see into the darkness, but just ahead you see what looks like  a deep ravine and a bridge; heading over to the darkness.\n\nYou strike up your flint lantern again aware that this will soon run out if you donlt find some oil soon, as you do the cavern widens in your view casting deep shadows deep shadows but you can clearly see a route across the bridge.\n\nThe bridge has wooden planks; halfway across the bridge, you see a lever.\n\nYou may roll on your Intelligence; if you make that roll, go to 327\nBegin to walk across the bridge 180\nGo back down the stairs to the Junction 100",
+        "text": "It's hard to see into the darkness, but just ahead you see what looks like  a deep ravine and a bridge; heading over to the darkness.\n\nYou strike up your flint lantern again aware that this will soon run out if you donlt find some oil soon, as you do the cavern widens in your view casting deep shadows deep shadows but you can clearly see a route across the bridge.\n\nThe bridge has old wooden wooden planks.\n\nYou may roll on your Intelligence.\n\nif you make that roll, go to 327\nBegin to walk across the bridge 180\nGo back down the stairs to the Junction 100",
         "x": 969.7578125,
         "y": 374.55859375,
         "map": true
