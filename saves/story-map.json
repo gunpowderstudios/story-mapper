@@ -1,8 +1,8 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T06:28:22.352Z",
+  "savedAt": "2026-09-04T06:33:53.178Z",
   "state": {
-    "nextId": 19,
+    "nextId": 20,
     "nodes": [
       {
         "id": 1,
@@ -44,7 +44,7 @@
         "id": 5,
         "number": 62,
         "title": "Troll Bridge",
-        "text": "It's hard to see into the darkness but just ahead you see what looks like a bridge, it's hard to see.\n\nYou stike up your lantern again and the caven widens in your view with deep shadows.\n\nBefore you is a rope  bridge with wooden planks, half way across the bridge you see a lever.\n\nYou may roll on your Intelligence, if you make that roll go to #\nWalk across the bridge?\nGo back down the stairs to the Junction 100",
+        "text": "It's hard to see into the darkness but just ahead you see what looks like a bridge, it's hard to see.\n\nYou stike up your lantern again and the caven widens in your view with deep shadows.\n\nBefore you is a rope  bridge with wooden planks, half way across the bridge you see a lever.\n\nYou may roll on your Intelligence, if you make that roll go to #\nWalk across the bridge 180\nGo back down the stairs to the Junction 100",
         "x": 969.7578125,
         "y": 374.55859375,
         "map": true
@@ -54,8 +54,8 @@
         "number": 41,
         "title": "Troll Den",
         "text": "You peer into the dark cave, which slowley becomes wide and forks off into 2 forections. Bones littler the floors and there is the smell of something boiling down the right tunnel.",
-        "x": 1086.79296875,
-        "y": 213.6875,
+        "x": 1133.8515625,
+        "y": 240.58203125,
         "map": true
       },
       {
@@ -126,17 +126,26 @@
         "number": 261,
         "title": "Troll bridge int roll made",
         "text": "You can clearly see this is a trap, the planks near the lever have hinges and are a slightly different wood to the rest.\n\nYou will need a way to pull that lever without stepping on thos planks.\n\nYou may cross the bridge anyway go #\nHead back down to the junction 100",
-        "x": 973.06640625,
-        "y": 498.45703125,
+        "x": 971.89453125,
+        "y": 491.984375,
         "map": false
       },
       {
         "id": 18,
         "number": 327,
-        "title": "New story node",
-        "text": "",
-        "x": 972.078125,
-        "y": 572.984375,
+        "title": "You make the INT roll",
+        "text": "You sit and think about that level you can see, you realise you need some rope to lasso that level and if you donlt have any maybe there's something in that door down below?\n\nIf you have the rope go to 41\n\nYou may still risk walking across the bridge go to ...\nor head back down the stairs to the door 100",
+        "x": 971.6171875,
+        "y": 591.72265625,
+        "map": false
+      },
+      {
+        "id": 19,
+        "number": 180,
+        "title": "Troll bridge just cross",
+        "text": "You tread carfully along the bridge and two banks swing down, it's a trap. make a dexterity roll\n\nIf you make it go to 41\nif not go to DEAD",
+        "x": 1233.1953125,
+        "y": 420.47265625,
         "map": false
       }
     ],
@@ -145,12 +154,6 @@
         "id": "l17883361417600.2676145086113947",
         "from": 5,
         "to": 3,
-        "type": "choice"
-      },
-      {
-        "id": "l17883673101620.0021755762874531293",
-        "from": 5,
-        "to": 7,
         "type": "choice"
       },
       {
@@ -230,6 +233,36 @@
         "from": 5,
         "to": 17,
         "type": "read"
+      },
+      {
+        "id": "l17885033398640.3903493320637491",
+        "from": 18,
+        "to": 14,
+        "type": "choice"
+      },
+      {
+        "id": "l17885035581970.6370104813684754",
+        "from": 5,
+        "to": 19,
+        "type": "choice"
+      },
+      {
+        "id": "l17885035784640.34145870559002534",
+        "from": 19,
+        "to": 7,
+        "type": "choice"
+      },
+      {
+        "id": "l17885035902140.925757173607985",
+        "from": 18,
+        "to": 7,
+        "type": "choice"
+      },
+      {
+        "id": "l17885036249620.315873490304435",
+        "from": 17,
+        "to": 18,
+        "type": "choice"
       }
     ]
   }
