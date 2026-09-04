@@ -2,6 +2,7 @@
   let overlay = null;
   let currentId = null;
   let chain = [];
+  let editingFromTest = false;
 
   function getState() {
     try {
@@ -84,6 +85,22 @@
     if (old && [...select.options].some(o => o.value === old)) select.value = old;
   }
 
+  function openCurrentEditor() {
+    if (currentId == null || !overlay) return;
+    const nodeEl = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(currentId))}"]`);
+    if (!nodeEl) return;
+    editingFromTest = true;
+    overlay.classList.add('testStoryHidden');
+    nodeEl.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
+  }
+
+  function returnFromEditor() {
+    if (!editingFromTest || !overlay) return;
+    editingFromTest = false;
+    overlay.classList.remove('testStoryHidden');
+    setTimeout(renderCurrent, 0);
+  }
+
   function renderCurrent() {
     const state = getState();
     renderStartOptions(state);
@@ -122,6 +139,7 @@
 
     body.innerHTML = `
       <article class="testSectionCard">
+        <div class="testSectionTools"><button type="button" id="testEditSectionBtn">Edit this section</button></div>
         <div class="testSectionNo">${esc(node.number)}</div>
         <h2>${esc(node.title || 'Untitled')}</h2>
         <div class="testStoryText">${esc(node.text || '').replace(/\n/g,'<br>')}</div>
@@ -130,6 +148,9 @@
         <h3>${links.length ? 'Linked sections' : 'No available links'}</h3>
         ${buttons || '<div class="testDeadEnd">Dead end — this section has no link leading onwards or back.</div>'}
       </div>`;
+
+    const editBtn = body.querySelector('#testEditSectionBtn');
+    if (editBtn) editBtn.addEventListener('click', openCurrentEditor);
 
     body.querySelectorAll('.testLink').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -243,6 +264,9 @@
       tools.insertBefore(btn, save || null);
     }
     btn.addEventListener('click', openTest);
+
+    const closeEditor = document.getElementById('closeEditorBtn');
+    if (closeEditor) closeEditor.addEventListener('click', () => setTimeout(returnFromEditor, 0));
   }
 
   window.addEventListener('bod-link-direction-change', () => {
