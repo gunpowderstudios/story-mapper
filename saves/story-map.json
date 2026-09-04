@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T05:15:27.068Z",
+  "savedAt": "2026-09-04T05:17:29.985Z",
   "state": {
     "nextId": 17,
     "nodes": [
@@ -98,7 +98,7 @@
         "id": 14,
         "number": 100,
         "title": "Junction",
-        "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
+        "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
         "x": 602.2578125,
         "y": 277.3359375,
         "map": false
