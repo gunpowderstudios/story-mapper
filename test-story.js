@@ -2,7 +2,6 @@
   let overlay = null;
   let currentId = null;
   let chain = [];
-  let editingFromTest = false;
 
   function getState() {
     try {
@@ -85,20 +84,66 @@
     if (old && [...select.options].some(o => o.value === old)) select.value = old;
   }
 
-  function openCurrentEditor() {
+  function openInlineEditor() {
     if (currentId == null || !overlay) return;
-    const nodeEl = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(currentId))}"]`);
-    if (!nodeEl) return;
-    editingFromTest = true;
-    overlay.classList.add('testStoryHidden');
-    nodeEl.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
+    const state = getState();
+    const node = nodeById(state, currentId);
+    if (!node) return;
+    const card = overlay.querySelector('.testSectionCard');
+    if (!card) return;
+
+    card.innerHTML = `
+      <div class="testInlineEdit">
+        <div class="testInlineEditHead">
+          <strong>Edit section ${esc(node.number)}</strong>
+          <span>Changes save back to the mapper</span>
+        </div>
+        <label>Title
+          <input id="testInlineTitle" type="text" value="${esc(node.title || '')}">
+        </label>
+        <label>Story text
+          <textarea id="testInlineText" spellcheck="true"></textarea>
+        </label>
+        <div class="testInlineHint">Return = new paragraph • Shift + Return = new line</div>
+        <div class="testInlineActions">
+          <button type="button" id="testInlineCancel">Cancel</button>
+          <button type="button" id="testInlineSave" class="primary">Save changes</button>
+        </div>
+      </div>`;
+
+    const textarea = card.querySelector('#testInlineText');
+    textarea.value = node.text || '';
+    textarea.focus();
+    card.querySelector('#testInlineCancel').addEventListener('click', renderCurrent);
+    card.querySelector('#testInlineSave').addEventListener('click', saveInlineEditor);
   }
 
-  function returnFromEditor() {
-    if (!editingFromTest || !overlay) return;
-    editingFromTest = false;
-    overlay.classList.remove('testStoryHidden');
-    setTimeout(renderCurrent, 0);
+  function saveInlineEditor() {
+    if (currentId == null || !overlay) return;
+    const title = overlay.querySelector('#testInlineTitle');
+    const text = overlay.querySelector('#testInlineText');
+    if (!title || !text) return;
+
+    const nodeEl = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(currentId))}"]`);
+    const editor = document.getElementById('editor');
+    const nodeTitle = document.getElementById('nodeTitle');
+    const nodeText = document.getElementById('nodeText');
+    const apply = document.getElementById('applyNodeBtn');
+    if (!nodeEl || !editor || !nodeTitle || !nodeText || !apply) return;
+
+    nodeEl.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
+    editor.classList.add('testEditorBridgeHidden');
+    nodeTitle.value = title.value.trim() || 'Untitled';
+    nodeText.value = text.value;
+    apply.click();
+    editor.classList.add('hidden');
+    editor.classList.remove('testEditorBridgeHidden');
+
+    const save = document.getElementById('saveBtn');
+    if (save) save.click();
+    const panel = document.getElementById('githubPanel');
+    if (panel) setTimeout(() => panel.classList.add('hidden'), 0);
+    setTimeout(renderCurrent, 20);
   }
 
   function renderCurrent() {
@@ -139,7 +184,7 @@
 
     body.innerHTML = `
       <article class="testSectionCard">
-        <div class="testSectionTools"><button type="button" id="testEditSectionBtn">Edit this section</button></div>
+        <div class="testSectionTools"><button type="button" id="testEditSectionBtn">Edit on this page</button></div>
         <div class="testSectionNo">${esc(node.number)}</div>
         <h2>${esc(node.title || 'Untitled')}</h2>
         <div class="testStoryText">${esc(node.text || '').replace(/\n/g,'<br>')}</div>
@@ -150,7 +195,7 @@
       </div>`;
 
     const editBtn = body.querySelector('#testEditSectionBtn');
-    if (editBtn) editBtn.addEventListener('click', openCurrentEditor);
+    if (editBtn) editBtn.addEventListener('click', openInlineEditor);
 
     body.querySelectorAll('.testLink').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -264,9 +309,6 @@
       tools.insertBefore(btn, save || null);
     }
     btn.addEventListener('click', openTest);
-
-    const closeEditor = document.getElementById('closeEditorBtn');
-    if (closeEditor) closeEditor.addEventListener('click', () => setTimeout(returnFromEditor, 0));
   }
 
   window.addEventListener('bod-link-direction-change', () => {
