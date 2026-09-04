@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T15:25:23.532Z",
+  "savedAt": "2026-09-04T15:27:53.760Z",
   "state": {
     "nextId": 20,
     "nodes": [
@@ -99,8 +99,8 @@
         "number": 100,
         "title": "Junction",
         "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
-        "x": 602.2578125,
-        "y": 277.3359375,
+        "x": 565.1875,
+        "y": 263.33203125,
         "map": false
       },
       {
@@ -108,8 +108,8 @@
         "number": 25,
         "title": "Goblin Kitchen - Wait",
         "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInsdie is a 2 gobins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nThe other you approch and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do you also cut the throat of this vile creature before it can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nSee combat",
-        "x": 491.39453125,
-        "y": 403.5390625,
+        "x": 490.9921875,
+        "y": 406.49609375,
         "map": false
       },
       {
@@ -232,7 +232,7 @@
         "id": "l17884997264790.0716586904252996",
         "from": 5,
         "to": 17,
-        "type": "read",
+        "type": "choice",
         "requirement": "INT"
       },
       {
