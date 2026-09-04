@@ -257,11 +257,20 @@
     timer = setTimeout(applyVisuals, 45);
   }
 
+  function containsRouteNode(nodes) {
+    return [...nodes].some(node => {
+      if (node.nodeType !== 1) return false;
+      if (node.matches && node.matches('.link,.linkHit')) return true;
+      return !!(node.querySelector && node.querySelector('.link,.linkHit'));
+    });
+  }
+
   function installObserver() {
     const svg = document.getElementById('links');
     if (!svg || observer) return;
     observer = new MutationObserver(mutations => {
-      if (mutations.some(m => m.type === 'childList')) schedule();
+      const routeChanged = mutations.some(m => m.type === 'childList' && (containsRouteNode(m.addedNodes) || containsRouteNode(m.removedNodes)));
+      if (routeChanged) schedule();
     });
     observer.observe(svg, {childList:true, subtree:true});
   }
