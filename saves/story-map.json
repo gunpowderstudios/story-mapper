@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T07:11:12.135Z",
+  "savedAt": "2026-09-04T07:17:19.344Z",
   "state": {
     "nextId": 20,
     "nodes": [
@@ -44,7 +44,7 @@
         "id": 5,
         "number": 62,
         "title": "Troll Bridge",
-        "text": "It's hard to see into the darkness but just ahead you see what looks like a bridge, it's hard to see.\n\nYou stike up your lantern again and the caven widens in your view with deep shadows.\n\nBefore you is a rope  bridge with wooden planks, half way across the bridge you see a lever.\n\nYou may roll on your Intelligence, if you make that roll go to #\nWalk across the bridge 180\nGo back down the stairs to the Junction 100",
+        "text": "It's hard to see into the darkness, but just ahead you see what looks like  a deep ravine and a bridge; heading over to the darkness.\n\nYou strike up your flint lantern again aware that this will soon run out if you donlt find some oil soon, as you do the cavern widens in your view casting deep shadows deep shadows but you can clearly see a route across the bridge.\n\nThe bridge has wooden planks; halfway across the bridge, you see a lever.\n\nYou may roll on your Intelligence; if you make that roll, go to 327\nBegin to walk across the bridge 180\nGo back down the stairs to the Junction 100",
         "x": 969.7578125,
         "y": 374.55859375,
         "map": true
