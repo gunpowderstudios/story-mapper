@@ -1,8 +1,8 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-04T05:24:32.783Z",
+  "savedAt": "2026-09-04T05:39:46.153Z",
   "state": {
-    "nextId": 17,
+    "nextId": 18,
     "nodes": [
       {
         "id": 1,
@@ -44,7 +44,7 @@
         "id": 5,
         "number": 62,
         "title": "Troll Bridge",
-        "text": "Before you spans an ancient and very unsafe-looking bridge; you cannot really see what is on the other side, but you think you can see a slight glow, maybe a torch? Halfway across the bridge is a lever.",
+        "text": "It's hard to see into the darkness but just ahead you see what looks like a bridge, it's hard to see.\n\nYou stike up your lantern again and the caven widens in your view with deep shadows.\n\nBefore you is a rope  bridge with wooden planks, half way across the bridge you see a lever.\n\nYou may roll on your Intelligence, if you make that roll go to #\nWalk across the bridge?\nGo back down the stairs to the Junction 100",
         "x": 969.7578125,
         "y": 374.55859375,
         "map": true
@@ -119,6 +119,15 @@
         "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
         "x": 126.6953125,
         "y": 278.9453125,
+        "map": false
+      },
+      {
+        "id": 17,
+        "number": 261,
+        "title": "Troll bridge int roll made",
+        "text": "You can clearly see this is a trap, the planks near the lever have hinges and are a slightly different wood to the rest.\n\nYou will need a way to pull that lever without stepping on thos planks.\n\nYou may cross the bridge anyway go #\nHead back down to the junction 100",
+        "x": 981.59375,
+        "y": 452.95703125,
         "map": false
       }
     ],
@@ -212,6 +221,12 @@
         "from": 15,
         "to": 13,
         "type": "choice"
+      },
+      {
+        "id": "l17884997264790.0716586904252996",
+        "from": 5,
+        "to": 17,
+        "type": "read"
       }
     ]
   }
