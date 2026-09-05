@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T09:07:30.910Z",
+  "savedAt": "2026-09-05T09:09:49.976Z",
   "state": {
     "nextId": 24,
     "nodes": [
@@ -17,7 +17,7 @@
         "id": 2,
         "number": 13,
         "title": "Door - Listen first",
-        "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
+        "text": "You listen at the door and hear voices behind. Sounds like some goblins eating and arguing over their food!\n\n\"Give me that bone! You had your share! says one. \"Get your own, you greedy oaf\", cries another.\n\nYou can't quite make out how many there are yet, but you figure if you let them argue it out, maybe there'll be one or two less to fight if they keep this up.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
         "x": 465.59765625,
         "y": 375.015625,
         "map": true
