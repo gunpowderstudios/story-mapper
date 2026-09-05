@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T05:35:38.245Z",
+  "savedAt": "2026-09-05T05:45:38.361Z",
   "state": {
     "nextId": 22,
     "nodes": [
@@ -80,7 +80,7 @@
         "id": 11,
         "number": 374,
         "title": "Door - Open without listening",
-        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make you dex roll go to \n\nIf not go to #\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
+        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make you dex roll go to \n\nIf not go to 79\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
         "x": 274.640625,
         "y": 223.09375,
         "map": false
@@ -99,8 +99,8 @@
         "number": 100,
         "title": "Junction",
         "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
-        "x": 581.0859375,
-        "y": 267.2734375,
+        "x": 578.76953125,
+        "y": 280.8984375,
         "map": false
       },
       {
@@ -117,8 +117,8 @@
         "number": 88,
         "title": "Bent Lock - Closes kitchen",
         "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
-        "x": 28.1796875,
-        "y": 327.96484375,
+        "x": 211.6328125,
+        "y": 126.1015625,
         "map": false
       },
       {
@@ -151,10 +151,10 @@
       {
         "id": 21,
         "number": 79,
-        "title": "New story node",
-        "text": "",
-        "x": 276.515625,
-        "y": 302.85546875,
+        "title": "Goblins dex roll made",
+        "text": "You shove the door with all you might and there's a loud clatter of pots and pans and grunts and groans followed by a loud bubbling scream! \n\nAs you ent the room one one goblin is clamboring to get up and the other has fallen head first into a massive pot of boiling gruel.\n\nThere is now only one goblin the is dead and all you see is his feet sticking out of a steaming pot!\n\nFight one goblin... strength 4\n\nRoll one dice for you and one for him, add any weapon bonuses. If you score higher he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword that's 7, if he rolls a 3 plus 1 for his sword that's 4, you do him 3 hits, he only has 3 hp so dies. repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to",
+        "x": 277.09765625,
+        "y": 305.4375,
         "map": false
       }
     ],
@@ -271,6 +271,18 @@
         "type": "choice",
         "requirement": "ITEM",
         "requiredObject": "Rope"
+      },
+      {
+        "id": "l17885869739300.9065003669805719",
+        "from": 11,
+        "to": 21,
+        "type": "choice"
+      },
+      {
+        "id": "l17885870034310.7599542737211435",
+        "from": 16,
+        "to": 3,
+        "type": "choice"
       }
     ]
   }
