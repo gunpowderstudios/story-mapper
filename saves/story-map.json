@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T08:56:02.474Z",
+  "savedAt": "2026-09-05T09:05:08.306Z",
   "state": {
     "nextId": 24,
     "nodes": [
@@ -90,8 +90,8 @@
         "number": 262,
         "title": "Goblins - Dead - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 448.44921875,
-        "y": 487.4296875,
+        "x": 483.36328125,
+        "y": 472.89453125,
         "map": false
       },
       {
@@ -107,9 +107,9 @@
         "id": 15,
         "number": 25,
         "title": "Door - Wait",
-        "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInside is a 2 goblins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nYou then approach and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do...\nyou also sneak up and cut the throat of this vile creature before \n\nit can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nThe goblin stats 1 dice (no sword ready) 3 HP\n\nYou roll one diec plus +2 for your basic dagger.\n\nRoll and apply damage for higher to the other, continue until either are dead.\n\nif you win go to... 262\n\nIf you die go to...",
-        "x": 138.6953125,
-        "y": 499.1796875,
+        "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInside is a 2 goblins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nYou then approach and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do...\nyou also sneak up and cut the throat of this vile creature before \n\nit can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nThe goblin stats 1 dice (no sword ready) 3 HP\n\nYou roll one diec plus +2 for your basic dagger.\n\nRoll and apply damage for higher to the other, continue until either are dead.\n\nif you win go to... 262\n\nIf you die go to... 25",
+        "x": 153.90625,
+        "y": 510.7421875,
         "map": false
       },
       {
@@ -162,8 +162,8 @@
         "number": 52,
         "title": "YOU DIE 1",
         "text": "You die! You're dead, out like a candle!, everybody's dead dave!\n\nTHE END",
-        "x": 698.9296875,
-        "y": 401.8046875,
+        "x": 641.8359375,
+        "y": 601.58984375,
         "map": false
       },
       {
@@ -171,7 +171,7 @@
         "number": 246,
         "title": "2 goblins combat",
         "text": "You fight 2 goblins\n\nBoth goblins have 3 HP and fight with 1 dice plus +1 for a sword.\n\nWhen there are more than one monster it goes like this...\n\nYou roll, they roll twice\n\nYou fight with 1 dice +2 for you dagger and you have 8 HP",
-        "x": 211.68359375,
+        "x": 211.55859375,
         "y": 401.05859375,
         "map": false
       }
@@ -306,6 +306,18 @@
         "id": "l17885983853410.8367254685342704",
         "from": 11,
         "to": 23,
+        "type": "choice"
+      },
+      {
+        "id": "l17885988908360.24090019399095408",
+        "from": 15,
+        "to": 22,
+        "type": "choice"
+      },
+      {
+        "id": "l17885989494010.34736688622020007",
+        "from": 23,
+        "to": 22,
         "type": "choice"
       }
     ]
