@@ -1,8 +1,8 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T05:45:38.361Z",
+  "savedAt": "2026-09-05T05:55:36.955Z",
   "state": {
-    "nextId": 22,
+    "nextId": 23,
     "nodes": [
       {
         "id": 1,
@@ -80,7 +80,7 @@
         "id": 11,
         "number": 374,
         "title": "Door - Open without listening",
-        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make you dex roll go to \n\nIf not go to 79\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
+        "text": "You burst into what looks like a small kitchen or eating area to find 2 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make your DEX roll go to \n\nIf not go to 79\n\nIf not",
         "x": 274.640625,
         "y": 223.09375,
         "map": false
@@ -107,7 +107,7 @@
         "id": 15,
         "number": 25,
         "title": "Goblin Kitchen - Wait",
-        "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInsdie is a 2 gobins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nThe other you approch and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do you also cut the throat of this vile creature before it can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nSee combat",
+        "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInside is a 2 goblins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nYou then approach and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do...\nyou also sneak up and cut the throat of this vile creature before \n\nit can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nThe goblin stats 1 dice (no sword ready) 3 HP\n\nYou roll one diec plus +2 for your basic dagger.\n\nRoll and apply damage for higher to the other, continue until either are dead.\n\nif you win go to... 262\n\nIf you die go to...",
         "x": 154.51171875,
         "y": 479.18359375,
         "map": false
@@ -155,6 +155,15 @@
         "text": "You shove the door with all you might and there's a loud clatter of pots and pans and grunts and groans followed by a loud bubbling scream! \n\nAs you ent the room one one goblin is clamboring to get up and the other has fallen head first into a massive pot of boiling gruel.\n\nThere is now only one goblin the is dead and all you see is his feet sticking out of a steaming pot!\n\nFight one goblin... strength 4\n\nRoll one dice for you and one for him, add any weapon bonuses. If you score higher he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword that's 7, if he rolls a 3 plus 1 for his sword that's 4, you do him 3 hits, he only has 3 hp so dies. repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to",
         "x": 277.09765625,
         "y": 305.4375,
+        "map": false
+      },
+      {
+        "id": 22,
+        "number": 52,
+        "title": "YOU DIE 1",
+        "text": "You die! You're dead, out like a candle!, everybody's dead dave!\n\nTHE END",
+        "x": 698.9296875,
+        "y": 401.8046875,
         "map": false
       }
     ],
@@ -205,8 +214,7 @@
         "id": "l17884418878330.023630905746980346",
         "from": 11,
         "to": 14,
-        "type": "choice",
-        "requirement": "DEX"
+        "type": "choice"
       },
       {
         "id": "l17884420970480.712447507355495",
@@ -276,7 +284,8 @@
         "id": "l17885869739300.9065003669805719",
         "from": 11,
         "to": 21,
-        "type": "choice"
+        "type": "choice",
+        "requirement": "DEX"
       },
       {
         "id": "l17885870034310.7599542737211435",
