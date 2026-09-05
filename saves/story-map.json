@@ -1,16 +1,16 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T05:55:36.955Z",
+  "savedAt": "2026-09-05T08:55:15.338Z",
   "state": {
-    "nextId": 23,
+    "nextId": 24,
     "nodes": [
       {
         "id": 1,
         "number": 2,
         "title": "ENTER - Corridor",
         "text": "You make your way carefully into the dungeon corridor. Damp glistens on the walls, and the air is thick with dust. Feeling your way forward, your eyes slowly begin to adjust to the darkness.\n\n“What have I forgotten to pack?” you ask yourself.\n\nOh well. Too late now.\n\nYou continue for perhaps half a mile without a single junction. The corridor gradually widens, opening into cavernous spaces in places, and you begin to realise that you are slowly but surely descending deeper underground.\n\nYou stop to rest.\n\nThe darkness around you has become thick and oppressive. You pull out a small flint lantern and strike it. A tiny flame catches on the oil-soaked mantle, casting a weak pool of light around you. You must thank that halfling you met in the Wasted Wizard; if you ever see him again, he parted with this lantern for a hot meal.\n\nIt isn’t much, but it is enough to see the tips of your boots and a short distance ahead.\n\nYou continue and begin to feel tired; the air is becoming shallow and hard to breath, suddley the corridr open into a junction; some cooler air blows over you like a breath, as though the dungeon itself is breathing! You stop and try not to worry.\n\nAs you take you next step you hear a runmble, out of instinct you throw yourself on the ground just in time to feel the ground shake and pieces of rock cover you from behind... \n\nLights out!\n\nTurn to 100",
-        "x": 586.36328125,
-        "y": 147.70703125,
+        "x": 584.70703125,
+        "y": 118.9375,
         "map": true
       },
       {
@@ -18,8 +18,8 @@
         "number": 13,
         "title": "Door - Listen first",
         "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
-        "x": 398.16015625,
-        "y": 378.7109375,
+        "x": 465.59765625,
+        "y": 375.015625,
         "map": true
       },
       {
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "You climb for a long time up stone carved steps, maybe this was a real structure back in the dar as the steps are solid and well made, cold air rises from the darkness below.\n\nYou reach the top \n\ngo to 62",
-        "x": 859.046875,
-        "y": 223.46875,
+        "x": 731.3828125,
+        "y": 289.66015625,
         "map": true
       },
       {
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 291.83984375,
-        "y": 589.59375,
+        "x": 284.63671875,
+        "y": 614.00390625,
         "map": true
       },
       {
@@ -63,8 +63,8 @@
         "number": 1,
         "title": "Introduction",
         "text": "The Ghost Bell\n\nThroughout time, or as long as most can remember, the bells of Dragon Reach have always been a guiding light to the people of this land, not just to a call to the people on religious days and holidays, but also an early warning of invasion and danger. Some 300 bells are situated in Dragon Reach, and the communities value them all. So much so that the councils of each city and town carefully select trusted bell wardens to look afer and monitor these powerful and ancient bells; if you are awarded the rank of bell warden, you carry a lot of respect from the people of your area and are often the older and respected individuals. Tarak the healer is one of those chosen wardens, and he is proud and honoured to be so.\n\nOn this particular day, Tarak wakes unusually with an uneven feeling in his bones; something is bothering him, and he feels edgy for some reason. But as usual, he gets up and goes about his usual duties (he's a man of routine). Tarak is one of the healers situated near the city of sisters, situated in the northeast area of Dragon Reach. He looks after not just the people in his ward but is sometimes called into the city for duties to the emeseries that live and run the city there. In his spare time, when he's not being called upon as a healer, he visits the bell he is assigned to; this sits in a tower nearby, southeast of Doomsbury Hollow, near the old mage towers were he restores, repairs, and keeps them oiled and mechanically sound.\n\nOn this spring morning, Tarak is preparing his bags and satchels with herbs and potions to make his visits. He's first to visit the town square where local people are often already waiting for him to ride in. First he must organise his potions.\n\nHe heads to the back room of his small but cosy house situated on the river bank, and as he walks into the back room hidden by a false bookcase, he pulls one of the books and there is a click, it then opens up into the room where he makes his magic happen, he always gets a rush of excitment on entering the room as he feels safe and at home here of ten soending way too many hours mixing and making recipes, he scans the heavily laden shelves he has built up over the years and is proud of his collection. Shelves and shelves of bottles, boxes, leather bags and crucibles line the walls, and to the untrained eye this may seem rather disorganised, but Tarak knows what and where everything is. \n\nSome items in Tarak's collection may seem useless to a visitor; that's good, just a lot of powders and pots, and there's a reason for that. You or I would have no idea what they all do; they are not labelled, and no notes on the contents are written down, unlike those wizards up at the mage towers; they write everything in a book! Probably because they would forget their spells after 3 nights on the ale!\n\nA healer would never make up a potion, label it and put it on the shelf for later use. With all the talk and gossip around the Dargonmarch taverns, what if the Shadow Army did invade and they got their hands on his potions? That could be catastrophic. No, an experienced healer would make up the potions as they need them, and his recipes would- well, they would die with him. \n\nTarak has, this morning, run out of one vital herb, the herb Travelling Star, a herb needed and part of a cure for poison, and he needs them urgently. There is talk of some locals becoming very ill recently after drinking water from the local wells. He fears these may some goings on with sigtings of unkown characters hanging around the taverns, could be be spies for the oncoming attack. \n\nMore story to add, but basically Tarak goes about his duties, realising there is poison being dumped into the rivers by a scout of the Shadow Army; he then begins his check of the bell and realises it has been shattered by a powerful spell, and 3 parts of the bell are missing. The bell cannot be used until these parts are replaced and a forging spell can make it whole again. This bell is the farthest out in the north east corner and he fears an attack is imminent.\n\nHe must warn the towns nearby but first fix the bell!\n\nHe makes up a journey potion which he sprinkles around the bell, and briefly it shows up footprints of the intruder; this leads him to a dungeon entrance hidden deep in the nearby hillside.\n\nHe enters the tunnels and begins his quest to retrieve the stolen parts of the bell.\n\nThis will be a race to find the 3 bell parts and the antidote to the poison before the shadow army attacks or the townspeople become to weak to fight.\n\nHe finds scraps of the assassin's map, now burnt and casts a restore spell, showing a rough location of the route the assassin took to get into Dragon Reach, and he makes his way to that part on the map.\n\nGo to 2.",
-        "x": 599.78515625,
-        "y": 42.87109375,
+        "x": 585.12890625,
+        "y": 26.078125,
         "map": true
       },
       {
@@ -72,23 +72,23 @@
         "number": 131,
         "title": "Troll rubbish shoot",
         "text": "You rummage through the piles of stinking bones and discarded previous adventures, only to find a chain mechanism. Will you pull the chain or back away?",
-        "x": 837.27734375,
-        "y": 98.40625,
+        "x": 983.0078125,
+        "y": 91.40625,
         "map": false
       },
       {
         "id": 11,
         "number": 374,
         "title": "Door - Open without listening",
-        "text": "You burst into what looks like a small kitchen or eating area to find 2 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make your DEX roll go to \n\nIf not go to 79\n\nIf not",
-        "x": 274.640625,
-        "y": 223.09375,
+        "text": "You burst open the door and can see what looks like a small kitchen or eating area to find 2 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make your DEX roll go to 79\n\nIf not go to 246",
+        "x": 216.25,
+        "y": 242.45703125,
         "map": false
       },
       {
         "id": 13,
         "number": 262,
-        "title": "Goblin - Kitchen",
+        "title": "Goblins - Dead - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
         "x": 448.44921875,
         "y": 487.4296875,
@@ -99,17 +99,17 @@
         "number": 100,
         "title": "Junction",
         "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
-        "x": 578.76953125,
-        "y": 280.8984375,
+        "x": 584.8046875,
+        "y": 210.16015625,
         "map": false
       },
       {
         "id": 15,
         "number": 25,
-        "title": "Goblin Kitchen - Wait",
+        "title": "Door - Wait",
         "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInside is a 2 goblins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nYou then approach and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do...\nyou also sneak up and cut the throat of this vile creature before \n\nit can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nThe goblin stats 1 dice (no sword ready) 3 HP\n\nYou roll one diec plus +2 for your basic dagger.\n\nRoll and apply damage for higher to the other, continue until either are dead.\n\nif you win go to... 262\n\nIf you die go to...",
-        "x": 154.51171875,
-        "y": 479.18359375,
+        "x": 138.6953125,
+        "y": 499.1796875,
         "map": false
       },
       {
@@ -117,8 +117,8 @@
         "number": 88,
         "title": "Bent Lock - Closes kitchen",
         "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
-        "x": 211.6328125,
-        "y": 126.1015625,
+        "x": 51,
+        "y": 127.78125,
         "map": false
       },
       {
@@ -151,10 +151,10 @@
       {
         "id": 21,
         "number": 79,
-        "title": "Goblins dex roll made",
+        "title": "Goblins dex roll made 1 goblin to fight",
         "text": "You shove the door with all you might and there's a loud clatter of pots and pans and grunts and groans followed by a loud bubbling scream! \n\nAs you ent the room one one goblin is clamboring to get up and the other has fallen head first into a massive pot of boiling gruel.\n\nThere is now only one goblin the is dead and all you see is his feet sticking out of a steaming pot!\n\nFight one goblin... strength 4\n\nRoll one dice for you and one for him, add any weapon bonuses. If you score higher he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword that's 7, if he rolls a 3 plus 1 for his sword that's 4, you do him 3 hits, he only has 3 hp so dies. repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to",
-        "x": 277.09765625,
-        "y": 305.4375,
+        "x": 7.3359375,
+        "y": 338.5859375,
         "map": false
       },
       {
@@ -164,6 +164,15 @@
         "text": "You die! You're dead, out like a candle!, everybody's dead dave!\n\nTHE END",
         "x": 698.9296875,
         "y": 401.8046875,
+        "map": false
+      },
+      {
+        "id": 23,
+        "number": 246,
+        "title": "2 goblins combat",
+        "text": "You fight 2 goblins\n\nBoth goblins have 3 HP and fight with 1 dice plus +1 for a sword.\n\nWhen there are more than one monster it goes like this...\n\nYou roll, they roll twice\n\nYou fight with 1 dice +2 for you dagger and you have 8 HP",
+        "x": 211.68359375,
+        "y": 401.05859375,
         "map": false
       }
     ],
@@ -291,6 +300,12 @@
         "id": "l17885870034310.7599542737211435",
         "from": 16,
         "to": 3,
+        "type": "choice"
+      },
+      {
+        "id": "l17885983853410.8367254685342704",
+        "from": 11,
+        "to": 23,
         "type": "choice"
       }
     ]
