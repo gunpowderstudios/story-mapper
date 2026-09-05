@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T09:09:49.976Z",
+  "savedAt": "2026-09-05T09:13:27.537Z",
   "state": {
     "nextId": 24,
     "nodes": [
@@ -152,7 +152,7 @@
         "id": 21,
         "number": 79,
         "title": "Goblins dex roll made 1 goblin to fight",
-        "text": "You shove the door with all you might and there's a loud clatter of pots and pans and grunts and groans followed by a loud bubbling scream! \n\nAs you ent the room one one goblin is clamboring to get up and the other has fallen head first into a massive pot of boiling gruel.\n\nThere is now only one goblin the is dead and all you see is his feet sticking out of a steaming pot!\n\nFight one goblin... strength 4\n\nRoll one dice for you and one for him, add any weapon bonuses. If you score higher he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword that's 7, if he rolls a 3 plus 1 for his sword that's 4, you do him 3 hits, he only has 3 hp so dies. repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to",
+        "text": "You shove the door with all your might, and a loud clatter of pots and pans, grunts, and groans follows, ending in a loud, bubbling scream! \n\nAs you enter the room, one goblin is scrambling to get up, and the other has fallen head first into a massive pot of boiling gruel.\n\nThere is now only one goblin; the other is boiled to perfection, and all you see is his feet sticking out of a steaming pot! Ooh, goblin stew!\n\nFight one goblin... strength 4 + 1 for his sword\n\nRoll one die for you and one for him; add any weapon bonuses. If you score higher, he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword, that's 7; if he rolls a 3 plus 1 for his sword, that's 4. You do him 3 hits; he only has 3 HP, so he dies. Repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to 52",
         "x": 7.3359375,
         "y": 338.5859375,
         "map": false
