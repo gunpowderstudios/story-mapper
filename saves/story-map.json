@@ -1,8 +1,8 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-05T05:28:44.267Z",
+  "savedAt": "2026-09-05T05:35:38.245Z",
   "state": {
-    "nextId": 20,
+    "nextId": 22,
     "nodes": [
       {
         "id": 1,
@@ -18,8 +18,8 @@
         "number": 13,
         "title": "Door - Listen first",
         "text": "You listen at the door and can hear voices behind. Sound like some goblins eating and auduing over their food!\n\n\"Give me that bone! you had your share! says one, \" get your own you greedy oaf\" cries another.\n\nYou figure if you let them argue it out maybe the'll be one or two less to gight should you wish to enter.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
-        "x": 553.7734375,
-        "y": 375.12890625,
+        "x": 398.16015625,
+        "y": 378.7109375,
         "map": true
       },
       {
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 503.17578125,
-        "y": 702.796875,
+        "x": 291.83984375,
+        "y": 589.59375,
         "map": true
       },
       {
@@ -80,9 +80,9 @@
         "id": 11,
         "number": 374,
         "title": "Door - Open without listening",
-        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf not go to #\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
-        "x": 299.82421875,
-        "y": 375.93359375,
+        "text": "You burst into what looks like a small kitchen or eating area to find 3 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make you dex roll go to \n\nIf not go to #\n\nIf so, you hold the latch down for dear life! And have some time to think! The goblins smash themselves repeatedly at the door (strange because it open inwards) shouting \"open this door you little weazel, we'll strip you to the bone and boil you if we  get out!!\"\n\nYou may...\n\nSmash the door lock shut, bending it with a nearby rock. This will hold until you can escape. Go to \n\nor prepare yourself and push fast, hopping to knock them back so you can get a drop on them?",
+        "x": 274.640625,
+        "y": 223.09375,
         "map": false
       },
       {
@@ -90,8 +90,8 @@
         "number": 262,
         "title": "Goblin - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 508.37109375,
-        "y": 588.19140625,
+        "x": 448.44921875,
+        "y": 487.4296875,
         "map": false
       },
       {
@@ -99,8 +99,8 @@
         "number": 100,
         "title": "Junction",
         "text": "It's a while before you come round but when you you notice the way back is now blocked by a rock fall. You feel this is now a one way trip and take stock, no harm done as such but you sit for a while and rest. You eventually get to your feet, you take a short drink from you water flask and hope you can find more later and you walk a little futher to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nListen at the door 13\nOpen the door, turn to 374\nHead up the stairs; turn to 27",
-        "x": 565.1875,
-        "y": 263.33203125,
+        "x": 581.0859375,
+        "y": 267.2734375,
         "map": false
       },
       {
@@ -108,8 +108,8 @@
         "number": 25,
         "title": "Goblin Kitchen - Wait",
         "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInsdie is a 2 gobins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nThe other you approch and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do you also cut the throat of this vile creature before it can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nSee combat",
-        "x": 492.3125,
-        "y": 492.87890625,
+        "x": 154.51171875,
+        "y": 479.18359375,
         "map": false
       },
       {
@@ -117,8 +117,8 @@
         "number": 88,
         "title": "Bent Lock - Closes kitchen",
         "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
-        "x": 171.73046875,
-        "y": 494.87890625,
+        "x": 28.1796875,
+        "y": 327.96484375,
         "map": false
       },
       {
@@ -146,6 +146,15 @@
         "text": "You tread carfully along the bridge and two banks swing down, it's a trap! make a dexterity roll\n\nIf you make it go to 41\nif not go to DEAD",
         "x": 1228.515625,
         "y": 460.3515625,
+        "map": false
+      },
+      {
+        "id": 21,
+        "number": 79,
+        "title": "New story node",
+        "text": "",
+        "x": 276.515625,
+        "y": 302.85546875,
         "map": false
       }
     ],
@@ -196,7 +205,8 @@
         "id": "l17884418878330.023630905746980346",
         "from": 11,
         "to": 14,
-        "type": "choice"
+        "type": "choice",
+        "requirement": "DEX"
       },
       {
         "id": "l17884420970480.712447507355495",
