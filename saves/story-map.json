@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-06T08:03:31.118Z",
+  "savedAt": "2026-09-06T08:13:26.122Z",
   "state": {
     "nextId": 24,
     "nodes": [
@@ -18,8 +18,8 @@
         "number": 13,
         "title": "Door - Make a SNEAK roll",
         "text": "You listen at the door and hear voices behind. Sounds like some goblins eating and arguing over their food!\n\n\"Give me that bone! You had your share! says one. \"Get your own, you greedy oaf\", cries another.\n\nYou can't quite make out how many there are yet, but you figure if you let them argue it out, maybe there'll be one or two less to fight if they keep this up.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
-        "x": 465.59765625,
-        "y": 375.015625,
+        "x": 600.62890625,
+        "y": 273.17578125,
         "map": true
       },
       {
@@ -81,8 +81,8 @@
         "number": 374,
         "title": "Door - Open without listening",
         "text": "You burst open the door and can see what looks like a small kitchen or eating area to find 2 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make your DEX roll go to 79\n\nIf not go to 246",
-        "x": 216.25,
-        "y": 242.45703125,
+        "x": 388.2734375,
+        "y": 273.69140625,
         "map": false
       },
       {
@@ -90,14 +90,14 @@
         "number": 262,
         "title": "Goblins - Dead - Kitchen",
         "text": "Now all the goblins lay slain you look around. This is dirty place that would never get any reviews on Doogle (the wasted wizard notice board). There grease covered burnt pots stacked high, bones and old meat strewn across the floor and the large round table in the middle of the room seems to have a sricky sunstance.\n\n...",
-        "x": 483.36328125,
-        "y": 472.89453125,
+        "x": 804.4453125,
+        "y": 450.90234375,
         "map": false
       },
       {
         "id": 14,
         "number": 100,
-        "title": "Junction: SNEAK, OPEN DOOR or STAIRS",
+        "title": "Junction: DOOR and STAIRS",
         "text": "It's a while before you come round, but when you do, you notice a rockfall now blocks the way back. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nMake a sneak roll and approach the door; YES, go to 13; NO... \nYou may open the door; turn to 374\nor Head up the stairs; go to 27",
         "x": 585.0859375,
         "y": 199.85546875,
@@ -108,8 +108,8 @@
         "number": 25,
         "title": "Door - Wait",
         "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInside is a 2 goblins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nYou then approach and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do...\nyou also sneak up and cut the throat of this vile creature before \n\nit can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nThe goblin stats 1 dice (no sword ready) 3 HP\n\nYou roll one diec plus +2 for your basic dagger.\n\nRoll and apply damage for higher to the other, continue until either are dead.\n\nif you win go to... 262\n\nIf you die go to... 25",
-        "x": 141.17578125,
-        "y": 500.890625,
+        "x": 815.53125,
+        "y": 277.32421875,
         "map": false
       },
       {
@@ -152,18 +152,18 @@
         "id": 21,
         "number": 79,
         "title": "Goblins dex roll made 1 goblin to fight",
-        "text": "You shove the door with all your might, and a loud clatter of pots and pans, grunts, and groans follows, ending in a loud, bubbling scream! \n\nAs you enter the room, one goblin is scrambling to get up, and the other has fallen head first into a massive pot of boiling gruel.\n\nThere is now only one goblin; the other is boiled to perfection, and all you see is his feet sticking out of a steaming pot! Ooh, goblin stew!\n\nFight one goblin... strength 4 + 1 for his sword\n\nRoll one die for you and one for him; add any weapon bonuses. If you score higher, he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword, that's 7; if he rolls a 3 plus 1 for his sword, that's 4. You do him 3 hits; he only has 3 HP, so he dies. Repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to 52",
-        "x": 7.3359375,
-        "y": 338.5859375,
+        "text": "You shove the door with all your might, and a loud clatter of pots and pans, grunts, and groans follows, ending in a loud, bubbling scream! \n\nAs you enter the room, one goblin is scrambling to get up, and the other has fallen headfirst into a massive pot of boiling gruel.\n\nThere is now only one goblin; the other is boiled to perfection, and all you see is his feet sticking out of a steaming pot! Ooh, goblin stew!\n\nFight one goblin... strength 4 + 1 for his sword\n\nRoll one die for you and one for him; add any weapon bonuses. If you score higher, he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword, that's 7; if he rolls a 3 plus 1 for his sword, that's 4. You do him 3 hits; he only has 3 HP, so he dies. Repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to 52",
+        "x": 43.86328125,
+        "y": 331.34375,
         "map": false
       },
       {
         "id": 22,
         "number": 52,
-        "title": "YOU DIE 1",
-        "text": "You die! You're dead, out like a candle!, everybody's dead dave!\n\nTHE END",
-        "x": 641.8359375,
-        "y": 601.58984375,
+        "title": "YOU DIE",
+        "text": "You die! You're dead, out like a candle! Everybody's dead, Dave!\n\nTHE END",
+        "x": 193.796875,
+        "y": 483.6015625,
         "map": false
       },
       {
@@ -171,8 +171,8 @@
         "number": 246,
         "title": "2 goblins combat",
         "text": "You fight 2 goblins\n\nBoth goblins have 3 HP and fight with 1 dice plus +1 for a sword.\n\nWhen there are more than one monster it goes like this...\n\nYou roll, they roll twice\n\nYou fight with 1 dice +2 for you dagger and you have 8 HP",
-        "x": 211.55859375,
-        "y": 401.05859375,
+        "x": 336.6171875,
+        "y": 381.6171875,
         "map": false
       }
     ],
