@@ -37,7 +37,19 @@
   function jumpTo(number) {
     const target = document.querySelector(`#bookPages .bookPage[data-section="${CSS.escape(String(number))}"]`);
     if (!target) return;
-    target.scrollIntoView({behavior:'smooth', block:'center'});
+
+    const wrap = document.querySelector('#bookPreviewOverlay .bookPagesWrap');
+    if (wrap) {
+      const targetRect = target.getBoundingClientRect();
+      const wrapRect = wrap.getBoundingClientRect();
+      const currentTop = wrap.scrollTop;
+      const offsetWithinWrap = targetRect.top - wrapRect.top;
+      const centredTop = currentTop + offsetWithinWrap - Math.max(20, (wrap.clientHeight - targetRect.height) / 2);
+      wrap.scrollTo({top: Math.max(0, centredTop), behavior:'smooth'});
+    } else {
+      target.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
     target.classList.add('bookJumpHighlight');
     setTimeout(() => target.classList.remove('bookJumpHighlight'), 1400);
   }
