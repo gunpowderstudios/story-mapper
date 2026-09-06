@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-06T07:17:54.216Z",
+  "savedAt": "2026-09-06T08:03:31.118Z",
   "state": {
     "nextId": 24,
     "nodes": [
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "You climb for a long time up stone carved steps, maybe this was a real structure back in the dar as the steps are solid and well made, cold air rises from the darkness below.\n\nYou reach the top \n\ngo to 62",
-        "x": 723.84765625,
-        "y": 337.23828125,
+        "x": 601.2421875,
+        "y": 750.01953125,
         "map": true
       },
       {
@@ -36,8 +36,8 @@
         "number": 61,
         "title": "Store Room",
         "text": "Only accessible if you have the Iron Key.",
-        "x": 284.63671875,
-        "y": 614.00390625,
+        "x": 179.84375,
+        "y": 657.58984375,
         "map": true
       },
       {
@@ -45,8 +45,8 @@
         "number": 62,
         "title": "Troll Bridge",
         "text": "It's hard to see into the darkness, but just ahead you see what looks like  a deep ravine and a bridge; heading over to the darkness.\n\nYou strike up your flint lantern again aware that this will soon run out if you donlt find some oil soon, as you do the cavern widens in your view casting deep shadows deep shadows but you can clearly see a route across the bridge.\n\nThe bridge has old wooden wooden planks.\n\nYou may roll on your Intelligence.\n\nif you make that roll, go to 327\nBegin to walk across the bridge 180\nGo back down the stairs to the Junction 100",
-        "x": 969.7578125,
-        "y": 374.55859375,
+        "x": 592.875,
+        "y": 863.44140625,
         "map": true
       },
       {
@@ -54,8 +54,8 @@
         "number": 41,
         "title": "Troll Den",
         "text": "You hop, skip and jump across the bridge trap and make it safely to the other side.\nBefore you is an entrance to a cave.\n\nYou peer into the dark cave and walk slowly in (something smells foul for sure); the cave slowly becomes wide and forks off into 2 directions. Bones litter the floor, and there is the smell of something boiling down the right tunnel.",
-        "x": 1133.8515625,
-        "y": 240.58203125,
+        "x": 656.43359375,
+        "y": 1083.8125,
         "map": true
       },
       {
@@ -72,8 +72,8 @@
         "number": 131,
         "title": "Troll rubbish shoot",
         "text": "You rummage through the piles of stinking bones and discarded previous adventures, only to find a chain mechanism. Will you pull the chain or back away?",
-        "x": 983.0078125,
-        "y": 91.40625,
+        "x": 641.0859375,
+        "y": 1237.14453125,
         "map": false
       },
       {
@@ -117,8 +117,8 @@
         "number": 88,
         "title": "Bent Lock - Closes kitchen",
         "text": "You pick up a nearby heavy rock and smash it over the latch repeatedly, bending it so it could never be opened from the inside. You hear the goblins (now realising) pulling and pushing the door to no avail; these dungeon doors are strongly made, and that's stuck fast.\n\nYou won't know how that might of turned out but you feel this could have been a nasty encounter.\n\nYou head up the stairs, this being the only way left to go.\n\nGo to 27",
-        "x": 51,
-        "y": 127.78125,
+        "x": 1011.15234375,
+        "y": 155.0078125,
         "map": false
       },
       {
@@ -126,8 +126,8 @@
         "number": 261,
         "title": "Troll bridge int roll made",
         "text": "You can clearly see this is a trap, the planks near the lever have hinges and are a slightly different wood to the rest.\n\nYou will need a way to pull that lever without stepping on thos planks.\n\nYou may cross the bridge anyway go #\nHead back down to the junction 100",
-        "x": 971.89453125,
-        "y": 491.984375,
+        "x": 859.7734375,
+        "y": 913.75390625,
         "map": false
       },
       {
@@ -135,8 +135,8 @@
         "number": 327,
         "title": "You make the INT roll",
         "text": "You sit and think about that level you can see, you realise you need some rope to lasso that level and if you donlt have any maybe there's something in that door down below?\n\nIf you have the rope go to 41\n\nYou may still risk walking across the bridge go to ...\nor head back down the stairs to the door 100",
-        "x": 971.6171875,
-        "y": 591.72265625,
+        "x": 573.703125,
+        "y": 948.91796875,
         "map": false
       },
       {
@@ -224,12 +224,6 @@
         "from": 11,
         "to": 14,
         "type": "choice"
-      },
-      {
-        "id": "l17884420970480.712447507355495",
-        "from": 10,
-        "to": 14,
-        "type": "read"
       },
       {
         "id": "l17884474505590.6890488240572801",
