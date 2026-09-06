@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-06T05:18:10.816Z",
+  "savedAt": "2026-09-06T05:33:54.980Z",
   "state": {
     "nextId": 24,
     "nodes": [
@@ -16,7 +16,7 @@
       {
         "id": 2,
         "number": 13,
-        "title": "Door - Listen first",
+        "title": "Door - Make a SNEAK roll",
         "text": "You listen at the door and hear voices behind. Sounds like some goblins eating and arguing over their food!\n\n\"Give me that bone! You had your share! says one. \"Get your own, you greedy oaf\", cries another.\n\nYou can't quite make out how many there are yet, but you figure if you let them argue it out, maybe there'll be one or two less to fight if they keep this up.\n\nDo you wait? Go to 25\nOr burst in? Go to 374\nOr return to the Junction? Go to 100",
         "x": 465.59765625,
         "y": 375.015625,
@@ -27,8 +27,8 @@
         "number": 27,
         "title": "Stairs",
         "text": "You climb for a long time up stone carved steps, maybe this was a real structure back in the dar as the steps are solid and well made, cold air rises from the darkness below.\n\nYou reach the top \n\ngo to 62",
-        "x": 731.3828125,
-        "y": 289.66015625,
+        "x": 723.84765625,
+        "y": 337.23828125,
         "map": true
       },
       {
@@ -97,10 +97,10 @@
       {
         "id": 14,
         "number": 100,
-        "title": "Junction",
-        "text": "It's a while before you come round, but when you do, you notice the way back is now blocked by a rockfall. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nMake a sneak roll and approach the door; YES, go to 13; NO... \nYou may open the door; turn to 374\nor Head up the stairs; go to 27",
-        "x": 584.8046875,
-        "y": 210.16015625,
+        "title": "Junction: SNEAK, OPEN DOOR or STAIRS",
+        "text": "It's a while before you come round, but when you do, you notice a rockfall now blocks the way back. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.\n\nYou may...\nMake a sneak roll and approach the door; YES, go to 13; NO... \nYou may open the door; turn to 374\nor Head up the stairs; go to 27",
+        "x": 585.0859375,
+        "y": 199.85546875,
         "map": false
       },
       {
@@ -108,8 +108,8 @@
         "number": 25,
         "title": "Door - Wait",
         "text": "You are in no rush; these greedy goblins will be asleep after that meal. You wait and take a little time to meditate a little way back in the darkness, just in case they come out and time some passes.\n\nFinally, you quietly approach the door again, you hear the voices and arguing have died down. You wait a little longer and listen, and you hear snoring.\n\nSlowly open the door, and go in being very careful to not make any sound...\n\nInside is a 2 goblins, one asleep on the table and the other laying on a straw bed with an empty bottle of what looks like oil next to him. You draw your dagger and explel the nearest one without a sound. It slumps to the floor and you catch it's fall as black blood runs over you hands.\n\nYou then approach and as you do kick over a can of some kind of slop, roll over your dexterity or more to stop the pot spinning!\n\nif you do...\nyou also sneak up and cut the throat of this vile creature before \n\nit can even see you.\n\nIf not, it leaps to it's feet and you must fight it.\n\nThe goblin stats 1 dice (no sword ready) 3 HP\n\nYou roll one diec plus +2 for your basic dagger.\n\nRoll and apply damage for higher to the other, continue until either are dead.\n\nif you win go to... 262\n\nIf you die go to... 25",
-        "x": 153.90625,
-        "y": 510.7421875,
+        "x": 141.17578125,
+        "y": 500.890625,
         "map": false
       },
       {
