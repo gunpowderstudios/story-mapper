@@ -105,7 +105,8 @@
       .nodeLinkedSectionsHead{display:flex;align-items:center;gap:8px;margin-bottom:7px;color:#fff;font-weight:700}
       .nodeLinkedSectionsHint{font-weight:400;color:#8f98a5}
       .nodeLinkedSectionsList{display:flex;flex-direction:column;gap:6px}
-      .nodeLinkedRoute{display:flex;align-items:center;gap:7px;min-width:0;padding:7px 8px;border:1px solid #313844;border-radius:6px;background:#1a1f26}
+      .nodeLinkedRoute{display:flex;align-items:center;gap:7px;min-width:0;padding:7px 8px;border:1px solid #313844;border-radius:6px;background:#1a1f26;color:inherit;text-align:left;cursor:pointer;font:inherit}
+      .nodeLinkedRoute:hover,.nodeLinkedRoute:focus-visible{background:#242b34;border-color:#596575;outline:none}
       .nodeLinkedRoute.isDotted{border-style:dashed}
       .nodeLinkedRoute.notPermitted{opacity:.52}
       .nodeLinkedArrow{flex:0 0 auto;width:20px;text-align:center;color:#ffd54a;font-weight:700}
@@ -115,6 +116,18 @@
       .nodeLinkedEmpty{color:#8f98a5}
     `;
     document.head.appendChild(style);
+  }
+
+  function openTargetNode(targetId) {
+    const apply = document.getElementById('applyNodeBtn');
+    if (apply) apply.click();
+
+    setTimeout(() => {
+      const target = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(targetId))}"]`);
+      if (!target) return;
+      target.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
+      setTimeout(render, 0);
+    }, 0);
   }
 
   function render() {
@@ -132,16 +145,20 @@
 
     const routes = connectedRoutes(state, node);
     const rows = routes.map(route => `
-      <div class="nodeLinkedRoute ${route.dotted ? 'isDotted' : ''} ${route.permitted ? '' : 'notPermitted'}" title="${route.permitted ? 'Available from this section' : 'One-way route points towards this section'}">
+      <button type="button" class="nodeLinkedRoute ${route.dotted ? 'isDotted' : ''} ${route.permitted ? '' : 'notPermitted'}" data-target-id="${esc(route.target.id)}" title="Save current edits and open ${esc(route.target.number)} — ${esc(route.target.title || 'Untitled')}">
         <span class="nodeLinkedArrow">${esc(route.arrow)}</span>
         <span class="nodeLinkedNumber">${esc(route.target.number)}</span>
         <span class="nodeLinkedTitle">${esc(route.target.title || 'Untitled')}</span>
         <span class="nodeLinkedType">${route.dotted ? 'dotted' : 'solid'}${route.permitted ? '' : ' • incoming only'}</span>
-      </div>`).join('');
+      </button>`).join('');
 
     panel.innerHTML = `
-      <div class="nodeLinkedSectionsHead">Connected sections <span class="nodeLinkedSectionsHint">automatic from your drawn links</span></div>
+      <div class="nodeLinkedSectionsHead">Connected sections <span class="nodeLinkedSectionsHint">click to save this section and edit the linked one</span></div>
       <div class="nodeLinkedSectionsList">${rows || '<div class="nodeLinkedEmpty">No links connected to this node yet.</div>'}</div>`;
+
+    panel.querySelectorAll('.nodeLinkedRoute[data-target-id]').forEach(button => {
+      button.addEventListener('click', () => openTargetNode(button.dataset.targetId));
+    });
   }
 
   function schedule() {
