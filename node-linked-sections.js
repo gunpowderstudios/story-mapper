@@ -4,6 +4,7 @@
   const REVERSE_KEY = 'bodReverseOneWayLinks';
   let observer = null;
   let timer = null;
+  let openingTarget = false;
 
   function getState() {
     try {
@@ -71,13 +72,7 @@
 
       const target = (state.nodes || []).find(n => Number(n.id) === Number(targetId));
       if (!target) return;
-      results.push({
-        link,
-        target,
-        permitted,
-        arrow,
-        dotted: link.type === 'read'
-      });
+      results.push({link,target,permitted,arrow,dotted:link.type === 'read'});
     });
 
     return results.sort((a,b) => Number(a.target.number) - Number(b.target.number));
@@ -105,7 +100,7 @@
       .nodeLinkedSectionsHead{display:flex;align-items:center;gap:8px;margin-bottom:7px;color:#fff;font-weight:700}
       .nodeLinkedSectionsHint{font-weight:400;color:#8f98a5}
       .nodeLinkedSectionsList{display:flex;flex-direction:column;gap:6px}
-      .nodeLinkedRoute{display:flex;align-items:center;gap:7px;min-width:0;padding:7px 8px;border:1px solid #313844;border-radius:6px;background:#1a1f26;color:inherit;text-align:left;cursor:pointer;font:inherit}
+      .nodeLinkedRoute{display:flex;align-items:center;gap:7px;min-width:0;padding:7px 8px;border:1px solid #313844;border-radius:6px;background:#1a1f26;color:inherit;text-align:left;cursor:pointer;font:inherit;width:100%}
       .nodeLinkedRoute:hover,.nodeLinkedRoute:focus-visible{background:#242b34;border-color:#596575;outline:none}
       .nodeLinkedRoute.isDotted{border-style:dashed}
       .nodeLinkedRoute.notPermitted{opacity:.52}
@@ -119,18 +114,24 @@
   }
 
   function openTargetNode(targetId) {
+    if (openingTarget) return;
+    openingTarget = true;
+
     const apply = document.getElementById('applyNodeBtn');
     if (apply) apply.click();
 
     setTimeout(() => {
       const target = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(targetId))}"]`);
-      if (!target) return;
-      target.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
-      setTimeout(render, 0);
-    }, 0);
+      if (target) {
+        target.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
+      }
+      openingTarget = false;
+      setTimeout(render, 20);
+    }, 50);
   }
 
   function render() {
+    if (openingTarget) return;
     ensurePanel();
     const panel = document.getElementById('nodeLinkedSections');
     const editor = document.getElementById('editor');
@@ -157,13 +158,17 @@
       <div class="nodeLinkedSectionsList">${rows || '<div class="nodeLinkedEmpty">No links connected to this node yet.</div>'}</div>`;
 
     panel.querySelectorAll('.nodeLinkedRoute[data-target-id]').forEach(button => {
-      button.addEventListener('click', () => openTargetNode(button.dataset.targetId));
+      button.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        openTargetNode(button.dataset.targetId);
+      });
     });
   }
 
   function schedule() {
     clearTimeout(timer);
-    timer = setTimeout(render, 20);
+    timer = setTimeout(render, 30);
   }
 
   function install() {
@@ -172,14 +177,17 @@
 
     const editor = document.getElementById('editor');
     if (editor && !observer) {
-      observer = new MutationObserver(schedule);
-      observer.observe(editor, {attributes:true, attributeFilter:['class'], subtree:true, childList:true});
+      observer = new MutationObserver(mutations => {
+        if (mutations.some(m => m.type === 'attributes' && m.attributeName === 'class')) schedule();
+      });
+      observer.observe(editor, {attributes:true, attributeFilter:['class']});
     }
 
     const numberInput = document.getElementById('nodeNumber');
     if (numberInput) numberInput.addEventListener('input', schedule);
+    const apply = document.getElementById('applyNodeBtn');
+    if (apply) apply.addEventListener('click', () => setTimeout(schedule, 30));
     document.addEventListener('dblclick', schedule);
-    document.addEventListener('pointerup', schedule);
     window.addEventListener('bod-link-direction-change', schedule);
     schedule();
   }
