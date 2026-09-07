@@ -170,15 +170,25 @@
     applyCurrent();
     setTimeout(()=>openNode(target.id,false),50);
   }
+  function openBookPreview(){
+    const open=()=>{
+      const btn=document.getElementById('bookPreviewBtn');
+      if(!btn) return false;
+      btn.click();
+      return true;
+    };
+    if(!open()) setTimeout(open,120);
+  }
   function ensureUi(){
     if(view) return;
     view=document.createElement('section');
     view.id='mobileStoryView'; view.className='mobileStoryView';
-    view.innerHTML=`<div class="mobileStoryHead"><div class="mobileStoryTitle"><span>Story Mapper</span><button type="button" class="mobileStorySave" id="mobileListSave">Save</button></div><div class="mobileViewTabs"><button type="button" id="mobileListTab" class="active">List</button><button type="button" id="mobileMapTab">Map</button></div><input id="mobileStorySearch" class="mobileStorySearch" type="search" placeholder="Search section, title or story…"></div><div id="mobileStoryCards" class="mobileStoryCards"></div>`;
+    view.innerHTML=`<div class="mobileStoryHead"><div class="mobileStoryTitle"><span>Story Mapper</span><div class="mobileStoryTitleActions"><button type="button" class="mobileStoryBook" id="mobileBookPreview">Book</button><button type="button" class="mobileStorySave" id="mobileListSave">Save</button></div></div><div class="mobileViewTabs"><button type="button" id="mobileListTab" class="active">List</button><button type="button" id="mobileMapTab">Map</button></div><input id="mobileStorySearch" class="mobileStorySearch" type="search" placeholder="Search section, title or story…"></div><div id="mobileStoryCards" class="mobileStoryCards"></div>`;
     document.body.appendChild(view);
     cards=view.querySelector('#mobileStoryCards'); search=view.querySelector('#mobileStorySearch');
     view.querySelector('#mobileListTab').addEventListener('click',()=>setMode('list'));
     view.querySelector('#mobileMapTab').addEventListener('click',()=>setMode('map'));
+    view.querySelector('#mobileBookPreview').addEventListener('click',openBookPreview);
     view.querySelector('#mobileListSave').addEventListener('click',()=>document.getElementById('saveBtn')?.click());
     search.addEventListener('input',renderList);
     cards.addEventListener('click',e=>{
