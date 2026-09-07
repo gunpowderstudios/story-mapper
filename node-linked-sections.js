@@ -5,6 +5,7 @@
   let observer = null;
   let timer = null;
   let openingTarget = false;
+  let focusTimer = null;
 
   function getState() {
     try {
@@ -109,8 +110,27 @@
       .nodeLinkedTitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}
       .nodeLinkedType{margin-left:auto;flex:0 0 auto;color:#8f98a5;font-size:10px;text-transform:uppercase;letter-spacing:.03em}
       .nodeLinkedEmpty{color:#8f98a5}
+      #nodes .node.nodeLinkedFocus{z-index:8;outline:4px solid #ffd54a;outline-offset:5px;box-shadow:0 0 0 9px rgba(255,213,74,.18),0 0 28px rgba(255,213,74,.7);transition:outline-color .2s,box-shadow .2s}
     `;
     document.head.appendChild(style);
+  }
+
+  function revealTargetNode(target) {
+    if (!target) return;
+    const workspace = document.getElementById('workspace');
+    const editor = document.getElementById('editor');
+    if (!workspace) return;
+
+    document.querySelectorAll('#nodes .node.nodeLinkedFocus').forEach(el => el.classList.remove('nodeLinkedFocus'));
+    target.classList.add('nodeLinkedFocus');
+    clearTimeout(focusTimer);
+    focusTimer = setTimeout(() => target.classList.remove('nodeLinkedFocus'), 2600);
+
+    const editorWidth = editor && !editor.classList.contains('hidden') ? editor.getBoundingClientRect().width : 0;
+    const usableWidth = Math.max(260, workspace.clientWidth - editorWidth - 24);
+    const left = Math.max(0, target.offsetLeft - (usableWidth - target.offsetWidth) / 2);
+    const top = Math.max(0, target.offsetTop - (workspace.clientHeight - target.offsetHeight) / 2);
+    workspace.scrollTo({left, top, behavior:'smooth'});
   }
 
   function openTargetNode(targetId) {
@@ -123,11 +143,13 @@
     setTimeout(() => {
       const target = document.querySelector(`#nodes .node[data-id="${CSS.escape(String(targetId))}"]`);
       if (target) {
+        revealTargetNode(target);
         target.dispatchEvent(new MouseEvent('dblclick', {bubbles:true, cancelable:true, view:window}));
+        setTimeout(() => revealTargetNode(target), 80);
       }
       openingTarget = false;
-      setTimeout(render, 20);
-    }, 50);
+      setTimeout(render, 30);
+    }, 70);
   }
 
   function render() {
@@ -146,7 +168,7 @@
 
     const routes = connectedRoutes(state, node);
     const rows = routes.map(route => `
-      <button type="button" class="nodeLinkedRoute ${route.dotted ? 'isDotted' : ''} ${route.permitted ? '' : 'notPermitted'}" data-target-id="${esc(route.target.id)}" title="Save current edits and open ${esc(route.target.number)} — ${esc(route.target.title || 'Untitled')}">
+      <button type="button" class="nodeLinkedRoute ${route.dotted ? 'isDotted' : ''} ${route.permitted ? '' : 'notPermitted'}" data-target-id="${esc(route.target.id)}" title="Save current edits, reveal and open ${esc(route.target.number)} — ${esc(route.target.title || 'Untitled')}">
         <span class="nodeLinkedArrow">${esc(route.arrow)}</span>
         <span class="nodeLinkedNumber">${esc(route.target.number)}</span>
         <span class="nodeLinkedTitle">${esc(route.target.title || 'Untitled')}</span>
@@ -154,7 +176,7 @@
       </button>`).join('');
 
     panel.innerHTML = `
-      <div class="nodeLinkedSectionsHead">Connected sections <span class="nodeLinkedSectionsHint">click to save this section and edit the linked one</span></div>
+      <div class="nodeLinkedSectionsHead">Connected sections <span class="nodeLinkedSectionsHint">click to save, reveal and edit the linked node</span></div>
       <div class="nodeLinkedSectionsList">${rows || '<div class="nodeLinkedEmpty">No links connected to this node yet.</div>'}</div>`;
 
     panel.querySelectorAll('.nodeLinkedRoute[data-target-id]').forEach(button => {
