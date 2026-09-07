@@ -5,8 +5,8 @@
   const REVERSE_KEY = 'bodReverseOneWayLinks';
   let view = null;
   let cards = null;
+  let mapStack = null;
   let search = null;
-  let mapTools = null;
   let editorNav = null;
   let lastNodeId = null;
   let renderTimer = null;
@@ -25,9 +25,15 @@
     try{ const v=JSON.parse(localStorage.getItem(key)||'[]'); return new Set(Array.isArray(v)?v.map(String):[]); }catch(_){ return new Set(); }
   }
   function direction(linkId){
-    const id=String(linkId||''); const ow=getSet(ONE_WAY_KEY);
-    if(!ow.has(id)) return 'two-way';
+    const id=String(linkId||'');
+    const oneWay=getSet(ONE_WAY_KEY);
+    if(!oneWay.has(id)) return 'two-way';
     return getSet(REVERSE_KEY).has(id)?'reverse':'forward';
+  }
+  function requirement(link){
+    if(!link) return '';
+    if(link.requirement==='ITEM') return link.requiredObject ? `ITEM: ${link.requiredObject}` : 'ITEM';
+    return link.requirement || '';
   }
   function routesFor(state,node){
     const out=[];
@@ -40,96 +46,49 @@
       if(dir==='forward') permitted=from;
       if(dir==='reverse') permitted=to;
       const target=(state.nodes||[]).find(n=>Number(n.id)===Number(targetId));
-      if(!target) return;
-      out.push({link,target,permitted});
+      if(target) out.push({link,target,permitted});
     });
     return out.sort((a,b)=>Number(a.target.number)-Number(b.target.number));
   }
-  function requirement(link){
-    if(!link) return '';
-    if(link.requirement==='ITEM') return link.requiredObject ? `ITEM: ${link.requiredObject}` : 'ITEM';
-    return link.requirement || '';
+  function flowFor(state,node){
+    const incoming=[], outgoing=[];
+    (state.links||[]).forEach(link=>{
+      const from=Number(link.from)===Number(node.id), to=Number(link.to)===Number(node.id);
+      if(!from&&!to) return;
+      const dir=direction(link.id);
+      let targetId=from?link.to:link.from;
+      let bucket;
+      if(dir==='reverse') bucket=from?'incoming':'outgoing';
+      else bucket=from?'outgoing':'incoming';
+      const target=(state.nodes||[]).find(n=>Number(n.id)===Number(targetId));
+      if(!target) return;
+      (bucket==='incoming'?incoming:outgoing).push({link,target});
+    });
+    const sort=(a,b)=>Number(a.target.number)-Number(b.target.number);
+    incoming.sort(sort); outgoing.sort(sort);
+    return {incoming,outgoing};
   }
-  function currentZoom(){
-    const api=window.BODMapperZoom;
-    const apiZoom=api && typeof api.get==='function' ? Number(api.get()) : NaN;
-    if(Number.isFinite(apiZoom) && apiZoom>0) return apiZoom;
-    const stored=Number(sessionStorage.getItem('bodMapperZoom'));
-    return Number.isFinite(stored) && stored>0 ? stored : 1;
-  }
-  function setZoom(value){
-    const api=window.BODMapperZoom;
-    if(api && typeof api.set==='function') api.set(value);
-  }
-  function zoomBy(amount){ setZoom(currentZoom()+amount); }
-  function setMode(mode){
-    if(!isMobile()) return;
-    const list = mode !== 'map';
-    document.body.classList.toggle('mobile-list-active',list);
-    document.body.classList.toggle('mobile-map-active',!list);
-    view?.classList.toggle('active',list);
-    view?.querySelector('#mobileListTab')?.classList.toggle('active',list);
-    view?.querySelector('#mobileMapTab')?.classList.toggle('active',!list);
-    if(list){
-      renderList();
-    }else{
-      setTimeout(()=>{
-        const el=lastNodeId!=null ? document.querySelector(`#nodes .node[data-id="${CSS.escape(String(lastNodeId))}"]`) : null;
-        if(el) centerNode(el,false);
-        else fitMapOverview();
-      },80);
-    }
-  }
-  function openNode(id,showMap=false){
+  function openNode(id){
     const el=document.querySelector(`#nodes .node[data-id="${CSS.escape(String(id))}"]`);
     if(!el) return;
     lastNodeId=Number(id);
-    if(showMap){
-      setMode('map');
-      setTimeout(()=>centerNode(el,true),100);
-      return;
-    }
     el.dispatchEvent(new MouseEvent('dblclick',{bubbles:true,cancelable:true,view:window}));
   }
-  function centerNode(el,highlight=true){
-    const workspace=document.getElementById('workspace');
-    if(!workspace||!el) return;
-    const z=currentZoom();
-    const logicalX=(parseFloat(el.style.left)||0)+el.offsetWidth/2;
-    const logicalY=(parseFloat(el.style.top)||0)+el.offsetHeight/2;
-    const left=logicalX*z-workspace.clientWidth/2;
-    const top=logicalY*z-workspace.clientHeight/2;
-    workspace.scrollTo({left:Math.max(0,left),top:Math.max(0,top),behavior:'smooth'});
-    if(highlight){
-      document.querySelectorAll('.node.mobileStoryJump').forEach(n=>n.classList.remove('mobileStoryJump'));
-      el.classList.add('mobileStoryJump');
-      setTimeout(()=>el.classList.remove('mobileStoryJump'),2200);
-    }
+  function setMapFocus(id){
+    lastNodeId=Number(id);
+    renderMap();
+    mapStack?.scrollTo({top:0,behavior:'smooth'});
   }
-  function fitMapOverview(){
-    const workspace=document.getElementById('workspace');
-    const nodes=[...document.querySelectorAll('#nodes .node')];
-    if(!workspace||!nodes.length) return;
-    let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
-    nodes.forEach(el=>{
-      const x=parseFloat(el.style.left)||0;
-      const y=parseFloat(el.style.top)||0;
-      minX=Math.min(minX,x); minY=Math.min(minY,y);
-      maxX=Math.max(maxX,x+el.offsetWidth); maxY=Math.max(maxY,y+el.offsetHeight);
-    });
-    const boxW=Math.max(1,maxX-minX), boxH=Math.max(1,maxY-minY);
-    const availW=Math.max(120,workspace.clientWidth-40);
-    const availH=Math.max(160,workspace.clientHeight-110);
-    const desired=Math.max(.35,Math.min(.9,availW/boxW,availH/boxH));
-    setZoom(desired);
-    setTimeout(()=>{
-      const z=currentZoom();
-      workspace.scrollTo({
-        left:Math.max(0,((minX+maxX)/2)*z-workspace.clientWidth/2),
-        top:Math.max(0,((minY+maxY)/2)*z-workspace.clientHeight/2),
-        behavior:'smooth'
-      });
-    },90);
+  function setMode(mode){
+    if(!isMobile()) return;
+    const list=mode!=='map';
+    document.body.classList.toggle('mobile-list-active',list);
+    document.body.classList.toggle('mobile-map-active',!list);
+    view?.classList.add('active');
+    view?.classList.toggle('showMap',!list);
+    view?.querySelector('#mobileListTab')?.classList.toggle('active',list);
+    view?.querySelector('#mobileMapTab')?.classList.toggle('active',!list);
+    if(list) renderList(); else renderMap();
   }
   function renderList(){
     if(!cards||!isMobile()) return;
@@ -143,12 +102,33 @@
       const excerpt=String(node.text||'').replace(/\s+/g,' ').trim();
       const links=routes.map(r=>{
         const req=requirement(r.link);
-        return `<button type="button" class="mobileStoryLink ${r.permitted?'':'incoming'}" data-target-id="${esc(r.target.id)}" aria-label="Open section ${esc(r.target.number)} ${esc(r.target.title||'Untitled')}"><span class="mobileStoryLinkArrow">${r.permitted?'→':'←'}</span><span class="mobileStoryLinkNum">${esc(r.target.number)}</span><span class="mobileStoryLinkTitle">${esc(r.target.title||'Untitled')}</span>${req?`<span class="mobileStoryReq">${esc(req)}</span>`:''}<span class="mobileStoryLinkOpen">OPEN</span></button>`;
+        return `<button type="button" class="mobileStoryLink ${r.permitted?'':'incoming'}" data-target-id="${esc(r.target.id)}"><span class="mobileStoryLinkArrow">${r.permitted?'→':'←'}</span><span class="mobileStoryLinkNum">${esc(r.target.number)}</span><span class="mobileStoryLinkTitle">${esc(r.target.title||'Untitled')}</span>${req?`<span class="mobileStoryReq">${esc(req)}</span>`:''}</button>`;
       }).join('');
-      return `<article class="mobileStoryCard" data-node-id="${esc(node.id)}"><div class="mobileStoryCardHead"><div class="mobileStoryCardTitle">${esc(node.number)} — ${esc(node.title||'Untitled')}</div><span class="mobileStoryCount">${routes.length} link${routes.length===1?'':'s'}</span></div><div class="mobileStoryExcerpt">${esc(excerpt||'No story text yet.')}</div>${links?`<div class="mobileStoryLinks">${links}</div>`:''}<div class="mobileStoryCardActions"><button type="button" class="mobileStoryLocate" data-map-id="${esc(node.id)}">Show on map</button><button type="button" class="mobileStoryEdit" data-edit-id="${esc(node.id)}">Edit section</button></div></article>`;
+      return `<article class="mobileStoryCard"><div class="mobileStoryCardHead"><button type="button" class="mobileStoryCardTitle" data-edit-id="${esc(node.id)}">${esc(node.number)} <span>${esc(node.title||'Untitled')}</span></button><span class="mobileStoryCount">${routes.length} link${routes.length===1?'':'s'}</span></div><div class="mobileStoryExcerpt">${esc(excerpt||'No story text yet.')}</div>${links?`<div class="mobileStoryLinks">${links}</div>`:''}<div class="mobileStoryCardActions"><button type="button" class="mobileStoryLocate" data-map-id="${esc(node.id)}">Map</button><button type="button" class="mobileStoryEdit" data-edit-id="${esc(node.id)}">Edit</button></div></article>`;
     }).join('');
   }
-  function scheduleRender(){ clearTimeout(renderTimer); renderTimer=setTimeout(renderList,80); }
+  function mapRow(route,kind){
+    const req=requirement(route.link);
+    const excerpt=String(route.target.text||'').replace(/\s+/g,' ').trim();
+    return `<button type="button" class="mobileFlowRow" data-focus-id="${esc(route.target.id)}"><span class="mobileFlowNum">${esc(route.target.number)}</span><span class="mobileFlowText"><strong>${esc(route.target.title||'Untitled')}</strong><small>${esc(excerpt||'No story text yet.')}</small></span>${req?`<span class="mobileStoryReq">${esc(req)}</span>`:''}<span class="mobileFlowChevron">›</span></button>`;
+  }
+  function renderMap(){
+    if(!mapStack||!isMobile()) return;
+    const state=getState();
+    const nodes=[...(state.nodes||[])].sort((a,b)=>Number(a.number)-Number(b.number));
+    if(!nodes.length){ mapStack.innerHTML='<div class="mobileStoryEmpty">No story sections yet.</div>'; return; }
+    let current=nodes.find(n=>Number(n.id)===Number(lastNodeId));
+    if(!current){ current=nodes[0]; lastNodeId=Number(current.id); }
+    const flow=flowFor(state,current);
+    const excerpt=String(current.text||'').replace(/\s+/g,' ').trim();
+    mapStack.innerHTML=`
+      <section class="mobileFlowGroup"><h3>⌄ Incoming Links</h3>${flow.incoming.length?flow.incoming.map(r=>mapRow(r,'incoming')).join(''):'<div class="mobileFlowEmpty">No incoming links</div>'}</section>
+      <div class="mobileFlowArrow">↓</div>
+      <article class="mobileFlowCurrent"><div class="mobileFlowCurrentTop"><span class="mobileFlowCurrentNum">${esc(current.number)}</span><strong>${esc(current.title||'Untitled')}</strong></div><p>${esc(excerpt||'No story text yet.')}</p><div class="mobileFlowCurrentActions"><span>◎ Current Section</span><button type="button" data-edit-id="${esc(current.id)}">Edit</button></div></article>
+      <div class="mobileFlowArrow">↓</div>
+      <section class="mobileFlowGroup"><h3>⌄ Outgoing Links</h3>${flow.outgoing.length?flow.outgoing.map(r=>mapRow(r,'outgoing')).join(''):'<div class="mobileFlowEmpty">No outgoing links</div>'}</section>`;
+  }
+  function scheduleRender(){ clearTimeout(renderTimer); renderTimer=setTimeout(()=>{renderList();renderMap();},80); }
   function currentEditorNode(state){
     const num=Number(document.getElementById('nodeNumber')?.value);
     return (state.nodes||[]).find(n=>Number(n.number)===num)||null;
@@ -167,65 +147,33 @@
   function jumpEditor(which){
     const routes=editorRoutes(); if(!routes.length) return;
     const target=which==='prev'?routes[0].target:routes[routes.length-1].target;
-    applyCurrent();
-    setTimeout(()=>openNode(target.id,false),50);
+    applyCurrent(); setTimeout(()=>openNode(target.id),50);
   }
   function openBookPreview(){
-    const open=()=>{
-      const btn=document.getElementById('bookPreviewBtn');
-      if(!btn) return false;
-      btn.click();
-      return true;
-    };
+    const open=()=>{ const btn=document.getElementById('bookPreviewBtn'); if(!btn) return false; btn.click(); return true; };
     if(!open()) setTimeout(open,120);
   }
   function ensureUi(){
     if(view) return;
     view=document.createElement('section');
     view.id='mobileStoryView'; view.className='mobileStoryView';
-    view.innerHTML=`<div class="mobileStoryHead"><div class="mobileStoryTitle"><span>Story Mapper</span><div class="mobileStoryTitleActions"><button type="button" class="mobileStoryBook" id="mobileBookPreview">Book</button><button type="button" class="mobileStorySave" id="mobileListSave">Save</button></div></div><div class="mobileViewTabs"><button type="button" id="mobileListTab" class="active">List</button><button type="button" id="mobileMapTab">Map</button></div><input id="mobileStorySearch" class="mobileStorySearch" type="search" placeholder="Search section, title or story…"></div><div id="mobileStoryCards" class="mobileStoryCards"></div>`;
+    view.innerHTML=`<div class="mobileStoryHead"><div class="mobileStoryTitle"><span>Book of Dungeon Story Mapper</span><div class="mobileStoryTitleActions"><button type="button" class="mobileStoryBook" id="mobileBookPreview">Book</button><button type="button" class="mobileStorySave" id="mobileListSave">Save</button></div></div><div class="mobileViewTabs"><button type="button" id="mobileListTab" class="active">List</button><button type="button" id="mobileMapTab">Map</button></div><input id="mobileStorySearch" class="mobileStorySearch" type="search" placeholder="Search sections, titles, or text…"></div><div id="mobileStoryCards" class="mobileStoryCards"></div><div id="mobileMapStack" class="mobileMapStack"></div>`;
     document.body.appendChild(view);
-    cards=view.querySelector('#mobileStoryCards'); search=view.querySelector('#mobileStorySearch');
+    cards=view.querySelector('#mobileStoryCards'); mapStack=view.querySelector('#mobileMapStack'); search=view.querySelector('#mobileStorySearch');
     view.querySelector('#mobileListTab').addEventListener('click',()=>setMode('list'));
     view.querySelector('#mobileMapTab').addEventListener('click',()=>setMode('map'));
     view.querySelector('#mobileBookPreview').addEventListener('click',openBookPreview);
     view.querySelector('#mobileListSave').addEventListener('click',()=>document.getElementById('saveBtn')?.click());
     search.addEventListener('input',renderList);
-    cards.addEventListener('click',e=>{
+    view.addEventListener('click',e=>{
       const link=e.target.closest('.mobileStoryLink[data-target-id]');
-      if(link){
-        e.preventDefault(); e.stopPropagation();
-        openNode(link.dataset.targetId,false);
-        return;
-      }
+      if(link){ e.preventDefault(); openNode(link.dataset.targetId); return; }
       const edit=e.target.closest('[data-edit-id]');
-      if(edit){
-        e.preventDefault(); e.stopPropagation();
-        openNode(edit.dataset.editId,false);
-        return;
-      }
+      if(edit){ e.preventDefault(); openNode(edit.dataset.editId); return; }
       const locate=e.target.closest('[data-map-id]');
-      if(locate){
-        e.preventDefault(); e.stopPropagation();
-        openNode(locate.dataset.mapId,true);
-      }
-    });
-
-    mapTools=document.createElement('div'); mapTools.className='mobileMapTools';
-    mapTools.innerHTML='<button type="button" id="mobileBackToList">☰ List</button><button type="button" id="mobileZoomOut" aria-label="Zoom out">−</button><button type="button" id="mobileZoomIn" aria-label="Zoom in">＋</button><button type="button" id="mobileWhereAmI">◎ Focus</button><button type="button" id="mobileFitMap">Fit</button>';
-    document.body.appendChild(mapTools);
-    mapTools.querySelector('#mobileBackToList').addEventListener('click',()=>setMode('list'));
-    mapTools.querySelector('#mobileZoomOut').addEventListener('click',()=>zoomBy(-.15));
-    mapTools.querySelector('#mobileZoomIn').addEventListener('click',()=>zoomBy(.15));
-    mapTools.querySelector('#mobileFitMap').addEventListener('click',fitMapOverview);
-    mapTools.querySelector('#mobileWhereAmI').addEventListener('click',()=>{
-      const state=getState();
-      let id=lastNodeId;
-      const editor=document.getElementById('editor');
-      if(editor&&!editor.classList.contains('hidden')) id=currentEditorNode(state)?.id||id;
-      const el=id!=null?document.querySelector(`#nodes .node[data-id="${CSS.escape(String(id))}"]`):null;
-      if(el) centerNode(el,true);
-      else fitMapOverview();
+      if(locate){ e.preventDefault(); lastNodeId=Number(locate.dataset.mapId); setMode('map'); return; }
+      const focus=e.target.closest('[data-focus-id]');
+      if(focus){ e.preventDefault(); setMapFocus(focus.dataset.focusId); }
     });
 
     editorNav=document.createElement('div'); editorNav.className='mobileEditorNav';
@@ -241,18 +189,13 @@
         if(!isMobile()) return;
         const open=!editor.classList.contains('hidden');
         document.body.classList.toggle('mobile-editor-full',open);
-        if(open){
-          setTimeout(()=>{ const s=getState(); const n=currentEditorNode(s); if(n) lastNodeId=Number(n.id); refreshEditorNav(); },30);
-        }else{
-          scheduleRender();
-          if(document.body.classList.contains('mobile-list-active')) view.classList.add('active');
-        }
+        if(open){ setTimeout(()=>{ const s=getState(); const n=currentEditorNode(s); if(n) lastNodeId=Number(n.id); refreshEditorNav(); },30); }
+        else scheduleRender();
       });
       obs.observe(editor,{attributes:true,attributeFilter:['class']});
     }
     document.getElementById('applyNodeBtn')?.addEventListener('click',()=>setTimeout(()=>{scheduleRender();refreshEditorNav();},40));
     window.addEventListener('bod-link-direction-change',scheduleRender);
-    document.addEventListener('pointerup',e=>{ if(isMobile() && !e.target.closest('.mobileStoryView,.editor')) scheduleRender(); });
   }
   function boot(){
     ensureUi();
