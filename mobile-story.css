@@ -1,52 +1,58 @@
 .mobileStoryView{display:none}
 @media(max-width:700px){
-  body.mobile-list-active #workspace,body.mobile-list-active #hint,body.mobile-list-active .mobileBar,body.mobile-list-active .mobileQuick,body.mobile-list-active .mobileLineMenu{display:none!important}
-  .mobileStoryView{position:absolute;inset:58px 0 0;z-index:45;background:#eef2f5;color:#172437;overflow:auto;-webkit-overflow-scrolling:touch;padding:0 12px calc(24px + env(safe-area-inset-bottom));}
+  body.mobile-list-active #workspace,body.mobile-map-active #workspace,body.mobile-list-active #hint,body.mobile-map-active #hint,body.mobile-list-active .mobileBar,body.mobile-map-active .mobileBar,body.mobile-list-active .mobileQuick,body.mobile-map-active .mobileQuick,body.mobile-list-active .mobileLineMenu,body.mobile-map-active .mobileLineMenu{display:none!important}
+  .mobileStoryView{position:absolute;inset:58px 0 0;z-index:45;background:#050607;color:#fff;overflow:auto;-webkit-overflow-scrolling:touch;padding:0 12px calc(24px + env(safe-area-inset-bottom));font-family:Arial,Helvetica,sans-serif}
   .mobileStoryView.active{display:block}
-  .mobileStoryHead{position:sticky;top:0;z-index:3;background:#0f345e;margin:0 -12px 12px;padding:10px 12px 12px;box-shadow:0 2px 10px rgba(0,0,0,.16)}
-  .mobileStoryTitle{display:flex;align-items:center;justify-content:space-between;color:#fff;font-weight:700;font-size:17px;margin-bottom:9px;gap:8px}
-  .mobileStoryTitleActions{display:flex;align-items:center;gap:6px;flex:0 0 auto}
-  .mobileStorySave,.mobileStoryBook{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;padding:6px 9px;font-size:12px}
-  .mobileStoryBook{background:#fff;color:#0f345e;border-color:#fff;font-weight:800}
-  .mobileViewTabs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.45);border-radius:8px;overflow:hidden;margin-bottom:10px}
-  .mobileViewTabs button{border:0;border-radius:0;background:transparent;color:#fff;padding:9px;font-weight:700}
-  .mobileViewTabs button.active{background:#1976d2}
-  .mobileStorySearch{width:100%;border:0;border-radius:8px;padding:12px 13px;font-size:16px;background:#fff;color:#172437;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-  .mobileStoryCards{display:flex;flex-direction:column;gap:10px;padding-bottom:12px}
-  .mobileStoryCard{background:#fff;border:1px solid #cfd7df;border-radius:10px;padding:13px;box-shadow:0 2px 6px rgba(23,36,55,.09)}
+  .mobileStoryHead{position:sticky;top:0;z-index:5;background:#050607;margin:0 -12px 12px;padding:12px 12px 12px;border-bottom:1px solid #24272b}
+  .mobileStoryTitle{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#fff;font-weight:800;font-size:18px;line-height:1.15;margin-bottom:12px}
+  .mobileStoryTitleActions{display:flex;align-items:center;gap:7px;flex:0 0 auto}
+  .mobileStorySave,.mobileStoryBook{border:1px solid #41464d;background:#15181c;color:#fff;padding:8px 10px;font-size:13px;font-weight:800}
+  .mobileStoryBook{background:#fff;color:#050607;border-color:#fff}
+  .mobileViewTabs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #2c3035;border-radius:9px;overflow:hidden;margin-bottom:11px;background:#111316}
+  .mobileViewTabs button{border:0;border-radius:0;background:transparent;color:#fff;padding:11px;font-size:15px;font-weight:800}
+  .mobileViewTabs button.active{background:#2c9b82;color:#fff}
+  .mobileStorySearch{width:100%;border:1px solid #3a3f45;border-radius:9px;padding:13px 14px;font-size:17px;background:#181b1f;color:#fff;box-shadow:none}
+  .mobileStorySearch::placeholder{color:#9ea5ad}
+  .mobileStoryCards{display:flex;flex-direction:column;gap:11px;padding-bottom:12px}
+  .mobileStoryCard{background:#121416;border:1px solid #2d3136;border-radius:11px;padding:14px;box-shadow:none;color:#fff}
   .mobileStoryCardHead{display:flex;align-items:flex-start;gap:8px}
-  .mobileStoryCardTitle{font-weight:800;font-size:16px;line-height:1.25;flex:1}
-  .mobileStoryCount{flex:0 0 auto;background:#e8edf2;border-radius:6px;padding:4px 7px;font-size:11px;color:#536170}
-  .mobileStoryExcerpt{margin:8px 0 9px;color:#344454;font:14px/1.38 Georgia,serif;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .mobileStoryLinks{display:flex;flex-direction:column;gap:6px;border-top:1px solid #edf0f3;padding-top:8px}
-  .mobileStoryLink{display:grid;grid-template-columns:20px 36px minmax(0,1fr) auto auto;align-items:center;gap:5px;border:1px solid #d7e2ec;background:#f7fbff;color:#17365b;padding:9px 9px;text-align:left;font-size:13px;border-radius:8px;width:100%;min-height:44px;box-shadow:0 1px 2px rgba(23,54,91,.05)}
-  .mobileStoryLink:active{background:#e7f2fc;border-color:#8ebbe5;transform:translateY(1px)}
-  .mobileStoryLinkArrow{color:#1976d2;font-weight:900;font-size:18px}.mobileStoryLinkNum{font-weight:800;color:#135eab}.mobileStoryLinkTitle{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mobileStoryReq{font-size:10px;font-weight:800;background:#f3cf42;color:#302600;border-radius:4px;padding:3px 5px}.mobileStoryLinkOpen{font-size:9px;font-weight:900;letter-spacing:.04em;color:#1976d2}.mobileStoryLink.incoming{opacity:.55}.mobileStoryLink.incoming .mobileStoryLinkOpen{color:#6a7682}
-  .mobileStoryCardActions{display:flex;justify-content:flex-end;gap:7px;margin-top:9px}.mobileStoryEdit{background:#0f345e;color:#fff;border:0;padding:8px 11px;font-size:12px}.mobileStoryLocate{background:#edf3f8;color:#17365b;border:1px solid #c9d6e2;padding:8px 11px;font-size:12px}
-  .mobileStoryEmpty{padding:40px 18px;text-align:center;color:#687786}
-  .mobileMapTools{display:none;position:absolute;z-index:62;left:8px;right:8px;top:66px;grid-template-columns:1.3fr .65fr .65fr 1.15fr .8fr;gap:5px;padding:6px;background:rgba(15,52,94,.94);border:1px solid #466989;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.32);backdrop-filter:blur(5px)}
-  body.mobile-map-active .mobileMapTools{display:grid}
-  .mobileMapTools button{background:#173f69;border-color:#5d7894;color:#fff;font-size:11px;padding:8px 4px;min-height:38px;box-shadow:none}
-  #mobileZoomOut,#mobileZoomIn{font-size:20px;line-height:1;padding:3px}
-  body.mobile-map-active #hint{display:none!important}
-  body.mobile-map-active #workspace{top:58px}
-  body.mobile-map-active .linkHit{stroke-width:28}
-  .node.mobileStoryJump{outline:4px solid #ffd54a!important;outline-offset:4px;box-shadow:0 0 0 7px rgba(255,213,74,.2),0 0 24px rgba(255,213,74,.75)!important}
-  body.mobile-map-active .toolbar{background:#0f345e}
-  body.mobile-map-active .brand strong:after{content:'  • Map';font-size:11px;color:#bcd7ef}
-  body.mobile-map-active .mobileBar{display:grid}
-  body.mobile-editor-full .mobileBar,body.mobile-editor-full .mobileQuick,body.mobile-editor-full .mobileLineMenu{display:none!important}
-  body.mobile-editor-full .editor{position:fixed;inset:0;z-index:90;width:100%;max-height:none;border:0;border-radius:0;padding:12px 14px calc(76px + env(safe-area-inset-bottom));background:#f6f2e8;color:#172437;box-shadow:none;overflow:auto}
-  body.mobile-editor-full .editorTop{position:sticky;top:-12px;margin:-12px -14px 10px;padding:12px 14px;background:#0f345e;color:#fff;z-index:3}
-  body.mobile-editor-full .editorTop strong{font-size:16px} body.mobile-editor-full .editorTop button{color:#fff}
-  body.mobile-editor-full .editor label{color:#384654;font-weight:700}
-  body.mobile-editor-full .editor input[type=text],body.mobile-editor-full .editor input[type=number],body.mobile-editor-full .editor textarea{background:#fff;color:#172437;border-color:#b9c4ce}
-  body.mobile-editor-full .editor textarea{min-height:42vh;height:42vh;resize:vertical;font:17px/1.45 Georgia,serif}
-  body.mobile-editor-full #nodeLinkedSections{background:#fff;color:#172437;border-color:#c9d1d8}
-  body.mobile-editor-full #nodeLinkedSections .nodeLinkedSectionsHead,body.mobile-editor-full #nodeLinkedSections .nodeLinkedTitle{color:#172437}
-  body.mobile-editor-full #nodeLinkedSections .nodeLinkedRoute{background:#f5f7f9;border-color:#d9e0e6;color:#172437}
+  .mobileStoryCardTitle{display:flex;align-items:baseline;gap:11px;flex:1;border:0;background:transparent;color:#fff;padding:0;text-align:left;font-weight:900;font-size:20px;line-height:1.25}
+  .mobileStoryCardTitle span{font-size:18px;font-weight:800}
+  .mobileStoryCount{flex:0 0 auto;background:#24282d;border-radius:6px;padding:5px 8px;font-size:12px;color:#c7cbd0}
+  .mobileStoryExcerpt{margin:9px 0 10px;color:#f1f1f1;font:17px/1.42 Georgia,"Times New Roman",serif;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .mobileStoryLinks{display:flex;flex-direction:column;gap:7px;border-top:1px solid #282c31;padding-top:9px}
+  .mobileStoryLink{display:grid;grid-template-columns:22px 40px minmax(0,1fr) auto;align-items:center;gap:6px;border:1px solid #343a40;background:#181b1f;color:#fff;padding:10px;text-align:left;font-size:15px;border-radius:9px;width:100%;min-height:48px}
+  .mobileStoryLink:active{background:#22262b;border-color:#4b545e}
+  .mobileStoryLinkArrow{color:#38c8a8;font-weight:900;font-size:20px}.mobileStoryLinkNum{font-weight:900;color:#fff;font-size:16px}.mobileStoryLinkTitle{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}.mobileStoryReq{font-size:11px;font-weight:900;background:#d7a72c;color:#111;border-radius:5px;padding:4px 6px}.mobileStoryLink.incoming{opacity:.72}
+  .mobileStoryCardActions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}.mobileStoryEdit,.mobileStoryLocate{padding:9px 12px;font-size:13px;font-weight:800;border-radius:7px}.mobileStoryEdit{background:#2c9b82;color:#fff;border:0}.mobileStoryLocate{background:#1b1f23;color:#fff;border:1px solid #3a4148}
+  .mobileStoryEmpty{padding:40px 18px;text-align:center;color:#9ea5ad;font-size:16px}
+
+  .mobileMapStack{display:none;padding:2px 0 16px}
+  .mobileStoryView.showMap .mobileStorySearch,.mobileStoryView.showMap .mobileStoryCards{display:none}
+  .mobileStoryView.showMap .mobileMapStack{display:block}
+  .mobileFlowGroup{margin:4px 0 0}.mobileFlowGroup h3{margin:0 0 8px;color:#fff;font-size:16px;font-weight:800}
+  .mobileFlowRow{display:grid;grid-template-columns:48px minmax(0,1fr) auto 18px;align-items:center;gap:8px;width:100%;min-height:62px;margin:7px 0;padding:10px 11px;border:1px solid #34383d;border-radius:10px;background:#121416;color:#fff;text-align:left}
+  .mobileFlowNum{font-size:22px;font-weight:900;color:#fff}.mobileFlowText{min-width:0;display:flex;flex-direction:column;gap:3px}.mobileFlowText strong{font-size:17px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mobileFlowText small{font-size:13px;line-height:1.25;color:#bfc4c9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mobileFlowChevron{font-size:28px;color:#fff;line-height:1}
+  .mobileFlowArrow{text-align:center;color:#fff;font-size:25px;line-height:1;margin:7px 0}
+  .mobileFlowCurrent{border:2px solid #35d8b3;border-radius:12px;background:#101315;padding:14px;box-shadow:0 0 18px rgba(53,216,179,.16)}
+  .mobileFlowCurrentTop{display:grid;grid-template-columns:58px 1fr;gap:8px;align-items:start}.mobileFlowCurrentNum{font-size:29px;font-weight:900}.mobileFlowCurrentTop strong{font-size:20px;line-height:1.18}.mobileFlowCurrent p{margin:9px 0 10px;color:#f1f1f1;font:16px/1.4 Georgia,"Times New Roman",serif;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.mobileFlowCurrentActions{display:flex;align-items:center;justify-content:space-between;color:#43d7b6;font-size:13px;font-weight:800}.mobileFlowCurrentActions button{background:#2c9b82;color:#fff;border:0;padding:8px 12px;font-weight:800}.mobileFlowEmpty{border:1px dashed #30353a;border-radius:9px;padding:13px;color:#858c93;text-align:center;font-size:14px}
+
+  body.mobile-editor-full .mobileStoryView{display:none!important}
+  body.mobile-editor-full .editor{position:fixed;inset:0;z-index:90;width:100%;max-height:none;border:0;border-radius:0;padding:12px 14px calc(76px + env(safe-area-inset-bottom));background:#050607;color:#fff;box-shadow:none;overflow:auto}
+  body.mobile-editor-full .editorTop{position:sticky;top:-12px;margin:-12px -14px 10px;padding:12px 14px;background:#050607;color:#fff;z-index:3;border-bottom:1px solid #2d3136}
+  body.mobile-editor-full .editorTop strong{font-size:18px} body.mobile-editor-full .editorTop button{color:#fff}
+  body.mobile-editor-full .editor label{color:#fff;font-weight:700;font-size:14px}
+  body.mobile-editor-full .editor input[type=text],body.mobile-editor-full .editor input[type=number],body.mobile-editor-full .editor textarea{background:#15181c;color:#fff;border-color:#3a4046;font-size:17px}
+  body.mobile-editor-full .editor textarea{min-height:44vh;height:44vh;resize:vertical;font:18px/1.48 Georgia,"Times New Roman",serif}
+  body.mobile-editor-full #nodeLinkedSections{background:#101315;color:#fff;border-color:#353b41}
+  body.mobile-editor-full #nodeLinkedSections .nodeLinkedSectionsHead,body.mobile-editor-full #nodeLinkedSections .nodeLinkedTitle{color:#fff}
+  body.mobile-editor-full #nodeLinkedSections .nodeLinkedRoute{background:#181b1f;border-color:#343a40;color:#fff}
   body.mobile-editor-full #applyNodeBtn{display:none}
   .mobileEditorNav{display:none}
-  body.mobile-editor-full .mobileEditorNav{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:7px;position:fixed;left:0;right:0;bottom:0;z-index:95;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:#0f345e;border-top:1px solid #456683}
-  .mobileEditorNav button{min-height:46px;border-color:#597590;background:#385b7b;color:#fff;font-weight:700}.mobileEditorNav .save{background:#1976d2;border-color:#2587e2}.mobileEditorNav button:disabled{opacity:.35}
+  body.mobile-editor-full .mobileEditorNav{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:7px;position:fixed;left:0;right:0;bottom:0;z-index:95;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:#050607;border-top:1px solid #2d3136}
+  .mobileEditorNav button{min-height:46px;border-color:#3a4148;background:#171a1e;color:#fff;font-weight:800}.mobileEditorNav .save{background:#2c9b82;border-color:#2c9b82}.mobileEditorNav button:disabled{opacity:.35}
+
+  /* Book Preview deliberately stays cream with black text. Only make it a little easier to read on phone. */
+  #bookPreviewOverlay .bookPage{color:#17130e!important;background:#f3ecd9!important}
+  #bookPreviewOverlay .bookPage .storyText{font-size:3.35vw}
 }
