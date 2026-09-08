@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-08T04:43:11.540Z",
+  "savedAt": "2026-09-08T04:51:18.654Z",
   "state": {
     "nextId": 25,
     "nodes": [
@@ -80,7 +80,7 @@
         "id": 11,
         "number": 374,
         "title": "Door - Open without listening",
-        "text": "You burst open the door and can see what looks like a small kitchen or eating area to find 2 large goblins staring back at you.\n\nRoll your dexterity or above to quickly slam the door and block it with a nearby latch. This is a heavy, strong door and as long as you hold that latch down, they won't get out.\n\nIf you make your DEX roll go to 79\n\nIf not go to 246",
+        "text": "You burst open the door and can see what looks like a small kitchen or eating area to find 2 large goblins staring back at you. They pause, both holding a meaty bone. They scream and rush at you; one reaches for its sword.\n\nRoll your Dexterity or higher to quickly slam the door and block it with the heavy latch. This is a solid, strong door, and as long as you hold that latch down, they won't get out.\n\nBANG, BANG, BANG \"Open up, you little weasel, we'll skin you alive... if we can... open... this doooooor, argh!\" shouts one goblin.\n\nYou may smash and bend the lock down solid with a rock at your feet....\n\nOr take a deep breath and quickly push the door open, waiting for the best moment...",
         "x": 388.2734375,
         "y": 273.69140625,
         "map": false
@@ -98,7 +98,7 @@
         "id": 14,
         "number": 100,
         "title": "Junction: DOOR and STAIRS",
-        "text": "If you DID NOT make the DEX roll, you took some hits from the falling rocks; lose 2 health\n\nIf you DID make the DEX roll, you are ok but a little stunned; either way, continue reading\n\nIt's a while before you come round, but when you do, you notice a rockfall now blocks the way back. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are some steps, hewn out of the rock; they look like the surrounding rock but are also well carved and precise. They look like they ascend to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.",
+        "text": "If you DID NOT make the DEX roll, you took some hits from the falling rocks; lose 2 health\n\nIf you DID make the DEX roll, you are ok but a little stunned; either way, continue reading\n\nIt's a while before you come round, but when you do, you notice a rockfall now blocks the way back. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are steps hewn from the rock; they look like the surrounding rock but are also well carved and precise. They look like they ascend to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rock.",
         "x": 585.0859375,
         "y": 199.85546875,
         "map": false
@@ -151,7 +151,7 @@
       {
         "id": 21,
         "number": 79,
-        "title": "Goblins dex roll made 1 goblin to fight",
+        "title": "You shove the door against the goblins",
         "text": "You shove the door with all your might, and a loud clatter of pots and pans, grunts, and groans follows, ending in a loud, bubbling scream! \n\nAs you enter the room, one goblin is scrambling to get up, and the other has fallen headfirst into a massive pot of boiling gruel.\n\nThere is now only one goblin; the other is boiled to perfection, and all you see is his feet sticking out of a steaming pot! Ooh, goblin stew!\n\nFight one goblin... strength 4 + 1 for his sword\n\nRoll one die for you and one for him; add any weapon bonuses. If you score higher, he takes the damage.\n\ne.g. If you roll a 5 plus 2 for a sword, that's 7; if he rolls a 3 plus 1 for his sword, that's 4. You do him 3 hits; he only has 3 HP, so he dies. Repeat the roll until either are dead.\n\nIf you win go to \n\nIf you lose go to 52",
         "x": 43.86328125,
         "y": 331.34375,
