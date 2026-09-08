@@ -1,6 +1,6 @@
 {
   "format": "bod-story-map-v1",
-  "savedAt": "2026-09-08T04:37:33.182Z",
+  "savedAt": "2026-09-08T04:43:11.540Z",
   "state": {
     "nextId": 25,
     "nodes": [
@@ -98,7 +98,7 @@
         "id": 14,
         "number": 100,
         "title": "Junction: DOOR and STAIRS",
-        "text": "If you did not make the DEX roll you took some hits from the falling rocks, lose 2 health\n\nIf you did make the DEX roll, you are ok but a little stunned; either way, continue reading\n\nIt's a while before you come round, but when you do, you notice a rockfall now blocks the way back. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are some steps, hewn out of the rock, but clearly an ascending route to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.",
+        "text": "If you DID NOT make the DEX roll, you took some hits from the falling rocks; lose 2 health\n\nIf you DID make the DEX roll, you are ok but a little stunned; either way, continue reading\n\nIt's a while before you come round, but when you do, you notice a rockfall now blocks the way back. You feel this is now a one-way trip and take stock; no harm done as such, but you sit for a while and rest. You eventually get to your feet, take a short drink from your water flask and hope you can find more later, and you walk a little further to a junction.\n\nTo the right are some steps, hewn out of the rock; they look like the surrounding rock but are also well carved and precise. They look like they ascend to a higher ledge.\n\nTo your left is a door set back some 20 feet in the rocks.",
         "x": 585.0859375,
         "y": 199.85546875,
         "map": false
